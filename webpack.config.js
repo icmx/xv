@@ -84,6 +84,12 @@ const baseConfig = {
     ],
   },
 
+  resolve: {
+    alias: {
+      '~': `${paths.src}`,
+    },
+  },
+
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
