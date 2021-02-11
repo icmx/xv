@@ -5,7 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>xv</title>
   </head>
-  <body>
-    xv
+  <body class="xv-app">
+    <header class="navbar">
+      <div class="navbar__content">
+        <nav class="navbar__buttons">
+          <button class="button button--first">
+            <span class="button__icon">⇤</span>
+          </button>
+          <button class="button button--previous">
+            <span class="button__icon">←</span>
+          </button>
+          <button class="button button--random">
+            <span class="button__icon">?</span>
+          </button>
+          <button class="button button--next">
+            <span class="button__icon">→</span>
+          </button>
+          <button class="button button--last">
+            <span class="button__icon">⇥</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="content">
+      <figure class="figure">
+        <img class="figure__image" />
+        <figcaption class="figure__loader" hidden></figcaption>
+        <figcaption class="figure__error" hidden></figcaption>
+      </figure>
+      <section class="details">
+        <h1 class="details__head"></h1>
+        <p class="details__lead"></p>
+        <p class="details__meta">
+          <span class="details__date"></span> •
+          <a class="details__link"></a>
+        </p>
+        <section class=details__body></section>
+      </section>
+    </main>
   </body>
 </html>
