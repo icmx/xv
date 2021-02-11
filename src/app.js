@@ -20,7 +20,7 @@ const App = (appElement) => {
   const previousButton = $('.button--previous');
   const randomButton = $('.button--random');
   const nextButton = $('.button--next');
-  const lastButton = $('.button--last');
+  const currentButton = $('.button--current');
 
   const figureElement = $('.figure');
   const imageElement = $('.figure__image', figureElement);

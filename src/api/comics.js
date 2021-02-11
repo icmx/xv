@@ -1,16 +1,33 @@
+import _ from '~/utils/common';
+
+const ENDPOINT = `/api/comics`;
+
 /**
  * Get specific xkcd comic by its number (`num` property).
  * If `num` is omitted, then latest comic will be returned.
  */
 export const get = async (num = undefined) => {
-  throw new Error();
+  const option = num === undefined ? `` : `/${num}`;
+
+  try {
+    const response = await fetch(`${ENDPOINT}${option}/info.0.json`);
+    const data = await response.json();
+
+    return data;
+  } catch (e) {
+    throw new Error(`Unable to fetch comic '${option}': ${e}`);
+  }
 };
 
 /**
- * Get latest xkcd comic.
+ * Get current xkcd comic.
  */
-export const latest = async () => {
-  throw new Error();
+export const current = async () => {
+  try {
+    return await get(undefined);
+  } catch (e) {
+    throw new Error(`Unable to fetch latest comic: ${e}`);
+  }
 };
 
 /**
@@ -19,5 +36,17 @@ export const latest = async () => {
  * requests.
  */
 export const random = async () => {
-  throw new Error();
+  try {
+    const latest = await current();
+
+    const min = 1;
+    const max = latest.num;
+    const random = _.random(min, max);
+
+    return await get(random);
+  } catch (e) {
+    throw new Error(`Unable to fetch random comic: ${e}`);
+  }
 };
+
+export default { get, current, random };
