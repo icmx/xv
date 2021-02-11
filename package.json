@@ -1,0 +1,15 @@
+{
+  "name": "xv",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icmx/xv.git"
+  },
+  "author": "icmx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icmx/xv/issues"
+  },
+  "homepage": "https://github.com/icmx/xv#readme"
+}
