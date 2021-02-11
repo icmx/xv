@@ -1,6 +1,11 @@
 {
   "name": "xv",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "xkcd.com viwer app, done in pure JavaScript and Webpack",
+  "keywords": [
+    "xkcd",
+    "vanilla-js"
+  ],
   "private": true,
   "repository": {
     "type": "git",
