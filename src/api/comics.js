@@ -1,4 +1,5 @@
 import _ from '~/utils/common';
+import Comic from '~/models/comic';
 
 const ENDPOINT = `/api/comics`;
 
@@ -13,14 +14,16 @@ export const get = async (num = undefined) => {
     const response = await fetch(`${ENDPOINT}${option}/info.0.json`);
     const data = await response.json();
 
-    return data;
+    const comic = Comic.fromRaw(data);
+
+    return comic;
   } catch (e) {
     throw new Error(`Unable to fetch comic '${option}': ${e}`);
   }
 };
 
 /**
- * Get current xkcd comic.
+ * Get current (latest) xkcd comic.
  */
 export const current = async () => {
   try {
