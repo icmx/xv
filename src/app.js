@@ -9,10 +9,10 @@ const App = (appElement) => {
     toggleClass(appElement)('xv-app--ready', state.ready);
 
     if (state.comic) {
-      attr(figureElement)('href', `${state.comic.alt} (click for original)`);
+      attr(figureElement)('title', `${state.comic.alt} (click for original)`);
       attr(imageElement)('src', `${state.comic.img}`);
     } else {
-      attr(figureElement)('href', null);
+      attr(figureElement)('title', null);
       attr(imageElement)('src', null);
     }
   }
