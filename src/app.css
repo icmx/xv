@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  margin-bottom: 4rem;
 
   font-size: 1rem;
   font-family: 'system-ui', sans-serif;
@@ -45,6 +46,27 @@ body {
   background-color: #ffffff;
 
   overflow: auto;
+}
+
+.xv-app--loading .figure__image,
+.xv-app--error .figure__image {
+  opacity: 0;
+}
+
+.figure__loading {
+  opacity: 0;
+}
+
+.xv-app--loading .figure__loading {
+  opacity: 1;
+}
+
+.figure__error {
+  opacity: 0;
+}
+
+.xv-app--error .figure__error {
+  opacity: 1;
 }
 
 .details {
