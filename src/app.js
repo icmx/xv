@@ -1,11 +1,9 @@
 import _ from '~/utils/common';
 import { $, attr, toggleClass, text, append, empty } from '~/utils/dom';
-
-
+import { parseTranscript, parseDate } from '~/utils/parser';
+import comics from '~/api/comics';
 
 import '~/app.css';
-import comics from './api/comics';
-import { parseHtml, parseText } from './utils/parser';
 
 const App = (appElement) => {
   function render() {
@@ -25,13 +23,15 @@ const App = (appElement) => {
       text(headElement)(`${state.comic.title}`);
       text(leadElement)(`“${state.comic.alt}“`);
 
-      attr(linkElement)('href', `//xkcd.com/${state.comic.num}`);
-      text(linkElement)(`xkcd #${state.comic.num}`);
+      attr(comicLinkElement)('href', `//xkcd.com/${state.comic.num}`);
+      text(comicLinkElement)(`xkcd #${state.comic.num}`);
 
-      text(dateElement)(`${state.comic.date}`);
+      attr(imageLinkElement)('href', `${state.comic.img}`);
+
+      text(dateElement)(parseDate(state.comic));
 
       // text(bodyElement)(state.comic.transcript)
-      append(bodyElement)(parseHtml(parseText(state.comic.transcript)))
+      append(bodyElement)(parseTranscript(state.comic))
     } else {
       attr(figureElement)('title', null);
       attr(imageElement)('src', null);
@@ -125,7 +125,8 @@ const App = (appElement) => {
 
   const headElement = $('.details__head');
   const leadElement = $('.details__lead');
-  const linkElement = $('.details__link');
+  const comicLinkElement = $('.details__comiclink');
+  const imageLinkElement = $('.details__imagelink');
   const dateElement = $('.details__date');
   const bodyElement = $('.details__body');
 

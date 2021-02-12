@@ -90,3 +90,17 @@ body {
   padding: 1rem;
   overflow-wrap: break-word;
 }
+
+.details__head {
+  margin: 0 0 1.5rem 0;
+}
+
+.details__lead {
+  margin: 0 0 1rem 0;
+}
+
+.details__meta {
+  margin: 0 0 1rem 0;
+
+  font-size: 0.85rem;
+}
