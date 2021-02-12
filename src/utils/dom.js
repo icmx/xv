@@ -32,6 +32,13 @@ export const text = (element) => (string) => {
 };
 
 /**
+ * Shorthand to standard nodes `append`.
+ */
+export const append = (element) => (nodes) => {
+  element.append(...nodes);
+};
+
+/**
  * Shorthand to standard `removeChild` in a loop to remove all the
  * `element` children.
  */
@@ -41,4 +48,4 @@ export const empty = (element) => {
   }
 };
 
-export default { $, attr, toggleClass, text, empty };
+export default { $, attr, toggleClass, text, append, empty };
