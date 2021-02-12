@@ -1,8 +1,11 @@
 import _ from '~/utils/common';
-import { $, attr, toggleClass, text, empty } from '~/utils/dom';
+import { $, attr, toggleClass, text, append, empty } from '~/utils/dom';
+
+
 
 import '~/app.css';
-import comics, { random } from './api/comics';
+import comics from './api/comics';
+import { parseHtml, parseText } from './utils/parser';
 
 const App = (appElement) => {
   function render() {
@@ -19,31 +22,37 @@ const App = (appElement) => {
       );
       attr(imageElement)('src', `${state.comic.img}`);
 
-      text(headElement)(`${state.comic.head}`);
-      text(leadElement)(`“${state.comic.lead}“`);
+      text(headElement)(`${state.comic.title}`);
+      text(leadElement)(`“${state.comic.alt}“`);
 
-      attr(linkElement)('href', state.comic.href);
+      attr(linkElement)('href', `//xkcd.com/${state.comic.num}`);
       text(linkElement)(`xkcd #${state.comic.num}`);
 
       text(dateElement)(`${state.comic.date}`);
+
+      // text(bodyElement)(state.comic.transcript)
+      append(bodyElement)(parseHtml(parseText(state.comic.transcript)))
     } else {
       attr(figureElement)('title', null);
       attr(imageElement)('src', null);
+
+      empty(bodyElement);
     }
   }
 
   function listen() {
     window.addEventListener('load', handleLocationChange);
     window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('resize', handleImageSizes);
+
+    imageElement.addEventListener('load', handleImageSizes);
 
     firstButton.addEventListener('click', () => {
       window.location.hash = 1;
     });
 
     previousButton.addEventListener('click', () => {
-      if (state.comic) {
-        window.location.hash = state.comic.num - 1;
-      }
+      window.location.hash = state.num - 1;
     });
 
     randomButton.addEventListener('click', () => {
@@ -51,9 +60,7 @@ const App = (appElement) => {
     });
 
     nextButton.addEventListener('click', () => {
-      if (state.comic) {
-        window.location.hash = state.comic.num + 1;
-      }
+      window.location.hash = state.num + 1;
     });
 
     currentButton.addEventListener('click', () => {
@@ -66,6 +73,21 @@ const App = (appElement) => {
     render();
   }
 
+  function handleImageSizes() {
+    const {
+      width: figureWidth,
+      height: figureHeight,
+    } = figureElement.getBoundingClientRect();
+
+    const {
+      naturalWidth: imageWidth,
+      naturalHeight: imageHeight,
+    } = imageElement;
+
+    toggleClass(figureElement)('figure--center-x', imageWidth < figureWidth);
+    toggleClass(figureElement)('figure--center-y', imageHeight < figureHeight);
+  }
+
   function handleLocationChange() {
     update({ loading: true, error: false, comic: undefined });
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -76,12 +98,13 @@ const App = (appElement) => {
       comics.current().then(setComic).catch(setError);
     } else {
       const num = _.int(hash);
+      update({ num: num });
       comics.get(num).then(setComic).catch(setError);
     }
   }
 
   function setComic(comic) {
-    update({ loading: false, error: false, comic: comic });
+    update({ loading: false, error: false, num: comic.num, comic: comic });
 
     return comic;
   }

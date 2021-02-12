@@ -46,27 +46,44 @@ body {
   background-color: #ffffff;
 
   overflow: auto;
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.figure--center-x {
+  justify-content: center;
+}
+
+.figure--center-y {
+  align-items: center;
 }
 
 .xv-app--loading .figure__image,
 .xv-app--error .figure__image {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
 }
 
 .figure__loading {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
 }
 
 .xv-app--loading .figure__loading {
-  opacity: 1;
+  /* opacity: 1; */
+  display: block;
 }
 
 .figure__error {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
 }
 
 .xv-app--error .figure__error {
-  opacity: 1;
+  /* opacity: 1; */
+  display: block;
 }
 
 .details {
