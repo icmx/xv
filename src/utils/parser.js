@@ -125,6 +125,7 @@ const replacements = [
   { search: / - /g, replace: '—' },
   { search: /->/g, replace: '→' },
   { search: /<-/g, replace: '←' },
+  { search: /"/g, replace: '“' },
   { search: /(\.{3}|(\. ){3})/g, replace: '…' },
   { search: /(^\n+|\n+$)/g, replace: EMPTY },
   { search: /\n+/g, replace: '<br /><br />' },
@@ -132,16 +133,32 @@ const replacements = [
   { search: /^ +| +$/g, replace: EMPTY },
 ];
 
-export const parseText = (string) => {
+const parseText = (string) => {
   let result = string;
 
   replacements.map(({ search, replace }) => {
     result = result.replaceAll(search, replace);
   });
+
   return result;
 };
 
-export const parseHtml = (string) => {
+const parseHtml = (string) => {
   let result = domParser.parseFromString(string, 'text/html');
   return result.body.childNodes;
 };
+
+export const parseTranscript = ({ transcript }) => {
+  return parseHtml(parseText(transcript));
+};
+
+export const parseDate = ({ year, month, day }) => {
+  const date = new Date(year, month, day);
+  const [monthName, weekdayName] = date
+    .toLocaleString('default', { month: 'long', weekday: 'long' })
+    .split(' ');
+
+  return `${weekdayName}, ${monthName} ${day}, ${year}`;
+};
+
+export default { parseTranscript, parseDate };
