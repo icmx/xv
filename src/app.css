@@ -9,6 +9,10 @@ body {
   background-color: #fafafa;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar {
   position: fixed;
 
@@ -55,6 +59,8 @@ body {
 
 .figure {
   margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
 
   height: calc(100vh - 5rem);
   background-color: #ffffff;
@@ -114,11 +120,15 @@ body {
 }
 
 .details__head {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
+
+  font-size: 1.25rem;
 }
 
 .details__lead {
   margin: 0 0 1rem 0;
+
+  font-style: italic;
 }
 
 .details__meta {
