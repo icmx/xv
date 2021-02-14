@@ -1,7 +1,7 @@
+import comics from '~/api/comics';
 import _ from '~/utils/common';
 import { $, attr, toggleClass, text, append, empty } from '~/utils/dom';
 import { parseTranscript, parseDate } from '~/utils/parser';
-import comics from '~/api/comics';
 
 import '~/app.css';
 
@@ -30,8 +30,7 @@ const App = (appElement) => {
 
       text(dateElement)(parseDate(state.comic));
 
-      // text(bodyElement)(state.comic.transcript)
-      append(bodyElement)(parseTranscript(state.comic))
+      append(bodyElement)(parseTranscript(state.comic));
     } else {
       attr(figureElement)('title', null);
       attr(imageElement)('src', null);
@@ -56,7 +55,11 @@ const App = (appElement) => {
     });
 
     randomButton.addEventListener('click', () => {
-      throw new Error(``);
+      comics
+        .random()
+        .then(setComic)
+        .then((comic) => (location.hash = comic.num))
+        .catch(setError);
     });
 
     nextButton.addEventListener('click', () => {
@@ -84,8 +87,14 @@ const App = (appElement) => {
       naturalHeight: imageHeight,
     } = imageElement;
 
-    toggleClass(figureElement)('figure--center-x', imageWidth < figureWidth);
-    toggleClass(figureElement)('figure--center-y', imageHeight < figureHeight);
+    toggleClass(figureElement)(
+      'figure--center-x',
+      imageWidth < figureWidth
+    );
+    toggleClass(figureElement)(
+      'figure--center-y',
+      imageHeight < figureHeight
+    );
   }
 
   function handleLocationChange() {
@@ -104,7 +113,12 @@ const App = (appElement) => {
   }
 
   function setComic(comic) {
-    update({ loading: false, error: false, num: comic.num, comic: comic });
+    update({
+      loading: false,
+      error: false,
+      num: comic.num,
+      comic: comic,
+    });
 
     return comic;
   }
