@@ -2,8 +2,9 @@
  * Shorthand to standart `querySelector`, returns the first element
  * that is a descendant of node that matches selector.
  */
-export const $ = (selector, parent = window.document) =>
-  parent.querySelector(selector);
+export const $ = (selector, parent = window.document) => {
+  return parent.querySelector(selector);
+};
 
 /**
  * Shorthand to standard `setAttribute`, or `removeAttribute` if value
