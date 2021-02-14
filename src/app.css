@@ -58,6 +58,32 @@ a {
   background-color: #00000022;
 }
 
+.navbar__buttons .button .button__icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.navbar__buttons .button--first > .button__icon {
+  background-image: url('../assets/button-first.svg');
+}
+
+.navbar__buttons .button--previous > .button__icon {
+  background-image: url('../assets/button-previous.svg');
+}
+
+.navbar__buttons .button--random > .button__icon {
+  background-image: url('../assets/button-random.svg');
+}
+
+.navbar__buttons .button--next > .button__icon {
+  background-image: url('../assets/button-next.svg');
+}
+
+.navbar__buttons .button--current > .button__icon {
+  background-image: url('../assets/button-current.svg');
+}
+
 .figure {
   margin: 0;
   padding: 1rem;
