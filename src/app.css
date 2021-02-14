@@ -6,6 +6,7 @@ body {
   font-family: 'system-ui', sans-serif;
   font-weight: 400;
 
+  color: #000000dd;
   background-color: #fafafa;
 }
 
@@ -135,4 +136,10 @@ a {
   margin: 0 0 1rem 0;
 
   font-size: 0.85rem;
+  color: #00000099;
+}
+
+.details__rights {
+  font-size: 0.85rem;
+  color: #00000099;
 }
