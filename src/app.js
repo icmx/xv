@@ -78,23 +78,17 @@ const App = (appElement) => {
 
   function handleImageSizes() {
     const {
-      width: figureWidth,
-      height: figureHeight,
+      width: figWidth,
+      height: figHeight,
     } = figureElement.getBoundingClientRect();
 
     const {
-      naturalWidth: imageWidth,
-      naturalHeight: imageHeight,
+      naturalWidth: imgWidth,
+      naturalHeight: imgHeight,
     } = imageElement;
 
-    toggleClass(figureElement)(
-      'figure--center-x',
-      imageWidth < figureWidth
-    );
-    toggleClass(figureElement)(
-      'figure--center-y',
-      imageHeight < figureHeight
-    );
+    toggleClass(figureElement)('figure--center-x', imgWidth < figWidth);
+    toggleClass(figureElement)('figure--center-y', imgHeight < figHeight);
   }
 
   function handleLocationChange() {

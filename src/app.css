@@ -86,8 +86,6 @@ a {
 
 .figure {
   margin: 0;
-  padding: 1rem;
-  box-sizing: border-box;
 
   height: calc(100vh - 5rem);
   background-color: #ffffff;
@@ -168,4 +166,6 @@ a {
 .details__rights {
   font-size: 0.85rem;
   color: #00000099;
+
+  text-align: center;
 }
