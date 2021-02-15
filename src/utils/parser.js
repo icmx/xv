@@ -155,7 +155,7 @@ export const parseTranscript = ({ transcript }) => {
 export const parseDate = ({ year, month, day }) => {
   const date = new Date(year, month, day);
   const [monthName, weekdayName] = date
-    .toLocaleString('default', { month: 'long', weekday: 'long' })
+    .toLocaleString('en-US', { month: 'long', weekday: 'long' })
     .split(' ');
 
   return `${weekdayName}, ${monthName} ${day}, ${year}`;
