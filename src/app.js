@@ -14,7 +14,9 @@ const App = (appElement) => {
     toggleClass(appElement)('xv-app--error', state.error);
 
     if (state.comic) {
-      attr(figureElement)('title', `${state.comic.alt} (click for original)`);
+      document.title = `xv - #${state.comic.num}`;
+
+      attr(figureElement)('title', `${state.comic.alt}`);
       attr(imageElement)('src', `${state.comic.img}`);
 
       text(headElement)(`${state.comic.title}`);
@@ -29,6 +31,8 @@ const App = (appElement) => {
 
       append(bodyElement)(parseTranscript(state.comic));
     } else {
+      document.title = `xv - comic viewer`;
+
       attr(figureElement)('title', null);
       attr(imageElement)('src', null);
 
