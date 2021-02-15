@@ -14,10 +14,7 @@ const App = (appElement) => {
     toggleClass(appElement)('xv-app--error', state.error);
 
     if (state.comic) {
-      attr(figureElement)(
-        'title',
-        `${state.comic.alt} (click for original)`
-      );
+      attr(figureElement)('title', `${state.comic.alt} (click for original)`);
       attr(imageElement)('src', `${state.comic.img}`);
 
       text(headElement)(`${state.comic.title}`);
@@ -46,28 +43,27 @@ const App = (appElement) => {
 
     imageElement.addEventListener('load', handleImageSizes);
 
-    firstButton.addEventListener('click', () => {
-      window.location.hash = 1;
-    });
+    firstButton.addEventListener('click', goFirst);
+    previousButton.addEventListener('click', goPrevious);
+    randomButton.addEventListener('click', goRandom);
+    nextButton.addEventListener('click', goNext);
+    currentButton.addEventListener('click', goCurrent);
 
-    previousButton.addEventListener('click', () => {
-      window.location.hash = state.num - 1;
-    });
-
-    randomButton.addEventListener('click', () => {
-      comics
-        .random()
-        .then(setComic)
-        .then((comic) => (location.hash = comic.num))
-        .catch(setError);
-    });
-
-    nextButton.addEventListener('click', () => {
-      window.location.hash = state.num + 1;
-    });
-
-    currentButton.addEventListener('click', () => {
-      window.location.hash = '';
+    window.addEventListener('keyup', ({ key, shiftKey }) => {
+      switch (key) {
+        case 'ArrowLeft':
+          shiftKey ? goFirst() : goPrevious();
+          break;
+        case 'R':
+        case 'r':
+          goRandom();
+          break;
+        case 'ArrowRight':
+          shiftKey ? goCurrent() : goNext();
+          break;
+        default:
+          break;
+      }
     });
   }
 
@@ -120,6 +116,30 @@ const App = (appElement) => {
   function setError(error) {
     console.error(error);
     update({ loading: false, error: true, comic: undefined });
+  }
+
+  function goFirst() {
+    window.location.hash = 1;
+  }
+
+  function goPrevious() {
+    window.location.hash = state.num - 1;
+  }
+
+  function goRandom() {
+    comics
+      .random()
+      .then(setComic)
+      .then((comic) => (location.hash = comic.num))
+      .catch(setError);
+  }
+
+  function goNext() {
+    window.location.hash = state.num + 1;
+  }
+
+  function goCurrent() {
+    window.location.hash = '';
   }
 
   const firstButton = $('.button--first');
