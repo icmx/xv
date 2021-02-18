@@ -133,8 +133,8 @@ const replacements = [
   { search: /^ +| +$/g, replace: EMPTY },
 ];
 
-const parseText = (string) => {
-  let result = string;
+export const prepareTranscript = ({ transcript }) => {
+  let result = transcript;
 
   replacements.map(({ search, replace }) => {
     result = result.replaceAll(search, replace);
@@ -143,16 +143,7 @@ const parseText = (string) => {
   return result;
 };
 
-const parseHtml = (string) => {
-  let result = domParser.parseFromString(string, 'text/html');
-  return result.body.childNodes;
-};
-
-export const parseTranscript = ({ transcript }) => {
-  return parseHtml(parseText(transcript));
-};
-
-export const parseDate = ({ year, month, day }) => {
+export const prepareDate = ({ year, month, day }) => {
   const date = new Date(year, month, day);
   const [monthName, weekdayName] = date
     .toLocaleString('en-US', { month: 'long', weekday: 'long' })
@@ -161,4 +152,4 @@ export const parseDate = ({ year, month, day }) => {
   return `${weekdayName}, ${monthName} ${day}, ${year}`;
 };
 
-export default { parseTranscript, parseDate };
+export default { prepareTranscript, prepareDate };

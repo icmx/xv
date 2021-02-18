@@ -1,8 +1,10 @@
+const domParser = new DOMParser();
+
 /**
  * Shorthand to standart `querySelector`, returns the first element
  * that is a descendant of node that matches selector.
  */
-export const $ = (selector, parent = window.document) => {
+export const q = (selector, parent = window.document) => {
   return parent.querySelector(selector);
 };
 
@@ -49,4 +51,17 @@ export const empty = (element) => {
   }
 };
 
-export default { $, attr, toggleClass, text, append, empty };
+/**
+ * Shorthand to `empty`, then `append`.
+ * @see {@link empty}
+ * @see {@link append}
+ */
+export const html = (element) => (htmlString) => {
+  const document = domParser.parseFromString(htmlString, 'text/html');
+  const nodes = document.body.childNodes;
+
+  empty(element);
+  append(element)(nodes);
+};
+
+export default { q, attr, toggleClass, text, append, empty, html };

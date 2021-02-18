@@ -1,7 +1,7 @@
 import comics from '~/api/comics';
+import $ from '~/utils/dom';
 import _ from '~/utils/common';
-import { $, attr, toggleClass, text, append, empty } from '~/utils/dom';
-import { parseTranscript, parseDate } from '~/utils/parser';
+import { prepareTranscript, prepareDate } from '~/utils/parser';
 
 import '~/app.css';
 
@@ -9,34 +9,34 @@ const App = (appElement) => {
   function render() {
     console.info(state);
 
-    toggleClass(appElement)('xv-app--ready', state.ready);
-    toggleClass(appElement)('xv-app--loading', state.loading);
-    toggleClass(appElement)('xv-app--error', state.error);
+    $.toggleClass(appElement)('xv-app--ready', state.ready);
+    $.toggleClass(appElement)('xv-app--loading', state.loading);
+    $.toggleClass(appElement)('xv-app--error', state.error);
 
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
 
-      attr(figureElement)('title', `${state.comic.alt}`);
-      attr(imageElement)('src', `${state.comic.img}`);
+      $.attr(figureElement)('title', `${state.comic.alt}`);
+      $.attr(imageElement)('src', `${state.comic.img}`);
 
-      text(headElement)(`${state.comic.title}`);
-      text(leadElement)(`“${state.comic.alt}“`);
+      $.text(headElement)(`${state.comic.title}`);
+      $.text(leadElement)(`“${state.comic.alt}“`);
 
-      attr(comicLinkElement)('href', `//xkcd.com/${state.comic.num}`);
-      text(comicLinkElement)(`xkcd #${state.comic.num}`);
+      $.attr(comicLinkElement)('href', `//xkcd.com/${state.comic.num}`);
+      $.text(comicLinkElement)(`xkcd #${state.comic.num}`);
 
-      attr(imageLinkElement)('href', `${state.comic.img}`);
+      $.attr(imageLinkElement)('href', `${state.comic.img}`);
 
-      text(dateElement)(parseDate(state.comic));
+      $.text(dateElement)(prepareDate(state.comic));
 
-      append(bodyElement)(parseTranscript(state.comic));
+      $.html(bodyElement)(prepareTranscript(state.comic));
     } else {
       document.title = `xv - comic viewer`;
 
-      attr(figureElement)('title', null);
-      attr(imageElement)('src', null);
+      $.attr(figureElement)('title', null);
+      $.attr(imageElement)('src', null);
 
-      empty(bodyElement);
+      $.empty(bodyElement);
     }
   }
 
@@ -82,13 +82,10 @@ const App = (appElement) => {
       height: figHeight,
     } = figureElement.getBoundingClientRect();
 
-    const {
-      naturalWidth: imgWidth,
-      naturalHeight: imgHeight,
-    } = imageElement;
+    const { naturalWidth: imgWidth, naturalHeight: imgHeight } = imageElement;
 
-    toggleClass(figureElement)('figure--center-x', imgWidth < figWidth);
-    toggleClass(figureElement)('figure--center-y', imgHeight < figHeight);
+    $.toggleClass(figureElement)('figure--center-x', imgWidth < figWidth);
+    $.toggleClass(figureElement)('figure--center-y', imgHeight < figHeight);
   }
 
   function handleLocationChange() {
@@ -146,21 +143,21 @@ const App = (appElement) => {
     window.location.hash = '';
   }
 
-  const firstButton = $('.button--first');
-  const previousButton = $('.button--previous');
-  const randomButton = $('.button--random');
-  const nextButton = $('.button--next');
-  const currentButton = $('.button--current');
+  const firstButton = $.q('.button--first');
+  const previousButton = $.q('.button--previous');
+  const randomButton = $.q('.button--random');
+  const nextButton = $.q('.button--next');
+  const currentButton = $.q('.button--current');
 
-  const figureElement = $('.figure');
-  const imageElement = $('.figure__image', figureElement);
+  const figureElement = $.q('.figure');
+  const imageElement = $.q('.figure__image', figureElement);
 
-  const headElement = $('.details__head');
-  const leadElement = $('.details__lead');
-  const comicLinkElement = $('.details__comiclink');
-  const imageLinkElement = $('.details__imagelink');
-  const dateElement = $('.details__date');
-  const bodyElement = $('.details__body');
+  const headElement = $.q('.details__head');
+  const leadElement = $.q('.details__lead');
+  const comicLinkElement = $.q('.details__comiclink');
+  const imageLinkElement = $.q('.details__imagelink');
+  const dateElement = $.q('.details__date');
+  const bodyElement = $.q('.details__body');
 
   let state = {
     ready: false,
