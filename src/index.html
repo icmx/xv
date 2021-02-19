@@ -4,8 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>xv</title>
+    <!-- theme-initialization -->
+    <!--
+      This code should be available even BEFORE document loads body,
+      otherwise it will flash on any reloading, which isn't good.
+    -->
+    <script>
+      !(function () {
+        const set = (name) =>
+        document.documentElement.setAttribute('data-xv-theme', name);
+
+        const load = (() => {
+          let name = null;
+
+          try {
+            name = localStorage.getItem('xv-theme');
+          } catch (error) { }
+
+          return name;
+        })();
+
+        set(load !== null ? load : 'light');
+      })();
+      </script>
+      <!-- /theme-initialization -->
   </head>
-  <body class="xv-app xv-app--theme-light">
+  <body class="xv-app">
     <header class="navbar">
       <div class="navbar__content">
         <div class="navbar__logo">xv</div>
@@ -59,6 +83,11 @@
               boxicons.com
             </a>
           </p>
+        </section>
+        <section class="details__theme">
+          <button class="button button--theme">
+            <span class="button__text"></span>
+          </button>
         </section>
       </section>
     </main>

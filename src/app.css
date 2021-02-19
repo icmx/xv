@@ -1,14 +1,21 @@
-.xv-app {
+:root {
   --transition-delay: 0.15s;
 }
 
-.xv-app--theme-light {
-  --palette-black: #26292eff;
-  --palette-darkgray: #788099ff;
-  --palette-gray: #ecececff;
-  --palette-lightgray: #f8f9fcff;
-  --palette-white: #ffffffff;
-  --palette-blue: #146fd8ff;
+:root[data-xv-theme='light'] {
+  --color-text-main: #212121;
+  --color-text-mute: #545454;
+  --color-text-link: #1a73e8;
+  --color-background-main: #ffffff;
+  --color-background-misc: #fafafa;
+}
+
+:root[data-xv-theme='dark'] {
+  --color-text-main: #a5a5a5;
+  --color-text-mute: #8a8a8a;
+  --color-text-link: #4688f1;
+  --color-background-main: #262626;
+  --color-background-misc: #292a2d;
 }
 
 body {
@@ -19,8 +26,8 @@ body {
   font-family: 'system-ui', sans-serif;
   font-weight: 400;
 
-  color: var(--palette-black);
-  background-color: var(--palette-lightgray);
+  color: var(--color-text-main);
+  background-color: var(--color-background-misc);
 }
 
 @media (min-width: 768px) {
@@ -31,7 +38,7 @@ body {
 }
 
 a {
-  color: var(--palette-blue);
+  color: var(--color-text-link);
   text-decoration: none;
 }
 
@@ -42,7 +49,7 @@ a {
   right: 0;
   bottom: 0;
 
-  background-color: var(--palette-white);
+  background-color: var(--color-background-main);
 }
 
 @media (min-width: 768px) {
@@ -119,7 +126,7 @@ a {
 }
 
 .navbar__buttons .button:hover {
-  background-color: var(--palette-gray);
+  background-color: var(--color-text-mute);
 }
 
 .navbar__buttons .button .button__icon {
@@ -152,7 +159,7 @@ a {
   margin: 0;
 
   height: calc(100vh - 5rem);
-  background-color: var(--palette-white);
+  background-color: var(--color-background-main);
 
   overflow: auto;
   display: flex;
@@ -182,6 +189,10 @@ a {
 .figure__image {
   opacity: 0;
   transition: opacity var(--transition-delay);
+}
+
+:root[data-xv-theme='dark'] .figure__image {
+  filter: invert(1) contrast(70%);
 }
 
 @media (min-width: 768px) {
@@ -232,7 +243,7 @@ a {
 }
 
 .details {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   overflow-wrap: break-word;
 
   margin: 0 auto;
@@ -255,12 +266,34 @@ a {
   margin: 0 0 1.5rem 0;
 
   font-size: 0.85rem;
-  color: var(--palette-darkgray);
+  color: var(--color-text-mute);
 }
 
 .details__rights {
+  margin: 0 0 1.5rem 0;
+
   font-size: 0.85rem;
-  color: var(--palette-darkgray);
+  color: var(--color-text-mute);
 
   text-align: center;
+}
+
+.details__theme {
+  text-align: center;
+}
+
+.details__theme .button {
+  border: none;
+  outline: none;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+
+  border-radius: 1000px 1000px 0 0;
+  padding: 1rem 4rem;
+
+  color: var(--color-text-mute);
+  background-color: var(--color-background-main);
+
+
+  cursor: pointer;
 }

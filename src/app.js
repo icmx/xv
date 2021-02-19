@@ -14,6 +14,11 @@ const App = (appElement) => {
     $.toggleClass(loadingElement, 'figure__loading--shown', state.loading);
     $.toggleClass(errorElement, 'figure__error--shown', state.error);
 
+    $.text(
+      themeButton,
+      `Go to the ${state.theme === 'light' ? 'dark' : 'light'} side!`
+    );
+
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
 
@@ -46,16 +51,6 @@ const App = (appElement) => {
     window.addEventListener('load', handleLocationChange);
     window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('resize', handleSizing);
-
-    imageElement.addEventListener('load', handleImageLoad);
-    imageElement.addEventListener('load', handleSizing);
-
-    firstButton.addEventListener('click', goFirst);
-    previousButton.addEventListener('click', goPrevious);
-    randomButton.addEventListener('click', goRandom);
-    nextButton.addEventListener('click', goNext);
-    currentButton.addEventListener('click', goCurrent);
-
     window.addEventListener('keyup', ({ key, shiftKey }) => {
       switch (key) {
         case 'ArrowLeft':
@@ -72,6 +67,17 @@ const App = (appElement) => {
           break;
       }
     });
+
+    imageElement.addEventListener('load', handleImageLoad);
+    imageElement.addEventListener('load', handleSizing);
+
+    firstButton.addEventListener('click', goFirst);
+    previousButton.addEventListener('click', goPrevious);
+    randomButton.addEventListener('click', goRandom);
+    nextButton.addEventListener('click', goNext);
+    currentButton.addEventListener('click', goCurrent);
+
+    themeButton.addEventListener('click', handleThemeSwitch);
   }
 
   function update(change = {}) {
@@ -108,6 +114,14 @@ const App = (appElement) => {
       update({ num: num });
       comics.get(num).then(setComic).catch(setError);
     }
+  }
+
+  function handleThemeSwitch() {
+    const name = state.theme === 'light' ? 'dark' : 'light';
+
+    update({ theme: name });
+    localStorage.setItem('xv-theme', name);
+    documentElement.setAttribute('data-xv-theme', name);
   }
 
   function setComic(comic) {
@@ -150,11 +164,14 @@ const App = (appElement) => {
     window.location.hash = '';
   }
 
+  const documentElement = window.document.documentElement;
+
   const firstButton = $.q('.button--first', appElement);
   const previousButton = $.q('.button--previous', appElement);
   const randomButton = $.q('.button--random', appElement);
   const nextButton = $.q('.button--next', appElement);
   const currentButton = $.q('.button--current', appElement);
+  const themeButton = $.q('.button--theme', appElement);
 
   const figureElement = $.q('.figure', appElement);
   const imageElement = $.q('.figure__image', figureElement);
@@ -174,10 +191,14 @@ const App = (appElement) => {
     error: false,
     num: -1,
     comic: undefined,
+    theme: 'light',
   };
 
   listen();
-  update({ ready: true });
+  update({
+    ready: true,
+    theme: documentElement.getAttribute('data-xv-theme'),
+  });
 };
 
 export default App;
