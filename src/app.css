@@ -117,7 +117,7 @@ a {
 
 @media (min-width: 768px) {
   .navbar__buttons .button {
-    min-width: 5rem;
+    min-width: 4rem;
 
     border-radius: 0 0 0.25rem 0.25rem;
 
@@ -133,26 +133,8 @@ a {
   display: inline-block;
   width: 24px;
   height: 24px;
-}
 
-.navbar__buttons .button--first > .button__icon {
-  background-image: url('../assets/button-first.svg');
-}
-
-.navbar__buttons .button--previous > .button__icon {
-  background-image: url('../assets/button-previous.svg');
-}
-
-.navbar__buttons .button--random > .button__icon {
-  background-image: url('../assets/button-random.svg');
-}
-
-.navbar__buttons .button--next > .button__icon {
-  background-image: url('../assets/button-next.svg');
-}
-
-.navbar__buttons .button--current > .button__icon {
-  background-image: url('../assets/button-current.svg');
+  fill: var(--color-text-main);
 }
 
 .figure {
@@ -293,7 +275,6 @@ a {
 
   color: var(--color-text-mute);
   background-color: var(--color-background-main);
-
 
   cursor: pointer;
 }
