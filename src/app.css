@@ -1,5 +1,5 @@
 .xv-app {
-  --transition-delay: var(--transition-delay);
+  --transition-delay: 0.15s;
 }
 
 .xv-app--theme-light {
