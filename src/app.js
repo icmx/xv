@@ -10,8 +10,9 @@ const App = (appElement) => {
     console.info(state);
 
     $.toggleClass(appElement, 'xv-app--ready', state.ready);
-    $.toggleClass(appElement, 'xv-app--loading', state.loading);
-    $.toggleClass(appElement, 'xv-app--error', state.error);
+
+    $.toggleClass(loadingElement, 'figure__loading--shown', state.loading);
+    $.toggleClass(errorElement, 'figure__error--shown', state.error);
 
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
@@ -31,6 +32,7 @@ const App = (appElement) => {
 
       $.html(bodyElement, prepareTranscript(state.comic));
     } else {
+      $.removeClass(imageElement, 'figure__image--shown');
       document.title = `xv - comic viewer`;
 
       $.attr(figureElement, 'title', null);
@@ -43,9 +45,10 @@ const App = (appElement) => {
   function listen() {
     window.addEventListener('load', handleLocationChange);
     window.addEventListener('hashchange', handleLocationChange);
-    window.addEventListener('resize', handleImageSizes);
+    window.addEventListener('resize', handleSizing);
 
-    imageElement.addEventListener('load', handleImageSizes);
+    imageElement.addEventListener('load', handleImageLoad);
+    imageElement.addEventListener('load', handleSizing);
 
     firstButton.addEventListener('click', goFirst);
     previousButton.addEventListener('click', goPrevious);
@@ -76,7 +79,11 @@ const App = (appElement) => {
     render();
   }
 
-  function handleImageSizes() {
+  function handleImageLoad() {
+    $.addClass(imageElement, 'figure__image--shown');
+  }
+
+  function handleSizing() {
     const {
       width: figWidth,
       height: figHeight,
@@ -143,21 +150,23 @@ const App = (appElement) => {
     window.location.hash = '';
   }
 
-  const firstButton = $.q('.button--first');
-  const previousButton = $.q('.button--previous');
-  const randomButton = $.q('.button--random');
-  const nextButton = $.q('.button--next');
-  const currentButton = $.q('.button--current');
+  const firstButton = $.q('.button--first', appElement);
+  const previousButton = $.q('.button--previous', appElement);
+  const randomButton = $.q('.button--random', appElement);
+  const nextButton = $.q('.button--next', appElement);
+  const currentButton = $.q('.button--current', appElement);
 
-  const figureElement = $.q('.figure');
+  const figureElement = $.q('.figure', appElement);
   const imageElement = $.q('.figure__image', figureElement);
+  const loadingElement = $.q('.figure__loading', figureElement);
+  const errorElement = $.q('.figure__error', figureElement);
 
-  const headElement = $.q('.details__head');
-  const leadElement = $.q('.details__lead');
-  const comicLinkElement = $.q('.details__comiclink');
-  const imageLinkElement = $.q('.details__imagelink');
-  const dateElement = $.q('.details__date');
-  const bodyElement = $.q('.details__body');
+  const headElement = $.q('.details__head', appElement);
+  const leadElement = $.q('.details__lead', appElement);
+  const comicLinkElement = $.q('.details__comiclink', appElement);
+  const imageLinkElement = $.q('.details__imagelink', appElement);
+  const dateElement = $.q('.details__date', appElement);
+  const bodyElement = $.q('.details__body', appElement);
 
   let state = {
     ready: false,

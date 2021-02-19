@@ -38,6 +38,24 @@ export const toggleClass = (element, name, state) => {
 };
 
 /**
+ * Shorthand to standard `classList.add`.
+ * @param {*} element
+ * @param {*} name - class name to add
+ */
+export const addClass = (element, name) => {
+  element.classList.add(name);
+};
+
+/**
+ * Shorthand to standard `classList.remove`
+ * @param {*} element
+ * @param {*} name - class name to remove
+ */
+export const removeClass = (element, name) => {
+  element.classList.remove(name);
+};
+
+/**
  * Shorthand to standard textContent property, done as a function.
  * @param {HTMLElement} element
  * @param {string} string - text content to set insode `element`
@@ -82,4 +100,14 @@ export const html = (element, htmlString) => {
   append(element, nodes);
 };
 
-export default { q, attr, toggleClass, text, append, empty, html };
+export default {
+  q,
+  attr,
+  toggleClass,
+  addClass,
+  removeClass,
+  text,
+  append,
+  empty,
+  html,
+};
