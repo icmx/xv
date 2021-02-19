@@ -27,4 +27,4 @@ npm run build
 
 Original comics are made by Randall Munroe at [xkcd.com](https://xkcd.com/).
 
-Icons made by Atisa at [boxicons.com](https://boxicons.com/.)
+Icons made by Atisa at [boxicons.com](https://boxicons.com/).
