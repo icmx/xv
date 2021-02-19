@@ -9,32 +9,32 @@ const App = (appElement) => {
   function render() {
     console.info(state);
 
-    $.toggleClass(appElement)('xv-app--ready', state.ready);
-    $.toggleClass(appElement)('xv-app--loading', state.loading);
-    $.toggleClass(appElement)('xv-app--error', state.error);
+    $.toggleClass(appElement, 'xv-app--ready', state.ready);
+    $.toggleClass(appElement, 'xv-app--loading', state.loading);
+    $.toggleClass(appElement, 'xv-app--error', state.error);
 
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
 
-      $.attr(figureElement)('title', `${state.comic.alt}`);
-      $.attr(imageElement)('src', `${state.comic.img}`);
+      $.attr(figureElement, 'title', `${state.comic.alt}`);
+      $.attr(imageElement, 'src', `${state.comic.img}`);
 
-      $.text(headElement)(`${state.comic.title}`);
-      $.text(leadElement)(`“${state.comic.alt}“`);
+      $.text(headElement, `${state.comic.title}`);
+      $.text(leadElement, `“${state.comic.alt}“`);
 
-      $.attr(comicLinkElement)('href', `//xkcd.com/${state.comic.num}`);
-      $.text(comicLinkElement)(`xkcd #${state.comic.num}`);
+      $.attr(comicLinkElement, 'href', `//xkcd.com/${state.comic.num}`);
+      $.text(comicLinkElement, `xkcd #${state.comic.num}`);
 
-      $.attr(imageLinkElement)('href', `${state.comic.img}`);
+      $.attr(imageLinkElement, 'href', `${state.comic.img}`);
 
-      $.text(dateElement)(prepareDate(state.comic));
+      $.text(dateElement, prepareDate(state.comic));
 
-      $.html(bodyElement)(prepareTranscript(state.comic));
+      $.html(bodyElement, prepareTranscript(state.comic));
     } else {
       document.title = `xv - comic viewer`;
 
-      $.attr(figureElement)('title', null);
-      $.attr(imageElement)('src', null);
+      $.attr(figureElement, 'title', null);
+      $.attr(imageElement, 'src', null);
 
       $.empty(bodyElement);
     }
@@ -84,8 +84,8 @@ const App = (appElement) => {
 
     const { naturalWidth: imgWidth, naturalHeight: imgHeight } = imageElement;
 
-    $.toggleClass(figureElement)('figure--center-x', imgWidth < figWidth);
-    $.toggleClass(figureElement)('figure--center-y', imgHeight < figHeight);
+    $.toggleClass(figureElement, 'figure--center-x', imgWidth < figWidth);
+    $.toggleClass(figureElement, 'figure--center-y', imgHeight < figHeight);
   }
 
   function handleLocationChange() {
