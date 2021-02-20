@@ -35,9 +35,16 @@ const EMPTY = '';
 
 /**
  * Shorthand to standard RegExp constructor, builds a regular
- * expression based on `pattern` string.
+ * expression based on template string.
  */
-const rx = (pattern) => new RegExp(pattern);
+export const rx = (strings, ...keys) => {
+  const pattern = keys
+    .map((value, index) => strings[index] + value)
+    .join(EMPTY)
+    .concat(strings[strings.length - 1]);
+
+  return new RegExp(pattern);
+};
 
 /**
  * Checks if a `string` is actually a `character` repetition, done in
@@ -47,7 +54,7 @@ const rx = (pattern) => new RegExp(pattern);
  * and `2` is `count`.
  */
 const repeated = (string, character, count = 1) => {
-  const pattern = rx(`^\\${character}{${count},}$`);
+  const pattern = rx`^\\${character}{${count},}$`;
   return pattern.test(string);
 };
 
@@ -66,8 +73,8 @@ const repeated = (string, character, count = 1) => {
  */
 const replaceToken = (match, token, htmlTagName) =>
   match
-    .replace(rx(`^\\${token}`), `<${htmlTagName}>`)
-    .replace(rx(`\\${token}$`), `</${htmlTagName}>`);
+    .replace(rx`^\\${token}`, `<${htmlTagName}>`)
+    .replace(rx`\\${token}$`, `</${htmlTagName}>`);
 
 /**
  * Replaces a double token like `[[this]]` or `{{ that }}` by HTML tag
@@ -86,8 +93,8 @@ const replaceToken = (match, token, htmlTagName) =>
  */
 const replaceDoubleToken = (match, startToken, endToken, htmlTagName) =>
   match
-    .replace(rx(`^\\${startToken}+ {0,}`), `<${htmlTagName}>`)
-    .replace(rx(` {0,}\\${endToken}+$`), `</${htmlTagName}>`);
+    .replace(rx`^\\${startToken}+ {0,}`, `<${htmlTagName}>`)
+    .replace(rx` {0,}\\${endToken}+$`, `</${htmlTagName}>`);
 
 const replacements = [
   {
