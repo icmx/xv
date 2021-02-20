@@ -33,8 +33,6 @@
 
 const EMPTY = '';
 
-const domParser = new DOMParser();
-
 /**
  * Shorthand to standard RegExp constructor, builds a regular
  * expression based on `pattern` string.
