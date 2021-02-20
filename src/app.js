@@ -50,34 +50,19 @@ const App = (appElement) => {
   function listen() {
     window.addEventListener('load', handleLocationChange);
     window.addEventListener('hashchange', handleLocationChange);
-    window.addEventListener('resize', handleSizing);
-    window.addEventListener('keyup', ({ key, shiftKey }) => {
-      switch (key) {
-        case 'ArrowLeft':
-          shiftKey ? goFirst() : goPrevious();
-          break;
-        case 'R':
-        case 'r':
-          goRandom();
-          break;
-        case 'ArrowRight':
-          shiftKey ? goCurrent() : goNext();
-          break;
-        default:
-          break;
-      }
-    });
+    window.addEventListener('resize', handleImageSizing);
+    window.addEventListener('keyup', handleKeyboardInput);
 
     imageElement.addEventListener('load', handleImageLoad);
-    imageElement.addEventListener('load', handleSizing);
+    imageElement.addEventListener('load', handleImageSizing);
+
+    themeButton.addEventListener('click', handleThemeSwitch);
 
     firstButton.addEventListener('click', goFirst);
     previousButton.addEventListener('click', goPrevious);
     randomButton.addEventListener('click', goRandom);
     nextButton.addEventListener('click', goNext);
     currentButton.addEventListener('click', goCurrent);
-
-    themeButton.addEventListener('click', handleThemeSwitch);
   }
 
   function update(change = {}) {
@@ -89,7 +74,7 @@ const App = (appElement) => {
     $.addClass(imageElement, 'figure__image--shown');
   }
 
-  function handleSizing() {
+  function handleImageSizing() {
     const {
       width: figWidth,
       height: figHeight,
@@ -116,12 +101,55 @@ const App = (appElement) => {
     }
   }
 
+  function handleKeyboardInput({ key, shiftKey }) {
+    switch (key) {
+      case 'ArrowLeft':
+        shiftKey ? goFirst() : goPrevious();
+        break;
+      case 'R':
+      case 'r':
+        goRandom();
+        break;
+      case 'ArrowRight':
+        shiftKey ? goCurrent() : goNext();
+        break;
+      default:
+        break;
+    }
+  }
+
   function handleThemeSwitch() {
     const name = state.theme === 'light' ? 'dark' : 'light';
 
     update({ theme: name });
     localStorage.setItem('xv-theme', name);
     documentElement.setAttribute('data-xv-theme', name);
+  }
+
+  function goFirst() {
+    window.location.hash = 1;
+  }
+
+  function goPrevious() {
+    window.location.hash = state.num - 1;
+  }
+
+  function goRandom() {
+    update({loading: true, error: false, comic: undefined });
+
+    comics
+      .random()
+      .then(setComic)
+      .then((comic) => (location.hash = comic.num))
+      .catch(setError);
+  }
+
+  function goNext() {
+    window.location.hash = state.num + 1;
+  }
+
+  function goCurrent() {
+    window.location.hash = '';
   }
 
   function setComic(comic) {
@@ -138,30 +166,6 @@ const App = (appElement) => {
   function setError(error) {
     console.error(error);
     update({ loading: false, error: true, comic: undefined });
-  }
-
-  function goFirst() {
-    window.location.hash = 1;
-  }
-
-  function goPrevious() {
-    window.location.hash = state.num - 1;
-  }
-
-  function goRandom() {
-    comics
-      .random()
-      .then(setComic)
-      .then((comic) => (location.hash = comic.num))
-      .catch(setError);
-  }
-
-  function goNext() {
-    window.location.hash = state.num + 1;
-  }
-
-  function goCurrent() {
-    window.location.hash = '';
   }
 
   const documentElement = window.document.documentElement;
