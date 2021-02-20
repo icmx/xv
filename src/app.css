@@ -1,5 +1,5 @@
 :root {
-  --transition-delay: 0.15s;
+  --transition-duration: 0.15s;
 }
 
 :root[data-xv-theme='light'] {
@@ -112,7 +112,8 @@ a {
 
   border-radius: 0.25rem 0.25rem 0 0;
 
-  transition: background-color var(--transition-delay);
+  transition-duration: var(--transition-duration);
+  transition-property: background-color;
 }
 
 @media (min-width: 768px) {
@@ -170,7 +171,9 @@ a {
 
 .figure__image {
   opacity: 0;
-  transition: opacity var(--transition-delay);
+
+  transition-duration: var(--transition-duration);
+  transition-property: opacity;
 }
 
 :root[data-xv-theme='dark'] .figure__image {
@@ -200,7 +203,9 @@ a {
 
   opacity: 0;
   transform: scale(0) translateY(calc(-100% + 5rem));
-  transition: opacity var(--transition-delay), transform var(--transition-delay);
+
+  transition-duration: var(--transition-duration);
+  transition-property: opacity, transform;
 }
 
 .figure__loading--shown {
@@ -216,7 +221,8 @@ a {
 
   opacity: 0;
   transform: scale(0) translateY(calc(-100% + 5rem));
-  transition: opacity var(--transition-delay), transform var(--transition-delay);
+  transition-duration: var(--transition-duration);
+  transition-property: opacity, transform;
 }
 
 .figure__error--shown {
