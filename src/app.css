@@ -303,4 +303,11 @@ a {
   background-color: var(--color-background-main);
 
   cursor: pointer;
+
+  transition-duration: var(--transition-duration);
+  transition-property: background-color;
+}
+
+.details__theme .button:hover {
+  background-color: var(--color-background-mute);
 }
