@@ -25,26 +25,6 @@ class Comic {
     this.day = day;
   }
 
-  get head() {
-    return 'head';
-  }
-
-  get lead() {
-    return 'lead';
-  }
-
-  get date() {
-    return 'date';
-  }
-
-  get href() {
-    return `//xkcd.com/${this.num}`;
-  }
-
-  get body() {
-    return 'body';
-  }
-
   static fromRaw(raw) {
     return new Comic(raw);
   }
