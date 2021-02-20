@@ -75,7 +75,7 @@ const baseConfig = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: ['postcss-svg', 'postcss-csso'],
+                plugins: ['postcss-csso'],
               },
             },
           },
