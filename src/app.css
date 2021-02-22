@@ -299,7 +299,7 @@ a {
   border-radius: 1000px 1000px 0 0;
   padding: 1rem 4rem;
 
-  color: var(--color-text-mute);
+  color: var(--color-text-misc);
   background-color: var(--color-background-main);
 
   cursor: pointer;

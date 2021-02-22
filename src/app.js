@@ -135,7 +135,7 @@ const App = (appElement) => {
   }
 
   function goRandom() {
-    update({loading: true, error: false, comic: undefined });
+    update({ loading: true, error: false, comic: undefined });
 
     comics
       .random()
