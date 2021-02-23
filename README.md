@@ -1,10 +1,10 @@
 # xv
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7bae3cd6-2824-48bb-bba5-1c55e521e7ee/deploy-status)](https://app.netlify.com/sites/icmx-xv/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7bae3cd6-2824-48bb-bba5-1c55e521e7ee/deploy-status)](https://icmx-xv.netlify.app/)
 
 [xkcd.com](https://xkcd.com/) viwer app, done in pure JavaScript and Webpack.
 
-Check it **[here](https://icmx-xv.netlify.app/)**!
+Check it on **[icmx-xv.netlify.app](https://icmx-xv.netlify.app/)**!
 
 ## Features
 
