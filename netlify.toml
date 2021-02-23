@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/api/comics/*"
+  to = "https://xkcd.com/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/files/comics/*"
+  to = "https://imgs.xkcd.com/comics/:splat"
+  status = 200
