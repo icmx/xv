@@ -22,7 +22,7 @@ const baseConfig = {
   output: {
     filename: `[name].js`,
     path: paths.dist,
-    publicPath: '/xv',
+    publicPath: '/',
   },
   optimization: {
     splitChunks: {
