@@ -11,6 +11,10 @@ export const q = (selector, parent = window.document) => {
   return parent.querySelector(selector);
 };
 
+export const qa = (selector, parent = window.document) => {
+  return parent.querySelectorAll(selector);
+};
+
 /**
  * Shorthand to standard `setAttribute`, or `removeAttribute` if value
  * is `null`
@@ -100,8 +104,20 @@ export const html = (element, htmlString) => {
   append(element, nodes);
 };
 
+/**
+ * Shorthand to standard addEventListener
+ * @param {HTMLElement} element
+ * @param {string} type
+ * @param {function} listener
+ * @param {any} options
+ */
+export const on = (element, type, listener, options) => {
+  element.addEventListener(type, listener, options);
+};
+
 export default {
   q,
+  qa,
   attr,
   toggleClass,
   addClass,
@@ -110,4 +126,5 @@ export default {
   append,
   empty,
   html,
+  on,
 };

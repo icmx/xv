@@ -7,16 +7,26 @@ import '~/app.css';
 
 const App = (appElement) => {
   function render() {
-    console.info(state);
+    // console.info(state);
 
     $.toggleClass(appElement, 'xv-app--ready', state.ready);
 
     $.toggleClass(loadingElement, 'figure__loading--shown', state.loading);
     $.toggleClass(errorElement, 'figure__error--shown', state.error);
 
+    $.toggleClass(
+      detailsElement,
+      'details--shown',
+      state.loading === false && state.error === false && state.comic
+    );
+
     $.text(
       themeButton,
       `Go to the ${state.theme === 'light' ? 'dark' : 'light'} side!`
+    );
+
+    _.each(navbarButtons, (item) =>
+      $.attr(item, 'disabled', state.disableNavbar ? 'disabled' : null)
     );
 
     if (state.comic) {
@@ -42,27 +52,25 @@ const App = (appElement) => {
 
       $.attr(figureElement, 'title', null);
       $.attr(imageElement, 'src', null);
-
-      $.empty(bodyElement);
     }
   }
 
   function listen() {
-    window.addEventListener('load', handleLocationChange);
-    window.addEventListener('hashchange', handleLocationChange);
-    window.addEventListener('resize', handleImageSizing);
-    window.addEventListener('keyup', handleKeyboardInput);
+    $.on(window, 'load', handleLocationChange);
+    $.on(window, 'hashchange', handleLocationChange);
+    $.on(window, 'resize', handleImageSizing);
+    $.on(window, 'keyup', handleKeyboardInput);
 
-    imageElement.addEventListener('load', handleImageLoad);
-    imageElement.addEventListener('load', handleImageSizing);
+    $.on(imageElement, 'load', handleImageLoad);
+    $.on(imageElement, 'load', handleImageSizing);
 
-    themeButton.addEventListener('click', handleThemeSwitch);
+    $.on(themeButton, 'click', handleThemeSwitch);
 
-    firstButton.addEventListener('click', goFirst);
-    previousButton.addEventListener('click', goPrevious);
-    randomButton.addEventListener('click', goRandom);
-    nextButton.addEventListener('click', goNext);
-    currentButton.addEventListener('click', goCurrent);
+    $.on(firstButton, 'click', goFirst);
+    $.on(previousButton, 'click', goPrevious);
+    $.on(randomButton, 'click', goRandom);
+    $.on(nextButton, 'click', goNext);
+    $.on(currentButton, 'click', goCurrent);
   }
 
   function update(change = {}) {
@@ -135,7 +143,12 @@ const App = (appElement) => {
   }
 
   function goRandom() {
-    update({ loading: true, error: false, comic: undefined });
+    update({
+      loading: true,
+      error: false,
+      disableNavbar: true,
+      comic: undefined,
+    });
 
     comics
       .random()
@@ -156,6 +169,7 @@ const App = (appElement) => {
     update({
       loading: false,
       error: false,
+      disableNavbar: false,
       num: comic.num,
       comic: comic,
     });
@@ -182,17 +196,21 @@ const App = (appElement) => {
   const loadingElement = $.q('.figure__loading', figureElement);
   const errorElement = $.q('.figure__error', figureElement);
 
-  const headElement = $.q('.details__head', appElement);
-  const leadElement = $.q('.details__lead', appElement);
-  const comicLinkElement = $.q('.details__comiclink', appElement);
-  const imageLinkElement = $.q('.details__imagelink', appElement);
-  const dateElement = $.q('.details__date', appElement);
-  const bodyElement = $.q('.details__body', appElement);
+  const detailsElement = $.q('.details', appElement);
+  const headElement = $.q('.details__head', detailsElement);
+  const leadElement = $.q('.details__lead', detailsElement);
+  const comicLinkElement = $.q('.details__comiclink', detailsElement);
+  const imageLinkElement = $.q('.details__imagelink', detailsElement);
+  const dateElement = $.q('.details__date', detailsElement);
+  const bodyElement = $.q('.details__body', detailsElement);
+
+  const navbarButtons = $.qa('.navbar__buttons .button');
 
   let state = {
     ready: false,
     loading: false,
     error: false,
+    disableNavbar: false,
     num: -1,
     comic: undefined,
     theme: 'light',
