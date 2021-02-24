@@ -308,6 +308,8 @@ a {
   transition-property: background-color;
 }
 
-.details__theme .button:hover {
-  background-color: var(--color-background-mute);
+@media (min-width: 768px) {
+  .details__theme .button:hover {
+    background-color: var(--color-background-mute);
+  }
 }
