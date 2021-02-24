@@ -11,6 +11,10 @@ export const q = (selector, parent = window.document) => {
   return parent.querySelector(selector);
 };
 
+export const qa = (selector, parent = window.document) => {
+  return parent.querySelectorAll(selector);
+};
+
 /**
  * Shorthand to standard `setAttribute`, or `removeAttribute` if value
  * is `null`
@@ -102,6 +106,7 @@ export const html = (element, htmlString) => {
 
 export default {
   q,
+  qa,
   attr,
   toggleClass,
   addClass,

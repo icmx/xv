@@ -130,10 +130,6 @@ a {
   }
 }
 
-.navbar__buttons .button:hover {
-  background-color: var(--color-background-mute);
-}
-
 .navbar__buttons .button .button__icon {
   display: inline-block;
   width: 24px;
@@ -147,6 +143,10 @@ a {
 
 .navbar__buttons .button:hover .button__icon {
   fill: var(--color-text-link);
+}
+
+.navbar__buttons .button:disabled .button__icon {
+  fill: var(--color-background-mute);
 }
 
 .figure {

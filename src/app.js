@@ -25,6 +25,10 @@ const App = (appElement) => {
       `Go to the ${state.theme === 'light' ? 'dark' : 'light'} side!`
     );
 
+    _.each(navbarButtons, (item) =>
+      $.attr(item, 'disabled', state.disableNavbar ? 'disabled' : null)
+    );
+
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
 
@@ -139,7 +143,12 @@ const App = (appElement) => {
   }
 
   function goRandom() {
-    update({ loading: true, error: false, comic: undefined });
+    update({
+      loading: true,
+      error: false,
+      disableNavbar: true,
+      comic: undefined,
+    });
 
     comics
       .random()
@@ -160,6 +169,7 @@ const App = (appElement) => {
     update({
       loading: false,
       error: false,
+      disableNavbar: false,
       num: comic.num,
       comic: comic,
     });
@@ -194,10 +204,13 @@ const App = (appElement) => {
   const dateElement = $.q('.details__date', detailsElement);
   const bodyElement = $.q('.details__body', detailsElement);
 
+  const navbarButtons = $.qa('.navbar__buttons .button');
+
   let state = {
     ready: false,
     loading: false,
     error: false,
+    disableNavbar: false,
     num: -1,
     comic: undefined,
     theme: 'light',
