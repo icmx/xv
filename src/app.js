@@ -7,12 +7,18 @@ import '~/app.css';
 
 const App = (appElement) => {
   function render() {
-    console.info(state);
+    // console.info(state);
 
     $.toggleClass(appElement, 'xv-app--ready', state.ready);
 
     $.toggleClass(loadingElement, 'figure__loading--shown', state.loading);
     $.toggleClass(errorElement, 'figure__error--shown', state.error);
+
+    $.toggleClass(
+      detailsElement,
+      'details--shown',
+      state.loading === false && state.error === false && state.comic
+    );
 
     $.text(
       themeButton,
@@ -42,8 +48,6 @@ const App = (appElement) => {
 
       $.attr(figureElement, 'title', null);
       $.attr(imageElement, 'src', null);
-
-      $.empty(bodyElement);
     }
   }
 
@@ -182,12 +186,13 @@ const App = (appElement) => {
   const loadingElement = $.q('.figure__loading', figureElement);
   const errorElement = $.q('.figure__error', figureElement);
 
-  const headElement = $.q('.details__head', appElement);
-  const leadElement = $.q('.details__lead', appElement);
-  const comicLinkElement = $.q('.details__comiclink', appElement);
-  const imageLinkElement = $.q('.details__imagelink', appElement);
-  const dateElement = $.q('.details__date', appElement);
-  const bodyElement = $.q('.details__body', appElement);
+  const detailsElement = $.q('.details', appElement);
+  const headElement = $.q('.details__head', detailsElement);
+  const leadElement = $.q('.details__lead', detailsElement);
+  const comicLinkElement = $.q('.details__comiclink', detailsElement);
+  const imageLinkElement = $.q('.details__imagelink', detailsElement);
+  const dateElement = $.q('.details__date', detailsElement);
+  const bodyElement = $.q('.details__body', detailsElement);
 
   let state = {
     ready: false,
