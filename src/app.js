@@ -56,21 +56,21 @@ const App = (appElement) => {
   }
 
   function listen() {
-    window.addEventListener('load', handleLocationChange);
-    window.addEventListener('hashchange', handleLocationChange);
-    window.addEventListener('resize', handleImageSizing);
-    window.addEventListener('keyup', handleKeyboardInput);
+    $.on(window, 'load', handleLocationChange);
+    $.on(window, 'hashchange', handleLocationChange);
+    $.on(window, 'resize', handleImageSizing);
+    $.on(window, 'keyup', handleKeyboardInput);
 
-    imageElement.addEventListener('load', handleImageLoad);
-    imageElement.addEventListener('load', handleImageSizing);
+    $.on(imageElement, 'load', handleImageLoad);
+    $.on(imageElement, 'load', handleImageSizing);
 
-    themeButton.addEventListener('click', handleThemeSwitch);
+    $.on(themeButton, 'click', handleThemeSwitch);
 
-    firstButton.addEventListener('click', goFirst);
-    previousButton.addEventListener('click', goPrevious);
-    randomButton.addEventListener('click', goRandom);
-    nextButton.addEventListener('click', goNext);
-    currentButton.addEventListener('click', goCurrent);
+    $.on(firstButton, 'click', goFirst);
+    $.on(previousButton, 'click', goPrevious);
+    $.on(randomButton, 'click', goRandom);
+    $.on(nextButton, 'click', goNext);
+    $.on(currentButton, 'click', goCurrent);
   }
 
   function update(change = {}) {

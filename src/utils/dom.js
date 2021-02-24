@@ -104,6 +104,17 @@ export const html = (element, htmlString) => {
   append(element, nodes);
 };
 
+/**
+ * Shorthand to standard addEventListener
+ * @param {HTMLElement} element
+ * @param {string} type
+ * @param {function} listener
+ * @param {any} options
+ */
+export const on = (element, type, listener, options) => {
+  element.addEventListener(type, listener, options);
+};
+
 export default {
   q,
   qa,
@@ -115,4 +126,5 @@ export default {
   append,
   empty,
   html,
+  on,
 };
