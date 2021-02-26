@@ -34,8 +34,9 @@ const App = (appElement) => {
       $(headElement).text(`${state.comic.title}`);
       $(leadElement).text(`“${state.comic.alt}“`);
 
-      $(comicLinkElement).attr('href', `//xkcd.com/${state.comic.num}`);
-      $(comicLinkElement).text(`xkcd #${state.comic.num}`);
+      $(comicLinkElement)
+        .attr('href', `//xkcd.com/${state.comic.num}`)
+        .text(`xkcd #${state.comic.num}`);
 
       $(imageLinkElement).attr('href', `${state.comic.img}`);
 
@@ -52,13 +53,13 @@ const App = (appElement) => {
   }
 
   function listen() {
-    $(window).on('load', handleLocationChange);
-    $(window).on('hashchange', handleLocationChange);
-    $(window).on('resize', handleImageSizing);
-    $(window).on('keyup', handleKeyboardInput);
+    $(window)
+      .on('load', handleLocationChange)
+      .on('hashchange', handleLocationChange)
+      .on('resize', handleImageSizing)
+      .on('keyup', handleKeyboardInput);
 
-    $(imageElement).on('load', handleImageLoad);
-    $(imageElement).on('load', handleImageSizing);
+    $(imageElement).on('load', handleImageLoad).on('load', handleImageSizing);
 
     $(themeButton).on('click', handleThemeSwitch);
 
@@ -83,13 +84,14 @@ const App = (appElement) => {
 
     const { width: imgWidth, height: imgHeight } = $(imageElement).imageSize();
 
-    $(figureElement).toggleClass('figure--center-x', imgWidth < figWidth);
-    $(figureElement).toggleClass('figure--center-y', imgHeight < figHeight);
+    $(figureElement)
+      .toggleClass('figure--center-x', imgWidth < figWidth)
+      .toggleClass('figure--center-y', imgHeight < figHeight);
   }
 
   function handleLocationChange() {
     update({ loading: true, error: false, comic: undefined });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTop();
 
     const hash = window.location.hash.substring(1);
 
@@ -142,6 +144,7 @@ const App = (appElement) => {
       disableNavbar: true,
       comic: undefined,
     });
+    scrollTop();
 
     comics
       .random()
@@ -173,6 +176,10 @@ const App = (appElement) => {
   function setError(error) {
     console.error(error);
     update({ loading: false, error: true, comic: undefined });
+  }
+
+  function scrollTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   const documentElement = window.document.documentElement;
