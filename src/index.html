@@ -5,26 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>xv</title>
     <!-- theme-initialization -->
-    <!--
-      This code should be available even BEFORE document loads body,
-      otherwise it will flash on any reloading, which isn't good.
-    -->
     <script>
-      !(function () {
-        const set = (name) =>
-        document.documentElement.setAttribute('data-xv-theme', name);
+      // This code should be available even BEFORE document loads body,
+      // otherwise it will flash on any reloading.
 
-        const load = (() => {
-          let name = null;
+      (() => {
+        const apply = theme => window
+          .document
+          .documentElement
+          .setAttribute('data-xv-theme', theme);
 
-          try {
-            name = localStorage.getItem('xv-theme');
-          } catch (error) { }
-
-          return name;
-        })();
-
-        set(load !== null ? load : 'light');
+        const current = localStorage.getItem('xv-theme');
+        apply(current !== null ? current : 'light');
       })();
       </script>
       <!-- /theme-initialization -->
