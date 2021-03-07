@@ -3,8 +3,6 @@ import $ from '~/lib/elementshell';
 import _ from '~/utils/common';
 import { prepareTranscript, prepareDate } from '~/utils/parser';
 
-import '~/app.css';
-
 const App = (appElement) => {
   function render() {
     // console.info(state);
