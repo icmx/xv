@@ -30,6 +30,7 @@ const App = (appElement) => {
       document.title = `xv - #${state.comic.num}`;
 
       $(figureElement).attr('title', `${state.comic.alt}`);
+
       $(imageElement).attr('src', `${state.comic.img}`);
 
       $(headElement).text(`${state.comic.title}`);
@@ -45,11 +46,12 @@ const App = (appElement) => {
 
       $(bodyElement).html(prepareTranscript(state.comic));
     } else {
-      $(imageElement).removeClass('is-shown');
       document.title = `xv - comic viewer`;
 
       $(figureElement).attr('title', null);
+
       $(imageElement).attr('src', null);
+      $(imageElement).removeClass('is-shown');
     }
   }
 
@@ -181,7 +183,7 @@ const App = (appElement) => {
   }
 
   function scrollTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   const documentElement = window.document.documentElement;

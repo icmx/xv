@@ -5,14 +5,11 @@
   margin: 0 auto;
   max-width: 800px;
 
-  opacity: 0;
-
-  transition-duration: var(--transition-duration);
-  transition-property: opacity;
+  display: none;
 }
 
 .details.is-shown {
-  opacity: 1;
+  display: block;
 }
 
 .details-head {
