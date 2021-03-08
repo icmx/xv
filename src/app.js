@@ -1,76 +1,78 @@
 import comics from '~/api/comics';
-import $ from '~/utils/dom';
+import $ from '~/lib/elementshell';
 import _ from '~/utils/common';
 import { prepareTranscript, prepareDate } from '~/utils/parser';
-
-import '~/app.css';
 
 const App = (appElement) => {
   function render() {
     // console.info(state);
 
-    $.toggleClass(appElement, 'xv-app--ready', state.ready);
+    $(appElement).toggleClass('xv-app--ready', state.ready);
 
-    $.toggleClass(loadingElement, 'figure__loading--shown', state.loading);
-    $.toggleClass(errorElement, 'figure__error--shown', state.error);
+    $(loadingElement).toggleClass('is-shown', state.loading);
+    $(errorElement).toggleClass('is-shown', state.error);
 
-    $.toggleClass(
-      detailsElement,
-      'details--shown',
+    $(detailsElement).toggleClass(
+      'is-shown',
       state.loading === false && state.error === false && state.comic
     );
 
-    $.text(
-      themeButton,
+    $(themeButton).text(
       `Go to the ${state.theme === 'light' ? 'dark' : 'light'} side!`
     );
 
-    _.each(navbarButtons, (item) =>
-      $.attr(item, 'disabled', state.disableNavbar ? 'disabled' : null)
+    $(navbarButtons).attr(
+      'disabled',
+      state.disableNavbar ? 'disabled' : null
     );
 
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
 
-      $.attr(figureElement, 'title', `${state.comic.alt}`);
-      $.attr(imageElement, 'src', `${state.comic.img}`);
+      $(figureElement).attr('title', `${state.comic.alt}`);
 
-      $.text(headElement, `${state.comic.title}`);
-      $.text(leadElement, `“${state.comic.alt}“`);
+      $(imageElement).attr('src', `${state.comic.img}`);
 
-      $.attr(comicLinkElement, 'href', `//xkcd.com/${state.comic.num}`);
-      $.text(comicLinkElement, `xkcd #${state.comic.num}`);
+      $(headElement).text(`${state.comic.title}`);
+      $(leadElement).text(`“${state.comic.alt}“`);
 
-      $.attr(imageLinkElement, 'href', `${state.comic.img}`);
+      $(comicLinkElement)
+        .attr('href', `//xkcd.com/${state.comic.num}`)
+        .text(`xkcd #${state.comic.num}`);
 
-      $.text(dateElement, prepareDate(state.comic));
+      $(imageLinkElement).attr('href', `${state.comic.img}`);
 
-      $.html(bodyElement, prepareTranscript(state.comic));
+      $(dateElement).text(prepareDate(state.comic));
+
+      $(bodyElement).html(prepareTranscript(state.comic));
     } else {
-      $.removeClass(imageElement, 'figure__image--shown');
       document.title = `xv - comic viewer`;
 
-      $.attr(figureElement, 'title', null);
-      $.attr(imageElement, 'src', null);
+      $(figureElement).attr('title', null);
+
+      $(imageElement).attr('src', null);
+      $(imageElement).removeClass('is-shown');
     }
   }
 
   function listen() {
-    $.on(window, 'load', handleLocationChange);
-    $.on(window, 'hashchange', handleLocationChange);
-    $.on(window, 'resize', handleImageSizing);
-    $.on(window, 'keyup', handleKeyboardInput);
+    $(window)
+      .on('load', handleLocationChange)
+      .on('hashchange', handleLocationChange)
+      .on('resize', handleImageSizing)
+      .on('keyup', handleKeyboardInput);
 
-    $.on(imageElement, 'load', handleImageLoad);
-    $.on(imageElement, 'load', handleImageSizing);
+    $(imageElement)
+      .on('load', handleImageLoad)
+      .on('load', handleImageSizing);
 
-    $.on(themeButton, 'click', handleThemeSwitch);
+    $(themeButton).on('click', handleThemeSwitch);
 
-    $.on(firstButton, 'click', goFirst);
-    $.on(previousButton, 'click', goPrevious);
-    $.on(randomButton, 'click', goRandom);
-    $.on(nextButton, 'click', goNext);
-    $.on(currentButton, 'click', goCurrent);
+    $(firstButton).on('click', goFirst);
+    $(previousButton).on('click', goPrevious);
+    $(randomButton).on('click', goRandom);
+    $(nextButton).on('click', goNext);
+    $(currentButton).on('click', goCurrent);
   }
 
   function update(change = {}) {
@@ -79,24 +81,21 @@ const App = (appElement) => {
   }
 
   function handleImageLoad() {
-    $.addClass(imageElement, 'figure__image--shown');
+    $(imageElement).addClass('is-shown');
   }
 
   function handleImageSizing() {
-    const {
-      width: figWidth,
-      height: figHeight,
-    } = figureElement.getBoundingClientRect();
+    const { width: figWidth, height: figHeight } = $(figureElement).rect();
+    const { width: imgWidth, height: imgHeight } = $(imageElement).imageSize();
 
-    const { naturalWidth: imgWidth, naturalHeight: imgHeight } = imageElement;
-
-    $.toggleClass(figureElement, 'figure--center-x', imgWidth < figWidth);
-    $.toggleClass(figureElement, 'figure--center-y', imgHeight < figHeight);
+    $(figureElement)
+      .toggleClass('is-center-x', imgWidth < figWidth)
+      .toggleClass('is-center-y', imgHeight < figHeight);
   }
 
   function handleLocationChange() {
     update({ loading: true, error: false, comic: undefined });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTop();
 
     const hash = window.location.hash.substring(1);
 
@@ -149,6 +148,7 @@ const App = (appElement) => {
       disableNavbar: true,
       comic: undefined,
     });
+    scrollTop();
 
     comics
       .random()
@@ -182,29 +182,33 @@ const App = (appElement) => {
     update({ loading: false, error: true, comic: undefined });
   }
 
+  function scrollTop() {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
   const documentElement = window.document.documentElement;
 
-  const firstButton = $.q('.button--first', appElement);
-  const previousButton = $.q('.button--previous', appElement);
-  const randomButton = $.q('.button--random', appElement);
-  const nextButton = $.q('.button--next', appElement);
-  const currentButton = $.q('.button--current', appElement);
-  const themeButton = $.q('.button--theme', appElement);
+  const firstButton = $('button.is-first', appElement);
+  const previousButton = $('button.is-previous', appElement);
+  const randomButton = $('button.is-random', appElement);
+  const nextButton = $('button.is-next', appElement);
+  const currentButton = $('button.is-current', appElement);
+  const themeButton = $('.details-theme button', appElement);
 
-  const figureElement = $.q('.figure', appElement);
-  const imageElement = $.q('.figure__image', figureElement);
-  const loadingElement = $.q('.figure__loading', figureElement);
-  const errorElement = $.q('.figure__error', figureElement);
+  const figureElement = $('.figure', appElement);
+  const imageElement = $('.figure-image', figureElement);
+  const loadingElement = $('.figure-loading', figureElement);
+  const errorElement = $('.figure-error', figureElement);
 
-  const detailsElement = $.q('.details', appElement);
-  const headElement = $.q('.details__head', detailsElement);
-  const leadElement = $.q('.details__lead', detailsElement);
-  const comicLinkElement = $.q('.details__comiclink', detailsElement);
-  const imageLinkElement = $.q('.details__imagelink', detailsElement);
-  const dateElement = $.q('.details__date', detailsElement);
-  const bodyElement = $.q('.details__body', detailsElement);
+  const detailsElement = $('.details', appElement);
+  const headElement = $('.details-head', detailsElement);
+  const leadElement = $('.details-lead', detailsElement);
+  const comicLinkElement = $('.details-comiclink', detailsElement);
+  const imageLinkElement = $('.details-imagelink', detailsElement);
+  const dateElement = $('.details-date', detailsElement);
+  const bodyElement = $('.details-body', detailsElement);
 
-  const navbarButtons = $.qa('.navbar__buttons .button');
+  const navbarButtons = $('.navbar button');
 
   let state = {
     ready: false,

@@ -1,0 +1,104 @@
+.navbar {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: var(--color-background-main);
+
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    top: 0;
+    bottom: initial;
+  }
+}
+
+.navbar-content {
+  height: 5rem;
+
+  margin: 0 auto;
+  max-width: 800px;
+
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .navbar-content {
+    height: 4rem;
+
+    justify-content: space-between;
+  }
+}
+
+.navbar-logo {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-logo {
+    display: initial;
+
+    font-size: 1.5rem;
+    align-self: center;
+  }
+}
+
+.navbar-buttons {
+  display: flex;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .navbar-buttons {
+    width: initial;
+    align-self: stretch;
+  }
+}
+
+.navbar-buttons > button {
+  background: none;
+  border: none;
+  outline: none;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 20%;
+
+  border-radius: 0.25rem 0.25rem 0 0;
+
+  transition-duration: var(--transition-duration);
+  transition-property: background-color;
+}
+
+@media (min-width: 768px) {
+  .navbar-buttons > button {
+    min-width: 4rem;
+
+    border-radius: 0 0 0.25rem 0.25rem;
+
+    cursor: pointer;
+  }
+}
+
+.navbar-buttons > button > svg {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+
+  fill: var(--color-text-main);
+
+  transition-duration: var(--transition-duration);
+  transition-property: fill;
+}
+
+.navbar-buttons > button:hover > svg {
+  fill: var(--color-text-link);
+}
+
+.navbar-buttons > button:disabled > svg {
+  fill: var(--color-background-mute);
+}
