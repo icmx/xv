@@ -23,53 +23,54 @@
   </head>
   <body class="xv-app">
     <header class="navbar">
-      <div class="navbar__content">
-        <div class="navbar__logo">xv</div>
-        <nav class="navbar__buttons">
-          <button class="button button--first" title="Go to first comic">
-            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <div class="navbar-content">
+        <div class="navbar-logo">
+        </div>
+        <nav class="navbar-buttons">
+          <button class="is-first" title="Go to first comic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M4 6H6V18H4zM14 13L20 13 20 11 14 11 14 6 8 12 14 18z" />
             </svg>
           </button>
-          <button class="button button--previous" title="Previous comic">
-            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <button class="is-previous" title="Previous comic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M5 12L12 18 12 13 18 13 18 11 12 11 12 6z" />
             </svg>
           </button>
-          <button class="button button--random" title="Random comic">
-            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <button class="is-random" title="Random comic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M15 12L20 8 15 4 15 6.999 2 6.999 2 8.999 15 8.999zM22 15L9 15 9 12 4 16 9 20 9 17 22 17z" />
             </svg>
           </button>
-          <button class="button button--next" title="Next comic">
-            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <button class="is-next" title="Next comic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M19 12L12 6 12 11 6 11 6 13 12 13 12 18z" />
             </svg>
           </button>
-          <button class="button button--current" title="Go to current comic">
-            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <button class="is-current" title="Go to current comic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M18 6H20V18H18zM10 11L4 11 4 13 10 13 10 18 16 12 10 6z" />
             </svg>
           </button>
         </nav>
       </div>
     </header>
-    <main class="content">
-      <figure class="figure figure--center-x figure--center-y">
-        <img class="figure__image" />
-        <figcaption class="figure__loading">Loading...</figcaption>
-        <figcaption class="figure__error">Error!</figcaption>
+    <main>
+      <figure class="figure is-center-x is-center-y">
+        <img class="figure-image" />
+        <figcaption class="figure-loading">Loading...</figcaption>
+        <figcaption class="figure-error">Error!</figcaption>
       </figure>
       <section class="details">
-        <h1 class="details__head"></h1>
-        <p class="details__lead"></p>
-        <p class="details__meta">
-          <span class="details__date"></span> •
-          <a class="details__comiclink"></a> •
-          <a class="details__imagelink">full image</a>
+        <h1 class="details-head"></h1>
+        <p class="details-lead"></p>
+        <p class="details-meta">
+          <span class="details-date"></span> •
+          <a class="details-comiclink"></a> •
+          <a class="details-imagelink">full image</a>
         </p>
-        <section class=details__body></section>
-        <section class="details__rights">
+        <section class=details-body></section>
+        <section class="details-rights">
           <p>
             xv app by <a href="https://github.com/icmx">@icmx</a> •
             <a
@@ -86,10 +87,8 @@
             </a>
           </p>
         </section>
-        <section class="details__theme">
-          <button class="button button--theme">
-            <span class="button__text"></span>
-          </button>
+        <section class="details-theme">
+          <button></button>
         </section>
       </section>
     </main>

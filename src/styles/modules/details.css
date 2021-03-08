@@ -11,34 +11,34 @@
   transition-property: opacity;
 }
 
-.details--shown {
+.details.is-shown {
   opacity: 1;
 }
 
-.details__head {
+.details-head {
   margin: 0 0 1.5rem 0;
 
   font-size: 1.25rem;
 }
 
-.details__lead {
+.details-lead {
   margin: 0 0 1.5rem 0;
 
   font-style: italic;
 }
 
-.details__meta {
+.details-meta {
   margin: 0 0 1.5rem 0;
 
   font-size: 0.85rem;
   color: var(--color-text-mute);
 }
 
-.details__body {
+.details-body {
   margin: 0 0 1.5rem 0;
 }
 
-.details__rights {
+.details-rights {
   margin: 0 0 1.5rem 0;
 
   font-size: 0.85rem;
@@ -47,11 +47,11 @@
   text-align: center;
 }
 
-.details__theme {
+.details-theme {
   text-align: center;
 }
 
-.details__theme .button {
+.details-theme button {
   border: none;
   outline: none;
   margin: 0;
@@ -70,7 +70,7 @@
 }
 
 @media (min-width: 768px) {
-  .details__theme .button:hover {
+  .details-theme button:hover {
     background-color: var(--color-background-mute);
   }
 }
