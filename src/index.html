@@ -10,10 +10,12 @@
       // otherwise it will flash on any reloading.
 
       (() => {
-        const apply = theme => window
-          .document
-          .documentElement
-          .setAttribute('data-xv-theme', theme);
+        const apply = (theme) => {
+          window
+            .document
+            .documentElement
+            .setAttribute('data-xv-theme', theme);
+        }
 
         const current = localStorage.getItem('xv-theme');
         apply(current !== null ? current : 'light');

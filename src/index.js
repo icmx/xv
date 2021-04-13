@@ -1,5 +1,4 @@
 import App from '~/app';
-
-import './styles/index.css';
+import '~/index.css';
 
 App(document.querySelector('.xv-app'));
