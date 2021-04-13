@@ -16,13 +16,4 @@ export const random = (min = 0, max = 1) =>
  */
 export const int = (string) => Number.parseInt(string, 10);
 
-/**
- * Shorthand to standard Array.from and forEach.
- * @param {Iterable} iterable
- * @param {function} callback
- */
-export const each = (iterable, callback) => {
-  Array.from(iterable).forEach(callback);
-};
-
-export default { random, int, each };
+export default { random, int };

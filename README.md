@@ -15,6 +15,10 @@ xv is xkcd comics viwer app, done in pure JavaScript, CSS and Webpack.
   - Mobile-first and desktop layouts
   - Light and Dark modes without flashing on refresh — works with images too!
 
+## How it looks like?
+
+![Demo of xv](demo.gif)
+
 ## Development
 
 ```sh

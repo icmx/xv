@@ -45,3 +45,14 @@ a {
   color: var(--color-text-link);
   text-decoration: none;
 }
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+
+  margin: 0;
+
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}

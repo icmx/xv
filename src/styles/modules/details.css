@@ -49,18 +49,11 @@
 }
 
 .details-theme button {
-  border: none;
-  outline: none;
-  margin: 0;
-  -webkit-tap-highlight-color: transparent;
-
   border-radius: 1000px 1000px 0 0;
   padding: 1rem 4rem;
 
   color: var(--color-text-misc);
   background-color: var(--color-background-main);
-
-  cursor: pointer;
 
   transition-duration: var(--transition-duration);
   transition-property: background-color;
