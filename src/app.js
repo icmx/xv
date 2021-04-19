@@ -199,7 +199,7 @@ const App = (appElement) => {
   const randomButton = $('button.is-random', appElement);
   const nextButton = $('button.is-next', appElement);
   const currentButton = $('button.is-current', appElement);
-  const themeButton = $('.bottomline button', appElement);
+  const themeButton = $('.bottomline .actions button', appElement);
 
   const figureElement = $('.figure', appElement);
   const imageElement = $('.figure-image', figureElement);
@@ -214,7 +214,7 @@ const App = (appElement) => {
   const comicDateElement = $('.comic-date', detailsElement);
   const comicTranscriptElement = $('.comic-transcript', detailsElement);
 
-  const navbarButtons = $('.navbar button');
+  const navbarButtons = $('.navbar .actions button');
 
   let state = {
     ready: false,

@@ -1,3 +1,83 @@
+.navbar {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: var(--color-background-main);
+
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    top: 0;
+    bottom: initial;
+  }
+}
+
+.navbar-content {
+  height: 5rem;
+
+  margin: 0 auto;
+  max-width: 800px;
+
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .navbar-content {
+    height: 4rem;
+
+    justify-content: space-between;
+  }
+}
+
+.navbar-logo {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-logo {
+    display: initial;
+
+    font-size: 1.5rem;
+    align-self: center;
+  }
+}
+
+.navbar .actions {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .navbar .actions {
+    width: initial;
+    align-self: stretch;
+  }
+}
+
+.navbar .actions button {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 20%;
+}
+
+@media (min-width: 768px) {
+  .navbar .actions button {
+    min-width: 4rem;
+  }
+
+  .navbar .actions button:first-child {
+    border-bottom-left-radius: 0.25rem;
+  }
+
+  .navbar .actions button:last-child {
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
 .details {
   padding: 1rem 1rem 0 1rem;
 
@@ -24,19 +104,13 @@
   max-width: 800px;
 }
 
-.bottomline button {
-  border-radius: 1000px 1000px 0 0;
-  padding: 1rem 4rem;
+.bottomline .actions {
+  margin-top: 1.5rem;
 
-  color: var(--color-text-misc);
-  background-color: var(--color-background-main);
-
-  transition-duration: var(--transition-duration);
-  transition-property: background-color;
+  justify-content: center;
 }
 
-@media (min-width: 768px) {
-  .bottomline button:hover {
-    background-color: var(--color-background-mute);
-  }
+.bottomline .actions button {
+  border-radius: 1000px 1000px 0 0;
+  padding: 1rem 4rem;
 }
