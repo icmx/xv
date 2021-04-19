@@ -33,18 +33,18 @@ const App = (appElement) => {
 
       $(imageElement).attr('src', `${state.comic.img}`);
 
-      $(headElement).text(`${state.comic.title}`);
-      $(leadElement).text(`“${state.comic.alt}“`);
+      $(comicTitleElement).text(`${state.comic.title}`);
+      $(comicAltElement).text(`“${state.comic.alt}“`);
 
-      $(comicLinkElement)
+      $(comicSourceLinkElement)
         .attr('href', `//xkcd.com/${state.comic.num}`)
         .text(`xkcd #${state.comic.num}`);
 
-      $(imageLinkElement).attr('href', `${state.comic.img}`);
+      $(comicImageLinkElement).attr('href', `${state.comic.img}`);
 
-      $(dateElement).text(prepareDate(state.comic));
+      $(comicDateElement).text(prepareDate(state.comic));
 
-      $(bodyElement).html(prepareTranscript(state.comic));
+      $(comicTranscriptElement).html(prepareTranscript(state.comic));
     } else {
       document.title = `xv - comic viewer`;
 
@@ -113,13 +113,16 @@ const App = (appElement) => {
       case 'ArrowLeft':
         shiftKey ? goFirst() : goPrevious();
         break;
+
       case 'R':
       case 'r':
         goRandom();
         break;
+
       case 'ArrowRight':
         shiftKey ? goCurrent() : goNext();
         break;
+
       default:
         break;
     }
@@ -148,12 +151,15 @@ const App = (appElement) => {
       disableNavbar: true,
       comic: undefined,
     });
+
     scrollTop();
 
     comics
       .random()
       .then(setComic)
-      .then((comic) => (location.hash = comic.num))
+      .then((comic) => {
+        location.hash = comic.num;
+      })
       .catch(setError);
   }
 
@@ -193,7 +199,7 @@ const App = (appElement) => {
   const randomButton = $('button.is-random', appElement);
   const nextButton = $('button.is-next', appElement);
   const currentButton = $('button.is-current', appElement);
-  const themeButton = $('.details-theme button', appElement);
+  const themeButton = $('.bottomline button', appElement);
 
   const figureElement = $('.figure', appElement);
   const imageElement = $('.figure-image', figureElement);
@@ -201,12 +207,12 @@ const App = (appElement) => {
   const errorElement = $('.figure-error', figureElement);
 
   const detailsElement = $('.details', appElement);
-  const headElement = $('.details-head', detailsElement);
-  const leadElement = $('.details-lead', detailsElement);
-  const comicLinkElement = $('.details-comiclink', detailsElement);
-  const imageLinkElement = $('.details-imagelink', detailsElement);
-  const dateElement = $('.details-date', detailsElement);
-  const bodyElement = $('.details-body', detailsElement);
+  const comicTitleElement = $('.comic-title', detailsElement);
+  const comicAltElement = $('.comic-alt', detailsElement);
+  const comicSourceLinkElement = $('.comic-sourcelink', detailsElement);
+  const comicImageLinkElement = $('.comic-imagelink', detailsElement);
+  const comicDateElement = $('.comic-date', detailsElement);
+  const comicTranscriptElement = $('.comic-transcript', detailsElement);
 
   const navbarButtons = $('.navbar button');
 

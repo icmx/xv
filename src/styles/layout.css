@@ -1,0 +1,42 @@
+.details {
+  padding: 1rem 1rem 0 1rem;
+
+  margin: 0 auto;
+  max-width: 800px;
+
+  overflow-wrap: break-word;
+
+  display: none;
+}
+
+.details.is-shown {
+  display: block;
+}
+
+.details section {
+  margin: 0 0 1.5rem 0;
+}
+
+.bottomline {
+  padding: 1rem 1rem 0 1rem;
+
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.bottomline button {
+  border-radius: 1000px 1000px 0 0;
+  padding: 1rem 4rem;
+
+  color: var(--color-text-misc);
+  background-color: var(--color-background-main);
+
+  transition-duration: var(--transition-duration);
+  transition-property: background-color;
+}
+
+@media (min-width: 768px) {
+  .bottomline button:hover {
+    background-color: var(--color-background-mute);
+  }
+}
