@@ -1,0 +1,30 @@
+.actions {
+  display: flex;
+}
+
+.actions > button {
+  color: var(--color-text-misc);
+  background-color: var(--color-background-main);
+
+  transition-duration: var(--transition-duration);
+  transition-property: background-color;
+}
+
+.actions > button > svg {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+
+  fill: var(--color-text-main);
+
+  transition-duration: var(--transition-duration);
+  transition-property: fill;
+}
+
+.actions > button:hover > svg {
+  fill: var(--color-text-link);
+}
+
+.actions > button:disabled > svg {
+  fill: var(--color-background-mute);
+}

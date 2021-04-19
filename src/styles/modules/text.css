@@ -1,0 +1,11 @@
+.text.is-mute {
+  color: var(--color-text-mute);
+}
+
+.text.is-small {
+  font-size: 0.85rem;
+}
+
+.text.is-center {
+  text-align: center;
+}

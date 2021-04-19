@@ -1,0 +1,17 @@
+.bottomline {
+  padding: 1rem 1rem 0 1rem;
+
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.bottomline .actions {
+  margin-top: 1.5rem;
+
+  justify-content: center;
+}
+
+.bottomline .actions button {
+  border-radius: 1000px 1000px 0 0;
+  padding: 1rem 4rem;
+}
