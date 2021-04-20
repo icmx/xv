@@ -5,9 +5,6 @@
 .actions > button {
   color: var(--color-text-misc);
   background-color: var(--color-background-main);
-
-  transition-duration: var(--transition-duration);
-  transition-property: background-color;
 }
 
 .actions > button > svg {

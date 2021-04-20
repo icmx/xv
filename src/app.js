@@ -29,9 +29,9 @@ const App = (appElement) => {
     if (state.comic) {
       document.title = `xv - #${state.comic.num}`;
 
-      $(figureElement).attr('title', `${state.comic.alt}`);
-
-      $(imageElement).attr('src', `${state.comic.img}`);
+      $(imageElement)
+        .attr('title', `${state.comic.alt}`)
+        .attr('src', `${state.comic.img}`);
 
       $(comicTitleElement).text(`${state.comic.title}`);
       $(comicAltElement).text(`“${state.comic.alt}“`);
@@ -48,10 +48,10 @@ const App = (appElement) => {
     } else {
       document.title = `xv - comic viewer`;
 
-      $(figureElement).attr('title', null);
-
-      $(imageElement).attr('src', null);
-      $(imageElement).removeClass('is-shown');
+      $(imageElement)
+        .attr('title', null)
+        .attr('src', null)
+        .removeClass('is-shown');
     }
   }
 
