@@ -91,27 +91,51 @@ const replaceToken = (match, token, htmlTagName) =>
  *   These are valid: [[example]], [[  example], [[ example many words]]
  *   These aren't: [ example ], [example many words]
  */
-const replaceDoubleToken = (match, startToken, endToken, htmlTagName) =>
-  match
-    .replace(rx`^\\${startToken}+ {0,}`, `<${htmlTagName}>`)
-    .replace(rx` {0,}\\${endToken}+$`, `</${htmlTagName}>`);
+const replaceDoubleToken = (
+  match,
+  startToken,
+  endToken,
+  htmlTagName
+) => {
+  return match
+    .replace(rx`^(\\${startToken})+ {0,}`, `<${htmlTagName}>`)
+    .replace(rx` {0,}(\\${endToken})+$`, `</${htmlTagName}>`);
+};
+
+const replaceLinebreak = (match) => {
+  const [, , firstCharOnNewline] = match;
+
+  if (firstCharOnNewline === firstCharOnNewline.toUpperCase()) {
+    return match;
+  } else {
+    return match.replace(rx`\\n`, ' ');
+  }
+};
 
 const replacements = [
   {
-    search: /(\(\(.*?\)\)|\(.*?\)\))|\(\(.*?\)/g,
+    search: /</gm,
+    replace: '&lt;',
+  },
+  {
+    search: />/gm,
+    replace: '&gt;',
+  },
+  {
+    search: /(\(\([\s\S]*?\)\)|\([\s\S]*?\)\))|\(\([\s\S]*?\)/g,
     replace: (match) => replaceDoubleToken(match, '(', ')', 'i'),
   },
   {
-    search: /(\[\[.*?\]\]|\[.*?\]\])|\[\[.*?\]/g,
+    search: /(\[\[[\s\S]*?\]\]|\[[\s\S]*?\]\])|\[\[[\s\S]*?\]/g,
     replace: (match) => replaceDoubleToken(match, '[', ']', 'i'),
   },
   {
-    search: /(\{\{.*?\}\}|\{.*?\}\})|\{\{.*?\}/g,
+    search: /(\{\{[\s\S]*?\}\}|\{[\s\S]*?\}\})|\{\{[\s\S]*?\}/g,
     replace: EMPTY,
   },
   {
-    search: /<<\w+>>/g,
-    replace: (match) => replaceDoubleToken(match, '<', '>', 'b'),
+    search: /&lt;&lt;[\s\S]*?&gt;&gt;/g,
+    replace: (match) => replaceDoubleToken(match, '&lt;', '&gt;', 'b'),
   },
   {
     search: /\*(\w|\s)+\*/g,
@@ -127,9 +151,13 @@ const replacements = [
     search: /-{2,}/g,
     replace: (match) => (repeated(match, '-', 3) ? match : '—'),
   },
+  {
+    search: /(\w|\s)\n(\w|\s)/g,
+    replace: (match) => replaceLinebreak(match),
+  },
   { search: / - /g, replace: '—' },
-  { search: /->/g, replace: '→' },
-  { search: /<-/g, replace: '←' },
+  { search: /-&gt;/g, replace: '→' },
+  { search: /&lt;-/g, replace: '←' },
   { search: /"/g, replace: '“' },
   { search: /(\.{3}|(\. ){3})/g, replace: '…' },
   { search: /(^\n+|\n+$)/g, replace: EMPTY },
