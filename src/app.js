@@ -1,5 +1,5 @@
 import comics from '~/api/comics';
-import $ from '~/lib/elementshell';
+import $ from '~/lib/jeox';
 import _ from '~/utils/common';
 import { prepareTranscript, prepareDate } from '~/utils/parser';
 
