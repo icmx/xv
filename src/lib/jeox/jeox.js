@@ -1,40 +1,4 @@
-/**
- * Determine if value is a Jeox instance.
- * @param {?} value
- * @returns boolean
- */
-const isJeox = (value) => {
-  return value instanceof Jeox;
-};
-
-/**
- * Determine if value is a DOM node.
- * @param {?} value
- * @returns boolean
- */
-const isNode = (value) => {
-  return value.nodeType || value === window;
-};
-
-/**
- * Determine if value is a string.
- * @param {?} value
- * @returns boolean
- */
-const isString = (value) => {
-  return typeof value === 'string';
-};
-
-/**
- * Determine if value is a function.
- * @param {?} value
- * @returns boolean
- */
-const isFunction = (value) => {
-  return typeof value === 'function';
-};
-
-const domParser = new DOMParser();
+import { isFunction } from './utils/isFunciton';
 
 /**
  * Jeox - jQuery-like elements operations.
@@ -46,6 +10,8 @@ export class Jeox {
    * @type NodeListOf<any>
    */
   #elements = [];
+
+  static #domParser = new DOMParser();
 
   /**
    * Creates a new Jeox instance by using a list of DOM nodes.
@@ -166,7 +132,11 @@ export class Jeox {
    * @chainable
    */
   html(htmlString) {
-    const document = domParser.parseFromString(htmlString, 'text/html');
+    const document = Jeox.#domParser.parseFromString(
+      htmlString,
+      'text/html'
+    );
+
     const nodes = document.body.childNodes;
 
     this.empty();
@@ -214,35 +184,3 @@ export class Jeox {
     return { width: first.naturalWidth, height: first.naturalHeight };
   }
 }
-
-/**
- * Gets a Jeox instance by using a DOM node, nodes list, query selector
- * or existing Jeox instance.
- * @param {?} value - DOM node, nodes list, query selector or existing
- * Jeox instance
- * @param {Node} context - Optional context for query selector
- * @returns Jeox
- */
-export const $ = (value, context = window.document) => {
-  if (!value) {
-    return new Jeox();
-  }
-
-  if (isJeox(value)) {
-    return value;
-  }
-
-  if (isNode(value)) {
-    return new Jeox([value]);
-  }
-
-  if (isString(value)) {
-    if (isJeox(context)) {
-      return new Jeox(window.document.querySelectorAll(value));
-    } else {
-      return new Jeox(context.querySelectorAll(value));
-    }
-  }
-};
-
-export default $;
