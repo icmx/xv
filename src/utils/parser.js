@@ -122,15 +122,15 @@ const replacements = [
     replace: '&gt;',
   },
   {
-    search: /(\(\([\s\S]*?\)\)|\([\s\S]*?\)\))|\(\([\s\S]*?\)/g,
+    search: /\(\([\s\S]*?\)\)|\([\s\S]*?\)\)|\(\([\s\S]*?\)/g,
     replace: (match) => replaceDoubleToken(match, '(', ')', 'i'),
   },
   {
-    search: /(\[\[[\s\S]*?\]\]|\[[\s\S]*?\]\])|\[\[[\s\S]*?\]/g,
+    search: /\[\[[\s\S]*?\]\]|\[[\s\S]*?\]\]|\[\[[\s\S]*?\]/g,
     replace: (match) => replaceDoubleToken(match, '[', ']', 'i'),
   },
   {
-    search: /(\{\{[\s\S]*?\}\}|\{[\s\S]*?\}\})|\{\{[\s\S]*?\}/g,
+    search: /\{\{[\s\S]*?\}\}|\{[\s\S]*?\}\}|\{\{[\s\S]*?\}/g,
     replace: EMPTY,
   },
   {
