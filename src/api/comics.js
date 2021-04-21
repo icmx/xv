@@ -1,4 +1,4 @@
-import _ from '~/utils/common';
+import _ from '~/utils';
 import Comic from '~/models/comic';
 
 const ENDPOINT = `/api/comics`;

@@ -1,7 +1,8 @@
 import comics from '~/api/comics';
-import $ from '~/lib/elementshell';
-import _ from '~/utils/common';
-import { prepareTranscript, prepareDate } from '~/utils/parser';
+import $ from '~/libs/jeox';
+import _ from '~/utils';
+
+import parse from '~/libs/comicparse';
 
 const App = (appElement) => {
   function render() {
@@ -27,31 +28,35 @@ const App = (appElement) => {
     );
 
     if (state.comic) {
-      document.title = `xv - #${state.comic.num}`;
+      const comic = state.comic;
 
-      $(figureElement).attr('title', `${state.comic.alt}`);
+      const comicTitle = parse.title(comic);
+      const comicAlt = parse.alt(comic);
+      const comicDate = parse.date(comic);
+      const comicTranscript = parse.date(comic);
 
-      $(imageElement).attr('src', `${state.comic.img}`);
+      document.title = `xv - #${comic.num}`;
 
-      $(comicTitleElement).text(`${state.comic.title}`);
-      $(comicAltElement).text(`“${state.comic.alt}“`);
+      $(imageElement).attr('title', comicAlt).attr('src', comic.img);
+
+      $(comicTitleElement).text(comicTitle);
+      $(comicAltElement).text(comicAlt);
 
       $(comicSourceLinkElement)
-        .attr('href', `//xkcd.com/${state.comic.num}`)
-        .text(`xkcd #${state.comic.num}`);
+        .attr('href', `//xkcd.com/${comic.num}`)
+        .text(`xkcd #${comic.num}`);
 
-      $(comicImageLinkElement).attr('href', `${state.comic.img}`);
+      $(comicImageLinkElement).attr('href', comic.img);
 
-      $(comicDateElement).text(prepareDate(state.comic));
-
-      $(comicTranscriptElement).html(prepareTranscript(state.comic));
+      $(comicDateElement).text(comicDate);
+      $(comicTranscriptElement).html(comicTranscript);
     } else {
       document.title = `xv - comic viewer`;
 
-      $(figureElement).attr('title', null);
-
-      $(imageElement).attr('src', null);
-      $(imageElement).removeClass('is-shown');
+      $(imageElement)
+        .attr('title', null)
+        .attr('src', null)
+        .removeClass('is-shown');
     }
   }
 

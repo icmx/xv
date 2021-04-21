@@ -1,33 +1,46 @@
-const isElementShell = (value) => value instanceof ElementShell;
-const isElement = (value) => value.nodeType || value === window;
-const isString = (value) => typeof value === 'string';
-const isFunction = (value) => typeof value === 'function';
-const domParser = new DOMParser();
+import { isFunction } from './utils/isFunciton';
 
-export class ElementShell {
-  elements = [];
+/**
+ * Jeox - jQuery-like elements operations.
+ * Proxy class for one or more connected DOM nodes.
+ */
+export class Jeox {
+  /**
+   * @private
+   * @type NodeListOf<any>
+   */
+  #elements = [];
 
-  constructor(...elements) {
-    this.elements = elements;
+  static #domParser = new DOMParser();
+
+  /**
+   * Creates a new Jeox instance by using a list of DOM nodes.
+   * @param {NodeListOf<Element>} nodes - nodes to be proxied
+   */
+  constructor(nodes) {
+    this.#elements = [...nodes];
   }
 
   /**
-   * Performs a callback for each element in current shell.
-   * @param {Function} callbackfn
+   * Perform a callback function for each element in a current shell.
+   * @param {function} callbackfn
+   * @chainable
    */
   each(callbackfn) {
-    if (!callbackfn || !isFunction(callbackfn)) return;
+    if (!callbackfn || !isFunction(callbackfn)) {
+      return;
+    }
 
-    this.elements.forEach(callbackfn);
+    this.#elements.forEach(callbackfn);
 
     return this;
   }
 
   /**
-   * Shorthand to standard `setAttribute`, or `removeAttribute` if
-   * value is `null`.
+   * Set attribute to value or remove attribute if value is `null`.
    * @param {string} name - attribute name
    * @param {string|null} value - attribute value or `null` to remove
+   * @chainable
    */
   attr(name, value) {
     if (value === null) {
@@ -40,10 +53,11 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard `classList.toggle`.
+   * Toggle a class name.
    * @param {string} name - class name
-   * @param {boolean} state - force class state, true to add, false to
+   * @param {boolean} state - force class state: true to add, false to
    * remove
+   * @chainable
    */
   toggleClass(name, state) {
     this.each((element) => element.classList.toggle(name, state));
@@ -52,8 +66,9 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard `classList.add`.
+   * Add a class name.
    * @param {string} name - class name to add
+   * @chainable
    */
   addClass(name) {
     this.each((element) => element.classList.add(name));
@@ -62,8 +77,9 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard `classList.remove`.
+   * Remove a class name.
    * @param {string} name - class name to remove
+   * @chainable
    */
   removeClass(name) {
     this.each((element) => element.classList.remove(name));
@@ -72,8 +88,9 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard textContent property, done as a function.
-   * @param {string} string - text content to set insode `element`
+   * Set a textContent property.
+   * @param {string} string - text content to set
+   * @chainable
    */
   text(string) {
     this.each((element) => (element.textContent = string));
@@ -82,8 +99,9 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard nodes `append`.
-   * @param {Node[]} nodes - contents to append inside `element`
+   * Append nodes as children.
+   * @param {Node[]} nodes - nodes to append
+   * @chainable
    */
   append(nodes) {
     this.each((element) => element.append(...nodes));
@@ -92,8 +110,8 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard `removeChild` in a loop to remove all the
-   * `element` children.
+   * Remove any children.
+   * @chainable
    */
   empty() {
     this.each((element) => {
@@ -106,14 +124,19 @@ export class ElementShell {
   }
 
   /**
-   * Parse and insert an HTML string inside.
-   * @param {string} htmlString - HTML string to parse and set inside
-   *  an `element`
+   * Parse and insert an HTML inside.
+   * @param {string} htmlString - HTML in a string form to parse and
+   * set inside
    * @see {@link empty}
    * @see {@link append}
+   * @chainable
    */
   html(htmlString) {
-    const document = domParser.parseFromString(htmlString, 'text/html');
+    const document = Jeox.#domParser.parseFromString(
+      htmlString,
+      'text/html'
+    );
+
     const nodes = document.body.childNodes;
 
     this.empty();
@@ -123,22 +146,25 @@ export class ElementShell {
   }
 
   /**
-   * Shorthand to standard addEventListener
+   * Add event listener.
    * @param {string} type - event type
    * @param {function} listener - callback function
    * @param {boolean|AddEventListenerOptions} options
+   * @chainable
    */
   on(type, listener, options) {
-    this.each((element) => element.addEventListener(type, listener, options));
+    this.each((element) =>
+      element.addEventListener(type, listener, options)
+    );
 
     return this;
   }
 
   /**
-   * Returns first element in a shell.
+   * Return first element in a Jeox.
    */
   first() {
-    return this.elements[0];
+    return this.#elements[0];
   }
 
   /**
@@ -158,27 +184,3 @@ export class ElementShell {
     return { width: first.naturalWidth, height: first.naturalHeight };
   }
 }
-
-export const $ = (value, context = window.document) => {
-  if (!value) {
-    return new ElementShell();
-  }
-
-  if (isElementShell(value)) {
-    return value;
-  }
-
-  if (isElement(value)) {
-    return new ElementShell(value);
-  }
-
-  if (isString(value)) {
-    if (isElementShell(context)) {
-      return new ElementShell(...window.document.querySelectorAll(value));
-    } else {
-      return new ElementShell(...context.querySelectorAll(value));
-    }
-  }
-};
-
-export default $;
