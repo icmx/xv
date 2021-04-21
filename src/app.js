@@ -1,11 +1,12 @@
 import comics from '~/api/comics';
 import $ from '~/lib/jeox';
 import _ from '~/utils/common';
-import { prepareTranscript, prepareDate } from '~/utils/parser';
+
+import parse from '~/lib/comicparse';
 
 const App = (appElement) => {
   function render() {
-    // console.info(state);
+    console.info(state);
 
     $(appElement).toggleClass('xv-app--ready', state.ready);
 
@@ -27,24 +28,25 @@ const App = (appElement) => {
     );
 
     if (state.comic) {
-      document.title = `xv - #${state.comic.num}`;
+      const comic = state.comic;
+
+      document.title = `xv - #${comic.num}`;
 
       $(imageElement)
-        .attr('title', `${state.comic.alt}`)
-        .attr('src', `${state.comic.img}`);
+        .attr('title', `${comic.alt}`)
+        .attr('src', `${comic.img}`);
 
-      $(comicTitleElement).text(`${state.comic.title}`);
-      $(comicAltElement).text(`“${state.comic.alt}“`);
+      $(comicTitleElement).text(parse.title(comic));
+      $(comicAltElement).text(`“${parse.alt(comic)}“`);
 
       $(comicSourceLinkElement)
-        .attr('href', `//xkcd.com/${state.comic.num}`)
-        .text(`xkcd #${state.comic.num}`);
+        .attr('href', `//xkcd.com/${comic.num}`)
+        .text(`xkcd #${comic.num}`);
 
-      $(comicImageLinkElement).attr('href', `${state.comic.img}`);
+      $(comicImageLinkElement).attr('href', `${comic.img}`);
 
-      $(comicDateElement).text(prepareDate(state.comic));
-
-      $(comicTranscriptElement).html(prepareTranscript(state.comic));
+      $(comicDateElement).text(parse.date(comic));
+      $(comicTranscriptElement).html(parse.transcript(comic));
     } else {
       document.title = `xv - comic viewer`;
 
