@@ -9,16 +9,18 @@ import {
 import { applyReplacements } from './utils/applyReplacements';
 
 export const title = ({ title }) => {
-  return applyReplacements(
+  const result = applyReplacements(
     title,
     ...escapesSet,
     ...cleanupSet,
     ...typographicsSet
   );
+
+  return result;
 };
 
 export const alt = ({ alt }) => {
-  return applyReplacements(
+  const result = applyReplacements(
     alt,
     ...escapesSet,
     asterisksToken,
@@ -26,6 +28,8 @@ export const alt = ({ alt }) => {
     ...cleanupSet,
     ...typographicsSet
   );
+
+  return `“${result}“`;
 };
 
 export const date = ({ year, month, day }) => {
@@ -35,15 +39,19 @@ export const date = ({ year, month, day }) => {
     .toLocaleString('en-US', { month: 'long', weekday: 'long' })
     .split(' ');
 
-  return `${weekdayName}, ${monthName} ${day}, ${year}`;
+  const result = `${weekdayName}, ${monthName} ${day}, ${year}`;
+
+  return result;
 };
 
 export const transcript = ({ transcript }) => {
-  return applyReplacements(
+  const result = applyReplacements(
     transcript,
     ...escapesSet,
     ...tokensSet,
     ...cleanupSet,
     ...typographicsSet
   );
+
+  return result;
 };

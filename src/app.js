@@ -6,7 +6,7 @@ import parse from '~/lib/comicparse';
 
 const App = (appElement) => {
   function render() {
-    console.info(state);
+    // console.info(state);
 
     $(appElement).toggleClass('xv-app--ready', state.ready);
 
@@ -30,23 +30,26 @@ const App = (appElement) => {
     if (state.comic) {
       const comic = state.comic;
 
+      const comicTitle = parse.title(comic);
+      const comicAlt = parse.alt(comic);
+      const comicDate = parse.date(comic);
+      const comicTranscript = parse.date(comic);
+
       document.title = `xv - #${comic.num}`;
 
-      $(imageElement)
-        .attr('title', `${comic.alt}`)
-        .attr('src', `${comic.img}`);
+      $(imageElement).attr('title', comicAlt).attr('src', comic.img);
 
-      $(comicTitleElement).text(parse.title(comic));
-      $(comicAltElement).text(`“${parse.alt(comic)}“`);
+      $(comicTitleElement).text(comicTitle);
+      $(comicAltElement).text(comicAlt);
 
       $(comicSourceLinkElement)
         .attr('href', `//xkcd.com/${comic.num}`)
         .text(`xkcd #${comic.num}`);
 
-      $(comicImageLinkElement).attr('href', `${comic.img}`);
+      $(comicImageLinkElement).attr('href', comic.img);
 
-      $(comicDateElement).text(parse.date(comic));
-      $(comicTranscriptElement).html(parse.transcript(comic));
+      $(comicDateElement).text(comicDate);
+      $(comicTranscriptElement).html(comicTranscript);
     } else {
       document.title = `xv - comic viewer`;
 
