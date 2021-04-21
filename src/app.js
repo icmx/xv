@@ -1,6 +1,6 @@
 import comics from '~/api/comics';
 import $ from '~/libs/jeox';
-import _ from '~/utils/common';
+import _ from '~/utils';
 
 import parse from '~/libs/comicparse';
 
