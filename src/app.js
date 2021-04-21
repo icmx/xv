@@ -1,8 +1,8 @@
 import comics from '~/api/comics';
-import $ from '~/lib/jeox';
+import $ from '~/libs/jeox';
 import _ from '~/utils/common';
 
-import parse from '~/lib/comicparse';
+import parse from '~/libs/comicparse';
 
 const App = (appElement) => {
   function render() {
