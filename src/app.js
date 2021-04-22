@@ -33,7 +33,7 @@ const App = (appElement) => {
       const comicTitle = parse.title(comic);
       const comicAlt = parse.alt(comic);
       const comicDate = parse.date(comic);
-      const comicTranscript = parse.date(comic);
+      const comicTranscript = parse.transcript(comic);
 
       document.title = `xv - #${comic.num}`;
 
