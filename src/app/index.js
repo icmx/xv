@@ -1,12 +1,12 @@
-import comics from '~/api/comics';
-
 import Core from './core';
 import Features from './features';
 
 const app = new Core.Controller({
   childControllers: [
     new Features.Comics.Controller({
-      model: new Features.Comics.Model(comics),
+      model: new Features.Comics.Model(
+        new Features.Comics.Api('/api/comics')
+      ),
       view: new Features.Comics.View(document.querySelector('.xv-app')),
     }),
 
