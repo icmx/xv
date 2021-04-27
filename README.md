@@ -8,8 +8,9 @@ xv is xkcd comics viwer app, done in pure JavaScript, CSS and Webpack.
 
 ## Features
 
-  - Pure JavaScript and CSS, no frameworks used
-  - Classic navigation experience (Random button included)
+  - Pure JavaScript and CSS, no frameworks or external dependencies used
+  - Classic navigation experience (Random comic included)
+  - Keyboard navigation: <kbd>←</kbd> / <kbd>→</kbd> for previous/next (<kbd>Shift</kbd> for first/last), <kbd>r</kbd> for random
   - Routing: try [/#303](https://icmx-xv.netlify.app/#303) e.g.
   - Transcript for ~1600 first comics, with [parsing](src/utils/parser.js)!
   - Mobile-first and desktop layouts
