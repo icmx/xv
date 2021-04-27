@@ -2,11 +2,9 @@ import comicparse from '~/libs/comicparse';
 import $ from '~/libs/jeox';
 import _ from '~/utils';
 
-import { Emitter } from './emitter';
+import Core from '~/app/core';
 
-export class View extends Emitter {
-  #document;
-
+export class ComicView extends Core.View {
   #navbarButtons;
 
   #firstButton;
@@ -32,7 +30,7 @@ export class View extends Emitter {
   #num;
 
   constructor(appElement) {
-    this.#document = $(document.documentElement);
+    super();
 
     this.#navbarButtons = $('.navbar .actions button', appElement);
 
@@ -59,21 +57,10 @@ export class View extends Emitter {
     this.#num = undefined;
 
     this.#listen();
-    this.#toggleThemeButtonText();
   }
 
   #scrollTop() {
     window.scrollTo({ top: 0, behavior: 'auto' });
-  }
-
-  #toggleThemeButtonText() {
-    const theme = document.documentElement.getAttribute(
-      'data-xv-theme'
-    );
-
-    $(this.#themeButton).text(
-      `Go to the ${theme === 'light' ? 'dark' : 'light'} side!`
-    );
   }
 
   #toggleNavbarButtons(state) {
@@ -143,15 +130,6 @@ export class View extends Emitter {
     $(this.#loading).removeClass('is-shown');
   }
 
-  #handleThemeSwitching() {
-    const name =
-      document.documentElement.getAttribute('data-xv-theme') === 'light'
-        ? 'dark'
-        : 'light';
-
-    this.emit('theme', name);
-  }
-
   #goFirst() {
     this.#hash = 1;
   }
@@ -189,10 +167,6 @@ export class View extends Emitter {
     $(this.#randomButton).on('click', () => this.#goRandom());
     $(this.#nextButton).on('click', () => this.#goNext());
     $(this.#currentButton).on('click', () => this.#goCurrent());
-
-    $(this.#themeButton).on('click', () =>
-      this.#handleThemeSwitching()
-    );
   }
 
   get #hash() {
@@ -257,11 +231,5 @@ export class View extends Emitter {
 
     $(this.#loading).removeClass('is-shown');
     $(this.#error).addClass('is-shown');
-  }
-
-  setTheme(theme) {
-    $(this.#document).attr('data-xv-theme', theme);
-
-    this.#toggleThemeButtonText();
   }
 }

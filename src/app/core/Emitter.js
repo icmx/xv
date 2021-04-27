@@ -1,7 +1,7 @@
 export class Emitter {
   #listeners;
 
-  constructor(types) {
+  constructor() {
     this.#listeners = Object.create(null);
   }
 

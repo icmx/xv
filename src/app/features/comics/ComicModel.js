@@ -1,11 +1,12 @@
-import { Emitter } from './emitter';
+import Core from '~/app/core';
 
-export class Model extends Emitter {
+export class ComicModel extends Core.Model {
   #api;
   #comic;
-  #theme;
 
   constructor(api) {
+    super();
+
     this.#api = api;
     this.#comic = undefined;
   }
@@ -24,14 +25,6 @@ export class Model extends Emitter {
     this.#comic = undefined;
 
     this.emit('error');
-  }
-
-  #setTheme(theme) {
-    this.#theme = theme;
-
-    localStorage.setItem('xv-theme', theme);
-
-    this.emit('theme', theme);
   }
 
   get(num) {
@@ -59,9 +52,5 @@ export class Model extends Emitter {
       .current()
       .then((comic) => this.#setComic(comic))
       .catch(() => this.#setError());
-  }
-
-  theme(name) {
-    this.#setTheme(name);
   }
 }
