@@ -21,8 +21,13 @@ export class Jeox {
     this.#elements = [...nodes];
   }
 
+  get #firstElement() {
+    return this.#elements[0];
+  }
+
   /**
-   * Perform a callback function for each element in a current shell.
+   * Perform a callback function for each element in a current
+   * instance.
    * @param {function} callbackfn
    * @chainable
    */
@@ -53,6 +58,38 @@ export class Jeox {
   }
 
   /**
+   * Add a class name.
+   * @param {string} name - class name to add
+   * @chainable
+   */
+  addClass(name) {
+    this.each((element) => element.classList.add(name));
+
+    return this;
+  }
+
+  /**
+   * Determine if first element in an instance has a class with name
+   * specified.
+   * @param {string} name - class name
+   * @returns boolean
+   */
+  hasClass(name) {
+    return this.#firstElement.classList.contains(name);
+  }
+
+  /**
+   * Remove a class name.
+   * @param {string} name - class name to remove
+   * @chainable
+   */
+  removeClass(name) {
+    this.each((element) => element.classList.remove(name));
+
+    return this;
+  }
+
+  /**
    * Toggle a class name.
    * @param {string} name - class name
    * @param {boolean} state - force class state: true to add, false to
@@ -66,25 +103,18 @@ export class Jeox {
   }
 
   /**
-   * Add a class name.
-   * @param {string} name - class name to add
-   * @chainable
+   * Set new class list to all elements in an instance or get class list
+   * value of the first one.
+   * @param {string[]} classList - a new classList to set
+   * @returns
    */
-  addClass(name) {
-    this.each((element) => element.classList.add(name));
-
-    return this;
-  }
-
-  /**
-   * Remove a class name.
-   * @param {string} name - class name to remove
-   * @chainable
-   */
-  removeClass(name) {
-    this.each((element) => element.classList.remove(name));
-
-    return this;
+  classList(classList) {
+    if (classList === undefined) {
+      return [...this.#firstElement.classList];
+    } else {
+      this.each((element) => (element.className = classList.join(' ')));
+      return this;
+    }
   }
 
   /**
@@ -169,7 +199,7 @@ export class Jeox {
 
   /**
    * Shorthand to standard `getBoundingClientRect` for first element in
-   * a shell.
+   * an instance.
    */
   rect() {
     return this.first().getBoundingClientRect();
