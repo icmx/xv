@@ -185,8 +185,14 @@ export class ComicView extends Core.View {
     document.title = value;
   }
 
-  setComic(comic) {
+  setComic(comic, type) {
     this.#toggleNavbarButtons(true);
+
+    this.#num = comic.num;
+
+    if (type === 'random') {
+      this.#hash = comic.num;
+    }
 
     const title = comicparse.title(comic);
     const alt = comicparse.alt(comic);
@@ -194,12 +200,6 @@ export class ComicView extends Core.View {
     const transcript = comicparse.transcript(comic);
 
     this.#title = `xv - #${comic.num}`;
-
-    if (this.#num !== comic.num && this.#hash !== '') {
-      this.#hash = comic.num;
-    }
-
-    this.#num = comic.num;
 
     $(this.#image).attr('title', alt).attr('src', comic.img);
 

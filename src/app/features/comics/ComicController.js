@@ -6,7 +6,7 @@ export class ComicController extends Core.Controller {
   }
 
   start() {
-    this.model.on('comic', (comic) => this.view.setComic(comic));
+    this.model.on('comic', (comic, type) => this.view.setComic(comic, type));
     this.model.on('loading', () => this.view.setLoading());
     this.model.on('error', () => this.view.setError());
 

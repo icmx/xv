@@ -8,20 +8,19 @@ export class ComicApi extends Core.Api {
   }
 
   /**
-   * Get specific xkcd comic by its number (`num` property).
-   * If `num` is omitted, then latest comic will be returned.
+   * Get specific xkcd comic by its id (`num` property). If `num` is
+   * omitted, then latest comic will be returned.
    */
   async get(num) {
-    const option = num ? `/${num}` : ``;
+    const path =
+      num === undefined ? `/info.0.json` : `/${num}/info.0.json`;
 
     try {
-      const response = await fetch(
-        `${this.endpoint}${option}/info.0.json`
-      );
+      const response = await fetch(`${this.endpoint}${path}`);
 
       return await response.json();
     } catch (e) {
-      throw new Error(`Unable to fetch comic '${option}': ${e}`);
+      throw new Error(`Unable to fetch comic '${path}': ${e}`);
     }
   }
 
@@ -30,7 +29,7 @@ export class ComicApi extends Core.Api {
    */
   async current() {
     try {
-      return await this.get(undefined);
+      return await this.get();
     } catch (e) {
       throw new Error(`Unable to fetch current comic: ${e}`);
     }
@@ -38,8 +37,8 @@ export class ComicApi extends Core.Api {
 
   /**
    * Get random xkcd comic.
-   * Note: due to official API design, this will perform two actual
-   * requests.
+   * Note: due to official JSON API design, this will perform two
+   * actual API requests.
    */
   async random() {
     try {

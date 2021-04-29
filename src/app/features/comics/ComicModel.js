@@ -3,18 +3,21 @@ import Core from '~/app/core';
 export class ComicModel extends Core.Model {
   #api;
   #comic;
+  #type;
 
   constructor(api) {
     super();
 
     this.#api = api;
     this.#comic = undefined;
+    this.#type = undefined;
   }
 
-  #setComic(comic) {
+  #setComic(comic, type) {
     this.#comic = comic;
+    this.#type = type;
 
-    this.emit('comic', comic);
+    this.emit('comic', comic, type);
   }
 
   #setLoading() {
@@ -32,7 +35,7 @@ export class ComicModel extends Core.Model {
 
     this.#api
       .get(num)
-      .then((comic) => this.#setComic(comic))
+      .then((comic) => this.#setComic(comic, 'get'))
       .catch(() => this.#setError());
   }
 
@@ -41,7 +44,7 @@ export class ComicModel extends Core.Model {
 
     this.#api
       .random()
-      .then((comic) => this.#setComic(comic))
+      .then((comic) => this.#setComic(comic, 'random'))
       .catch(() => this.#setError());
   }
 
@@ -50,7 +53,7 @@ export class ComicModel extends Core.Model {
 
     this.#api
       .current()
-      .then((comic) => this.#setComic(comic))
+      .then((comic) => this.#setComic(comic, 'current'))
       .catch(() => this.#setError());
   }
 }
