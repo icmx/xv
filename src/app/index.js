@@ -2,19 +2,7 @@ import Core from './core';
 import Features from './features';
 
 const app = new Core.Controller({
-  childControllers: [
-    new Features.Comics.Controller({
-      model: new Features.Comics.Model(
-        new Features.Comics.Api('/api/comics')
-      ),
-      view: new Features.Comics.View(document.querySelector('.xv-app')),
-    }),
-
-    new Features.Theme.Controller({
-      model: new Features.Theme.Model(),
-      view: new Features.Theme.View(document.querySelector('.xv-app')),
-    }),
-  ],
+  childControllers: [Features.Comics, Features.Theme],
 });
 
 export default app;

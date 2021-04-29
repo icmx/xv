@@ -29,24 +29,24 @@ export class ComicView extends Core.View {
 
   #num;
 
-  constructor(appElement) {
-    super();
+  constructor(viewElement) {
+    super(viewElement);
 
-    this.#navbarButtons = $('.navbar .actions button', appElement);
+    this.#navbarButtons = $('.navbar .actions button', viewElement);
 
-    this.#firstButton = $('button.is-first', appElement);
-    this.#previousButton = $('button.is-previous', appElement);
-    this.#randomButton = $('button.is-random', appElement);
-    this.#nextButton = $('button.is-next', appElement);
-    this.#currentButton = $('button.is-current', appElement);
-    this.#themeButton = $('.bottomline .actions button', appElement);
+    this.#firstButton = $('button.is-first', viewElement);
+    this.#previousButton = $('button.is-previous', viewElement);
+    this.#randomButton = $('button.is-random', viewElement);
+    this.#nextButton = $('button.is-next', viewElement);
+    this.#currentButton = $('button.is-current', viewElement);
+    this.#themeButton = $('.bottombar .actions button', viewElement);
 
-    this.#figure = $('.figure', appElement);
+    this.#figure = $('.figure', viewElement);
     this.#image = $('.figure-image', this.#figure);
     this.#loading = $('.figure-loading', this.#figure);
     this.#error = $('.figure-error', this.#figure);
 
-    this.#details = $('.details', appElement);
+    this.#details = $('.details', viewElement);
     this.#comicTitle = $('.comic-title', this.#details);
     this.#comicAlt = $('.comic-alt', this.#details);
     this.#comicSourceLink = $('.comic-sourcelink', this.#details);

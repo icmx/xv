@@ -7,12 +7,12 @@ export class ThemeView extends Core.View {
   #document;
   #themeButton;
 
-  constructor(appElement) {
-    super();
+  constructor(viewElement) {
+    super(viewElement);
 
     this.#document = $(document.documentElement);
 
-    this.#themeButton = $('.bottomline .actions button', appElement);
+    this.#themeButton = $('.bottombar .actions button', viewElement);
 
     this.#listen();
     this.#toggleThemeButtonText();
