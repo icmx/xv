@@ -1,5 +1,6 @@
-import { Jeox } from './jeox';
-import { $ } from './utils/dollar';
+import * as core from './core';
+import * as features from './features';
 
-export { Jeox };
-export default $;
+core.extend(features.attributes, features.contents, features.events);
+
+export const { $, extend } = core;
