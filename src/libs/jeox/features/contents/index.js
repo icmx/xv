@@ -1,9 +1,11 @@
+import { isString } from '../../utils/isString';
+
 const parser = new DOMParser();
 
 export const contents = {
   text(value) {
     const isGetting = value === undefined;
-    const isSetting = value ? true : false;
+    const isSetting = isString(value) ? true : false;
     const isRemoving = value === null;
 
     if (isGetting) {
@@ -25,7 +27,7 @@ export const contents = {
 
   html(value) {
     const isGetting = value === undefined;
-    const isSetting = value ? true : false;
+    const isSetting = isString(value) ? true : false;
     const isRemoving = value === null;
 
     if (isGetting) {
