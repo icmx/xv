@@ -1,8 +1,10 @@
+import { isEmptyArray } from '../utils/isEmptyArray';
+
 export class Jeox {
   #elements;
 
   constructor(elements = []) {
-    if (elements.length === 0) {
+    if (isEmptyArray(elements)) {
       throw new Error(`Jeox instance must include at least one node`);
     }
 
@@ -19,7 +21,7 @@ export class Jeox {
     return this.#elements.map(callback);
   }
 
-  get size() {
+  get length() {
     return this.#elements.length;
   }
 
@@ -32,13 +34,13 @@ export class Jeox {
   }
 
   last() {
-    return this.nth(this.size - 1);
+    return this.nth(this.length - 1);
   }
 
   odd() {
     const items = [];
 
-    for (let i = 0; i < this.size; i += 2) {
+    for (let i = 0; i < this.length; i += 2) {
       items.push(this.#elements[i]);
     }
 
@@ -48,7 +50,7 @@ export class Jeox {
   even() {
     const items = [];
 
-    for (let i = 1; i < this.size; i += 2) {
+    for (let i = 1; i < this.length; i += 2) {
       items.push(this.#elements[i]);
     }
 

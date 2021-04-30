@@ -1,19 +1,24 @@
 export const attributes = {
   attr(name, value) {
-    const isNameOnly = name && value === undefined;
-    const isValueNull = value === null;
+    const isGetting = name && value === undefined;
+    const isSetting = name && value;
+    const isRemoving = value === null;
 
-    if (isNameOnly) {
+    if (isGetting) {
       return this.child().getAttribute(name);
     }
 
-    if (isValueNull) {
-      this.forEach((element) => element.removeAttribute(name));
-    } else {
+    if (isSetting) {
       this.forEach((element) => element.setAttribute(name, value));
+
+      return this;
     }
 
-    return this;
+    if (isRemoving) {
+      this.forEach((element) => element.removeAttribute(name));
+
+      return this;
+    }
   },
 
   addClass(name) {
@@ -39,20 +44,25 @@ export const attributes = {
   },
 
   classList(names) {
-    const isUndefinedNames = names === undefined;
-    const isNullNames = names === null;
+    const isGetting = names === undefined;
+    const isSetting = names ? true : false;
+    const isRemoving = names === null;
 
-    if (isUndefinedNames) {
+    if (isGetting) {
       return [...this.child().classList];
     }
 
-    if (isNullNames) {
-      this.forEach((element) => (element.className = ''));
-    } else {
+    if (isSetting) {
       this.forEach((element) => (element.className = names.join(' ')));
+
+      return this;
     }
 
-    return this;
+    if (isRemoving) {
+      this.forEach((element) => (element.className = ''));
+
+      return this;
+    }
   },
 
   rect() {
