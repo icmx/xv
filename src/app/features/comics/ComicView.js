@@ -87,6 +87,10 @@ export class ComicView extends Core.View {
     } else {
       const num = _.int(this.#hash);
 
+      if (_.isInt(num)) {
+        this.#num = num;
+      }
+
       this.emit('get', num);
     }
   }
@@ -156,7 +160,7 @@ export class ComicView extends Core.View {
       .on('load', () => this.#handleWindowLocationChange())
       .on('hashchange', () => this.#handleWindowLocationChange())
       .on('resize', () => this.#handleWindowResize())
-      .on('keyup', (event) => this.#handleKeyboardInput(event));
+      .on('keydown', (event) => this.#handleKeyboardInput(event));
 
     $(this.#image)
       .on('load', () => this.#handleImageLoading())
@@ -187,8 +191,6 @@ export class ComicView extends Core.View {
 
   setComic(comic, type) {
     this.#toggleNavbarButtons(true);
-
-    this.#num = comic.num;
 
     if (type === 'random') {
       this.#hash = comic.num;
@@ -226,10 +228,12 @@ export class ComicView extends Core.View {
     $(this.#error).removeClass('is-shown');
   }
 
-  setError() {
+  setError(error) {
     this.#clearView();
 
-    $(this.#loading).removeClass('is-shown');
-    $(this.#error).addClass('is-shown');
+    if (error.name !== 'AbortError') {
+      $(this.#loading).removeClass('is-shown');
+      $(this.#error).addClass('is-shown');
+    }
   }
 }

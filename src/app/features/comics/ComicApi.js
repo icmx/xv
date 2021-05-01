@@ -12,15 +12,20 @@ export class ComicApi extends Core.Api {
    * omitted, then latest comic will be returned.
    */
   async get(num) {
+    this.refresh();
+
     const path =
       num === undefined ? `/info.0.json` : `/${num}/info.0.json`;
 
     try {
-      const response = await fetch(`${this.endpoint}${path}`);
+      const response = await fetch(`${this.endpoint}${path}`, {
+        method: 'GET',
+        signal: this.signal,
+      });
 
       return await response.json();
     } catch (e) {
-      throw new Error(`Unable to fetch comic '${path}': ${e}`);
+      throw e;
     }
   }
 
@@ -31,7 +36,7 @@ export class ComicApi extends Core.Api {
     try {
       return await this.get();
     } catch (e) {
-      throw new Error(`Unable to fetch current comic: ${e}`);
+      throw e;
     }
   }
 
@@ -50,7 +55,7 @@ export class ComicApi extends Core.Api {
 
       return await this.get(random);
     } catch (e) {
-      throw new Error(`Unable to fetch random comic: ${e}`);
+      throw e;
     }
   }
 }

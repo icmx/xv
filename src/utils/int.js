@@ -1,7 +1,9 @@
 /**
  * Shorthand to standard `Number.parseInt(string, 10)`, converts a
- * string to an integer.
- * @param {number|string} string
+ * value to an integer number.
+ * @param {?} value
  * @returns {number}
  */
-export const int = (string) => Number.parseInt(string, 10);
+export const int = (string) => {
+  return Number.parseInt(string, 10);
+};
