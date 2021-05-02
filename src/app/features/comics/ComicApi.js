@@ -1,8 +1,7 @@
-import _ from '~/utils';
-
 import Core from '~/app/core';
+import random from '../../../utils/random';
 
-export class ComicApi extends Core.Api {
+class ComicApi extends Core.Api {
   constructor(endpoint) {
     super(endpoint);
   }
@@ -23,7 +22,11 @@ export class ComicApi extends Core.Api {
         signal: this.signal,
       });
 
-      return await response.json();
+      const result = await response.json();
+
+      console.log(result);
+
+      return result;
     } catch (e) {
       throw e;
     }
@@ -47,15 +50,17 @@ export class ComicApi extends Core.Api {
    */
   async random() {
     try {
-      const latest = await this.current();
+      const current = await this.current();
 
       const min = 1;
-      const max = latest.num;
-      const random = _.random(min, max);
+      const max = current.num;
+      const num = random(min, max);
 
-      return await this.get(random);
+      return await this.get(num);
     } catch (e) {
       throw e;
     }
   }
 }
+
+export default ComicApi;

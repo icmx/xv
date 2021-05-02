@@ -1,8 +1,8 @@
 import Core from './core';
 import Features from './features';
 
-const app = new Core.Controller({
-  childControllers: [Features.Comics, Features.Theme],
+const App = new Core.Controller({
+  childControllers: [Features.comics, Features.theme],
 });
 
-export default app;
+export default App;

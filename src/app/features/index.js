@@ -1,4 +1,6 @@
-import Comics from './comics';
-import Theme from './theme';
+import comics from './comics';
+import theme from './theme';
 
-export default { Comics, Theme };
+const Features = { comics, theme };
+
+export default Features;

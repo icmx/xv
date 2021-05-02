@@ -1,6 +1,6 @@
 import Core from '~/app/core';
 
-export class ComicModel extends Core.Model {
+class ComicModel extends Core.Model {
   #api;
 
   constructor(api) {
@@ -50,3 +50,5 @@ export class ComicModel extends Core.Model {
       .catch((error) => this.#setError(error));
   }
 }
+
+export default ComicModel;

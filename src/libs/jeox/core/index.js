@@ -1,3 +1,7 @@
-export { $ } from './dollar';
-export { extend } from './extend';
-export { Jeox } from './Jeox';
+import $ from './dollar';
+import extend from './extend';
+import Jeox from './Jeox';
+
+const Core = { $, extend, Jeox };
+
+export default Core;

@@ -1,4 +1,4 @@
-export class Api {
+class Api {
   #endpoint;
   #controller;
 
@@ -24,3 +24,5 @@ export class Api {
     this.#controller = new AbortController();
   }
 }
+
+export default Api;

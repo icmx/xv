@@ -3,6 +3,8 @@
  * @param {?} value
  * @returns boolean
  */
-export const isEmptyArray = (value) => {
+const isEmptyArray = (value) => {
   return !value.length || value.length === 0;
 };
+
+export default isEmptyArray;

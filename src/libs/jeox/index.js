@@ -1,6 +1,9 @@
-import * as core from './core';
-import * as features from './features';
+import Core from './core';
+import Features from './features';
 
-core.extend(features.attributes, features.contents, features.events);
+Core.extend(Features.attributes, Features.contents, Features.events);
 
-export const { $, extend } = core;
+const { $, extend } = Core;
+
+export { extend };
+export default $;

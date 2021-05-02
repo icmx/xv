@@ -1,4 +1,4 @@
-import { int } from './int';
+import int from './int';
 
 /**
  * Shorthand to standard `Number.isInteger`, determines is a value is
@@ -6,6 +6,8 @@ import { int } from './int';
  * @param {?} value
  * @returns {boolean}
  */
-export const isInt = (value) => {
+const isInt = (value) => {
   return Number.isInteger(int(value));
 };
+
+export default isInt;

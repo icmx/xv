@@ -1,10 +1,9 @@
-import { Jeox } from './Jeox';
+import isJeox from '../utils/isJeox';
+import isNode from '../utils/isNode';
+import isString from '../utils/isString';
+import Jeox from './Jeox';
 
-import { isJeox } from '../utils/isJeox';
-import { isNode } from '../utils/isNode';
-import { isString } from '../utils/isString';
-
-export const $ = (value, context = window.document) => {
+const $ = (value, context = window.document) => {
   if (isJeox(value)) {
     return value;
   }
@@ -27,3 +26,5 @@ export const $ = (value, context = window.document) => {
 
   throw new Error(`Incorrect value: ${value}`);
 };
+
+export default $;

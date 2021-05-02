@@ -1,3 +1,5 @@
+import applyReplacements from '../utils/applyReplacements';
+
 import {
   asterisksToken,
   cleanupSet,
@@ -6,28 +8,25 @@ import {
   typographicsSet,
   underscoresToken,
 } from './replacements';
-import { applyReplacements } from './utils/applyReplacements';
 
 export const title = ({ title }) => {
-  const result = applyReplacements(
-    title,
+  const result = applyReplacements(title, [
     ...escapesSet,
     ...cleanupSet,
-    ...typographicsSet
-  );
+    ...typographicsSet,
+  ]);
 
   return result;
 };
 
 export const alt = ({ alt }) => {
-  const result = applyReplacements(
-    alt,
+  const result = applyReplacements(alt, [
     ...escapesSet,
     asterisksToken,
     underscoresToken,
     ...cleanupSet,
-    ...typographicsSet
-  );
+    ...typographicsSet,
+  ]);
 
   return `“${result}“`;
 };
@@ -45,13 +44,12 @@ export const date = ({ year, month, day }) => {
 };
 
 export const transcript = ({ transcript }) => {
-  const result = applyReplacements(
-    transcript,
+  const result = applyReplacements(transcript, [
     ...escapesSet,
     ...tokensSet,
     ...cleanupSet,
-    ...typographicsSet
-  );
+    ...typographicsSet,
+  ]);
 
   return result;
 };

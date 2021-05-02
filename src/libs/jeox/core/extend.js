@@ -1,5 +1,7 @@
-import { Jeox } from './Jeox';
+import Jeox from './Jeox';
 
-export const extend = (...plugins) => {
+const extend = (...plugins) => {
   Object.assign(Jeox.prototype, ...plugins);
 };
+
+export default extend;

@@ -1,3 +1,5 @@
-import { alt, date, title, transcript } from './destructors';
+import Core from './core';
 
-export default { alt, date, title, transcript };
+const comicparse = Core;
+
+export default comicparse;

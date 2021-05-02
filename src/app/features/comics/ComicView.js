@@ -1,10 +1,12 @@
-import comicparse from '~/libs/comicparse';
-import { $ } from '~/libs/jeox';
-import _ from '~/utils';
+import $ from '../../../libs/jeox';
+import comicparse from '../../../libs/comicparse';
 
 import Core from '~/app/core';
 
-export class ComicView extends Core.View {
+import int from '../../../utils/int';
+import isInt from '../../../utils/isInt';
+
+class ComicView extends Core.View {
   #navbarButtons;
 
   #firstButton;
@@ -12,7 +14,6 @@ export class ComicView extends Core.View {
   #randomButton;
   #nextButton;
   #currentButton;
-  #themeButton;
 
   #figure;
   #image;
@@ -39,7 +40,6 @@ export class ComicView extends Core.View {
     this.#randomButton = $('button.is-random', viewElement);
     this.#nextButton = $('button.is-next', viewElement);
     this.#currentButton = $('button.is-current', viewElement);
-    this.#themeButton = $('.bottombar .actions button', viewElement);
 
     this.#figure = $('.figure', viewElement);
     this.#image = $('.figure-image', this.#figure);
@@ -85,9 +85,9 @@ export class ComicView extends Core.View {
     if (this.#hash === '') {
       this.emit('current');
     } else {
-      const num = _.int(this.#hash);
+      const num = int(this.#hash);
 
-      if (_.isInt(num)) {
+      if (isInt(num)) {
         this.#num = num;
       }
 
@@ -231,9 +231,13 @@ export class ComicView extends Core.View {
   setError(error) {
     this.#clearView();
 
+    console.error(error);
+
     if (error.name !== 'AbortError') {
       $(this.#loading).removeClass('is-shown');
       $(this.#error).addClass('is-shown');
     }
   }
 }
+
+export default ComicView;

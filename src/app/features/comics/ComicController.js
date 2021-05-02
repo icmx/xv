@@ -1,6 +1,6 @@
 import Core from '~/app/core';
 
-export class ComicController extends Core.Controller {
+class ComicController extends Core.Controller {
   constructor({ model, view }) {
     super({ model, view });
   }
@@ -15,3 +15,5 @@ export class ComicController extends Core.Controller {
     this.view.on('current', () => this.model.current());
   }
 }
+
+export default ComicController;

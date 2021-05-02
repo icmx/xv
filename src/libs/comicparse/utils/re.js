@@ -5,7 +5,7 @@
  * @param  {...string} keys
  * @returns RegExp
  */
-export const re = (strings, ...keys) => {
+const re = (strings, ...keys) => {
   const pattern = keys
     .map((value, index) => strings[index] + value)
     .join('')
@@ -13,3 +13,5 @@ export const re = (strings, ...keys) => {
 
   return new RegExp(pattern);
 };
+
+export default re;

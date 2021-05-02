@@ -1,4 +1,4 @@
-export class Controller {
+class Controller {
   model;
   view;
 
@@ -14,3 +14,5 @@ export class Controller {
     });
   }
 }
+
+export default Controller;

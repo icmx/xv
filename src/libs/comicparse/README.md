@@ -4,10 +4,10 @@ Internal library to destruct an xkcd comic JSON data and prettify it to nice pla
 
 ## How it works
 
-comicparse has "destructors" API which are actually a functions that takes xkcd comic JSON. The following snippet will explain it better:
+comicparse has "destructors" API which are actually a functions that takes xkcd comic JSON data. The following snippet will explain it better:
 
 ```js
-import parse from '.../comicparse';
+import parse from '~/comicparse';
 
 // for example, given an xkcd #27 json:
 const comic = {

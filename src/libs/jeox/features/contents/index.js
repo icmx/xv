@@ -1,8 +1,8 @@
-import { isString } from '../../utils/isString';
+import isString from '../../utils/isString';
 
 const parser = new DOMParser();
 
-export const contents = {
+const contents = {
   text(value) {
     const isGetting = value === undefined;
     const isSetting = isString(value) ? true : false;
@@ -67,3 +67,5 @@ export const contents = {
     return this;
   },
 };
+
+export default contents;

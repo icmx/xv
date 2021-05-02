@@ -1,5 +1,6 @@
-import { replaceDoubleToken, replaceToken } from './replacers';
-import { isRepeated } from './utils/isRepeated';
+import replaceDoubleToken from '../utils/replaceDoubleToken';
+import replaceToken from '../utils/replaceToken';
+import isRepeated from '../utils/isRepeated';
 
 export const lessThan = { search: /</gm, replace: '&lt;' };
 export const moreThan = { search: />/gm, replace: '&gt;' };
