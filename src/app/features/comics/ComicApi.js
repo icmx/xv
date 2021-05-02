@@ -1,5 +1,5 @@
 import Core from '~/app/core';
-import random from '../../../utils/random';
+import random from '~/app/utils/random';
 
 class ComicApi extends Core.Api {
   constructor(endpoint) {
@@ -23,8 +23,6 @@ class ComicApi extends Core.Api {
       });
 
       const result = await response.json();
-
-      console.log(result);
 
       return result;
     } catch (e) {

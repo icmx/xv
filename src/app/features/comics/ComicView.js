@@ -1,10 +1,9 @@
-import $ from '../../../libs/jeox';
-import comicparse from '../../../libs/comicparse';
+import $ from '~/lib/jeox';
+import comicparse from '~/lib/comicparse';
 
 import Core from '~/app/core';
-
-import int from '../../../utils/int';
-import isInt from '../../../utils/isInt';
+import int from '~/app/utils/int';
+import isInt from '~/app/utils/isInt';
 
 class ComicView extends Core.View {
   #navbarButtons;

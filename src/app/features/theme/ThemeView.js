@@ -1,4 +1,4 @@
-import $ from '../../../libs/jeox';
+import $ from '~/lib/jeox';
 
 import Core from '~/app/core';
 
