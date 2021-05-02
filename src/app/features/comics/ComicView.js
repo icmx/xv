@@ -191,8 +191,17 @@ class ComicView extends Core.View {
   setComic(comic, type) {
     this.#toggleNavbarButtons(true);
 
-    if (type === 'random') {
-      this.#hash = comic.num;
+    switch (type) {
+      case 'current':
+        this.#num = comic.num;
+        break;
+
+      case 'random':
+        this.#hash = comic.num;
+        break;
+
+      default:
+        break;
     }
 
     const title = comicparse.title(comic);
