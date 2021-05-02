@@ -1,5 +1,7 @@
-import { Emitter } from './Emitter';
+import Emitter from './Emitter';
 
-export class Model extends Emitter {
+class Model extends Emitter {
 
 }
+
+export default Model;

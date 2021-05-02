@@ -1,10 +1,10 @@
-import { ThemeModel as Model } from './ThemeModel';
-import { ThemeView as View } from './ThemeView';
-import { ThemeController as Controller } from './ThemeController';
+import ThemeModel from './ThemeModel';
+import ThemeView from './ThemeView';
+import ThemeController from './ThemeController';
 
-export default new Controller({
-  model: new Model(),
-  view: new View(window.document.querySelector('.xv-app')),
+const theme = new ThemeController({
+  model: new ThemeModel(),
+  view: new ThemeView(window.document.querySelector('.xv-app')),
 });
 
-// export default { Model, View, Controller };
+export default theme;

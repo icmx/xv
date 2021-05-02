@@ -1,9 +1,8 @@
-import { $ } from '~/libs/jeox';
-import _ from '~/utils';
+import $ from '~/lib/jeox';
 
 import Core from '~/app/core';
 
-export class ThemeView extends Core.View {
+class ThemeView extends Core.View {
   #document;
   #themeButton;
 
@@ -49,3 +48,5 @@ export class ThemeView extends Core.View {
     this.#toggleThemeButtonText();
   }
 }
+
+export default ThemeView;

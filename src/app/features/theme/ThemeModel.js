@@ -1,17 +1,11 @@
 import Core from '~/app/core';
 
-export class ThemeModel extends Core.Model {
-  #theme;
-
+class ThemeModel extends Core.Model {
   constructor() {
     super();
-
-    this.#theme = undefined;
   }
 
   #setTheme(theme) {
-    this.#theme = theme;
-
     localStorage.setItem('xv-theme', theme);
 
     this.emit('theme', theme);
@@ -21,3 +15,5 @@ export class ThemeModel extends Core.Model {
     this.#setTheme(name);
   }
 }
+
+export default ThemeModel;

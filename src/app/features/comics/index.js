@@ -1,10 +1,12 @@
-import { ComicModel as Model } from './ComicModel';
-import { ComicView as View } from './ComicView';
-import { ComicController as Controller } from './ComicController';
+import ComicModel from './ComicModel';
+import ComicView from './ComicView';
+import ComicController from './ComicController';
 
-import { ComicApi as Api } from './ComicApi';
+import ComicApi from './ComicApi';
 
-export default new Controller({
-  model: new Model(new Api('/api/comics')),
-  view: new View(window.document.querySelector('.xv-app')),
+const comics = new ComicController({
+  model: new ComicModel(new ComicApi('/api/comics')),
+  view: new ComicView(window.document.querySelector('.xv-app')),
 });
+
+export default comics;

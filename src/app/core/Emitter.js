@@ -1,4 +1,4 @@
-export class Emitter {
+class Emitter {
   #listeners;
 
   constructor() {
@@ -17,3 +17,5 @@ export class Emitter {
     });
   }
 }
+
+export default Emitter;

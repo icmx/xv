@@ -1,10 +1,11 @@
-import comicparse from '~/libs/comicparse';
-import { $ } from '~/libs/jeox';
-import _ from '~/utils';
+import $ from '~/lib/jeox';
+import comicparse from '~/lib/comicparse';
 
 import Core from '~/app/core';
+import int from '~/app/utils/int';
+import isInt from '~/app/utils/isInt';
 
-export class ComicView extends Core.View {
+class ComicView extends Core.View {
   #navbarButtons;
 
   #firstButton;
@@ -12,7 +13,6 @@ export class ComicView extends Core.View {
   #randomButton;
   #nextButton;
   #currentButton;
-  #themeButton;
 
   #figure;
   #image;
@@ -39,7 +39,6 @@ export class ComicView extends Core.View {
     this.#randomButton = $('button.is-random', viewElement);
     this.#nextButton = $('button.is-next', viewElement);
     this.#currentButton = $('button.is-current', viewElement);
-    this.#themeButton = $('.bottombar .actions button', viewElement);
 
     this.#figure = $('.figure', viewElement);
     this.#image = $('.figure-image', this.#figure);
@@ -85,7 +84,11 @@ export class ComicView extends Core.View {
     if (this.#hash === '') {
       this.emit('current');
     } else {
-      const num = _.int(this.#hash);
+      const num = int(this.#hash);
+
+      if (isInt(num)) {
+        this.#num = num;
+      }
 
       this.emit('get', num);
     }
@@ -156,7 +159,7 @@ export class ComicView extends Core.View {
       .on('load', () => this.#handleWindowLocationChange())
       .on('hashchange', () => this.#handleWindowLocationChange())
       .on('resize', () => this.#handleWindowResize())
-      .on('keyup', (event) => this.#handleKeyboardInput(event));
+      .on('keydown', (event) => this.#handleKeyboardInput(event));
 
     $(this.#image)
       .on('load', () => this.#handleImageLoading())
@@ -187,8 +190,6 @@ export class ComicView extends Core.View {
 
   setComic(comic, type) {
     this.#toggleNavbarButtons(true);
-
-    this.#num = comic.num;
 
     if (type === 'random') {
       this.#hash = comic.num;
@@ -226,10 +227,16 @@ export class ComicView extends Core.View {
     $(this.#error).removeClass('is-shown');
   }
 
-  setError() {
+  setError(error) {
     this.#clearView();
 
-    $(this.#loading).removeClass('is-shown');
-    $(this.#error).addClass('is-shown');
+    console.error(error);
+
+    if (error.name !== 'AbortError') {
+      $(this.#loading).removeClass('is-shown');
+      $(this.#error).addClass('is-shown');
+    }
   }
 }
+
+export default ComicView;
