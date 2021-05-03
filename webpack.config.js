@@ -100,6 +100,14 @@ const baseConfig = {
       template: `${paths.src}/index.html`,
       filename: `./index.html`,
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `${paths.src}/static`,
+          to: '',
+        },
+      ],
+    }),
   ],
 };
 
@@ -131,15 +139,7 @@ const serveConfig = merge(baseConfig, {
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: `${paths.src}/static`,
-          to: '',
-        },
-      ],
-    }),
+    })
   ],
 
   // Temporary workaround for hot reloading.
