@@ -1,5 +1,4 @@
 .appbar {
-  position: fixed;
   width: 100%;
 
   left: 0;
@@ -14,8 +13,15 @@
   top: 0;
 }
 
+@media (min-width: 768px) {
+  .appbar.is-top {
+    position: fixed;
+  }
+}
+
 .appbar.is-bottom {
   bottom: 0;
+  position: fixed;
 }
 
 @media (min-width: 768px) {
