@@ -1,7 +1,7 @@
 .figure {
   margin: 0;
 
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 4rem - 5rem);
   background-color: var(--color-background-main);
 
   overflow: auto;
@@ -34,10 +34,8 @@
 
   transition-duration: var(--transition-duration);
   transition-property: opacity;
-}
 
-:root[data-xv-theme='dark'] .figure-image {
-  filter: invert(1) contrast(70%);
+  filter: var(--image-filter);
 }
 
 @media (min-width: 768px) {

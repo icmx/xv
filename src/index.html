@@ -24,38 +24,59 @@
     <!-- /theme-initialization -->
   </head>
   <body class="xv-app">
-    <header class="navbar">
-      <div class="navbar-content">
-        <div class="navbar-logo"></div>
-        <nav class="actions">
-          <button class="is-first" title="Go to first comic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M4 6H6V18H4zM14 13L20 13 20 11 14 11 14 6 8 12 14 18z" />
-            </svg>
-          </button>
-          <button class="is-previous" title="Previous comic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M5 12L12 18 12 13 18 13 18 11 12 11 12 6z" />
-            </svg>
-          </button>
-          <button class="is-random" title="Random comic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M15 12L20 8 15 4 15 6.999 2 6.999 2 8.999 15 8.999zM22 15L9 15 9 12 4 16 9 20 9 17 22 17z" />
-            </svg>
-          </button>
-          <button class="is-next" title="Next comic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M19 12L12 6 12 11 6 11 6 13 12 13 12 18z" />
-            </svg>
-          </button>
-          <button class="is-current" title="Go to current comic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M18 6H20V18H18zM10 11L4 11 4 13 10 13 10 18 16 12 10 6z" />
-            </svg>
-          </button>
+    <nav class="appbar is-top">
+      <div class="actions">
+        <button class="is-theme-dark" title="Use dark theme">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z" />
+          </svg>
+        </button>
+        <button class="is-theme-light" title="Use light theme">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19H12.998V22H10.998zM10.998 2H12.998V5H10.998zM1.998 11H4.998V13H1.998zM18.998 11H21.998V13H18.998z" />
+            <path d="M4.487 17.01H7.487V19.01H4.487z" transform="rotate(-45.017 5.986 18.01)" />
+            <path d="M16.508 4.99H19.509V6.99H16.508z" transform="rotate(-45.001 18.008 5.99)" />
+            <path d="M4.487 4.99H7.487V6.99H4.487z" transform="rotate(-134.983 5.988 5.99)" />
+            <path d="M17.008 16.51H19.008V19.511000000000003H17.008z" transform="rotate(134.999 18.008 18.01)" />
+          </svg>
+        </button>
+        <button class="is-theme-system" title="Use device theme">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12,16c2.206,0,4-1.794,4-4s-1.794-4-4-4s-4,1.794-4,4S9.794,16,12,16z M12,10c1.084,0,2,0.916,2,2s-0.916,2-2,2 s-2-0.916-2-2S10.916,10,12,10z" />
+            <path d="M2.845,16.136l1,1.73c0.531,0.917,1.809,1.261,2.73,0.73l0.529-0.306C7.686,18.747,8.325,19.122,9,19.402V20 c0,1.103,0.897,2,2,2h2c1.103,0,2-0.897,2-2v-0.598c0.675-0.28,1.314-0.655,1.896-1.111l0.529,0.306 c0.923,0.53,2.198,0.188,2.731-0.731l0.999-1.729c0.552-0.955,0.224-2.181-0.731-2.732l-0.505-0.292C19.973,12.742,20,12.371,20,12 s-0.027-0.743-0.081-1.111l0.505-0.292c0.955-0.552,1.283-1.777,0.731-2.732l-0.999-1.729c-0.531-0.92-1.808-1.265-2.731-0.732 l-0.529,0.306C16.314,5.253,15.675,4.878,15,4.598V4c0-1.103-0.897-2-2-2h-2C9.897,2,9,2.897,9,4v0.598 c-0.675,0.28-1.314,0.655-1.896,1.111L6.575,5.403c-0.924-0.531-2.2-0.187-2.731,0.732L2.845,7.864 c-0.552,0.955-0.224,2.181,0.731,2.732l0.505,0.292C4.027,11.257,4,11.629,4,12s0.027,0.742,0.081,1.111l-0.505,0.292 C2.621,13.955,2.293,15.181,2.845,16.136z M6.171,13.378C6.058,12.925,6,12.461,6,12c0-0.462,0.058-0.926,0.17-1.378 c0.108-0.433-0.083-0.885-0.47-1.108L4.577,8.864l0.998-1.729L6.72,7.797c0.384,0.221,0.867,0.165,1.188-0.142 c0.683-0.647,1.507-1.131,2.384-1.399C10.713,6.128,11,5.739,11,5.3V4h2v1.3c0,0.439,0.287,0.828,0.708,0.956 c0.877,0.269,1.701,0.752,2.384,1.399c0.321,0.307,0.806,0.362,1.188,0.142l1.144-0.661l1,1.729L18.3,9.514 c-0.387,0.224-0.578,0.676-0.47,1.108C17.942,11.074,18,11.538,18,12c0,0.461-0.058,0.925-0.171,1.378 c-0.107,0.433,0.084,0.885,0.471,1.108l1.123,0.649l-0.998,1.729l-1.145-0.661c-0.383-0.221-0.867-0.166-1.188,0.142 c-0.683,0.647-1.507,1.131-2.384,1.399C13.287,17.872,13,18.261,13,18.7l0.002,1.3H11v-1.3c0-0.439-0.287-0.828-0.708-0.956 c-0.877-0.269-1.701-0.752-2.384-1.399c-0.19-0.182-0.438-0.275-0.688-0.275c-0.172,0-0.344,0.044-0.5,0.134l-1.144,0.662l-1-1.729 L5.7,14.486C6.087,14.263,6.278,13.811,6.171,13.378z" />
+          </svg>
+        </button>
+        <nav class="appbar is-bottom">
+          <div class="actions">
+            <button class="is-first" title="Go to first comic">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M4 6H6V18H4zM14 13L20 13 20 11 14 11 14 6 8 12 14 18z" />
+              </svg>
+            </button>
+            <button class="is-previous" title="Previous comic">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5 12L12 18 12 13 18 13 18 11 12 11 12 6z" />
+              </svg>
+            </button>
+            <button class="is-random" title="Random comic">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M15 12L20 8 15 4 15 6.999 2 6.999 2 8.999 15 8.999zM22 15L9 15 9 12 4 16 9 20 9 17 22 17z" />
+              </svg>
+            </button>
+            <button class="is-next" title="Next comic">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19 12L12 6 12 11 6 11 6 13 12 13 12 18z" />
+              </svg>
+            </button>
+            <button class="is-current" title="Go to current comic">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M18 6H20V18H18zM10 11L4 11 4 13 10 13 10 18 16 12 10 6z" />
+              </svg>
+            </button>
+          </div>
         </nav>
       </div>
-    </header>
+    </nav>
     <main>
       <figure class="figure is-center-x is-center-y">
         <img class="figure-image" />
@@ -80,8 +101,8 @@
         <section class="comic-transcript"></section>
       </article>
     </main>
-    <footer class="bottombar">
-      <section class="bottombar-rights">
+    <footer class="footerbar">
+      <section class="footerbar-rights">
         <p class="text is-small is-mute is-center">
           xv app by <a href="https://github.com/icmx">@icmx</a> •
           <a
@@ -97,9 +118,6 @@
             boxicons.com
           </a>
         </p>
-      </section>
-      <section class="actions">
-        <button></button>
       </section>
     </footer>
   </body>

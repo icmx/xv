@@ -32,7 +32,7 @@ class ComicView extends Core.View {
   constructor(viewElement) {
     super(viewElement);
 
-    this.#navbarButtons = $('.navbar .actions button', viewElement);
+    this.#navbarButtons = $('.appbar.is-bottom .actions button', viewElement);
 
     this.#firstButton = $('button.is-first', viewElement);
     this.#previousButton = $('button.is-previous', viewElement);

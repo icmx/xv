@@ -1,17 +1,17 @@
-.bottombar {
-  padding: 0 1rem 0 1rem;
+.footerbar {
+  padding: 0 1rem 1rem 1rem;
 
   margin: 0 auto;
   max-width: 800px;
 }
 
-.bottombar .actions {
+.footerbar .actions {
   margin-top: 1.5rem;
 
   justify-content: center;
 }
 
-.bottombar .actions button {
+.footerbar .actions button {
   border-radius: 1000px 1000px 0 0;
   padding: 1rem 4rem;
 }
