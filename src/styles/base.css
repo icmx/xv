@@ -36,8 +36,7 @@
 }
 
 body {
-  margin: 0;
-  margin-bottom: 5rem;
+  margin: 4rem 0 5rem;
 
   font-size: 1rem;
   font-family: 'system-ui', sans-serif;
@@ -51,8 +50,7 @@ body {
 
 @media (min-width: 768px) {
   body {
-    margin: 0;
-    margin-top: 4rem;
+    margin: 4rem 0 0;
   }
 }
 
