@@ -1,6 +1,6 @@
 {
   "name": "xv",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "xkcd.com viwer app, done in pure JavaScript and Webpack",
   "keywords": [
     "xkcd",
@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.14.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.4",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
