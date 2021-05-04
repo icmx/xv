@@ -23,25 +23,25 @@ class ThemeView extends Core.View {
   }
 
   #toggleThemeButtons() {
-    const name = $(this.#document).attr('data-xv-theme');
+    const name = this.#document.attr('data-xv-theme');
 
     switch (name) {
       case 'dark':
-        $(this.#themeDarkButton).toggleClass('is-hidden', true);
-        $(this.#themeLightButton).toggleClass('is-hidden', false);
-        $(this.#themeSystemButton).toggleClass('is-hidden', true);
+        this.#themeDarkButton.toggleClass('is-hidden', true);
+        this.#themeLightButton.toggleClass('is-hidden', false);
+        this.#themeSystemButton.toggleClass('is-hidden', true);
         break;
 
       case 'light':
-        $(this.#themeDarkButton).toggleClass('is-hidden', true);
-        $(this.#themeLightButton).toggleClass('is-hidden', true);
-        $(this.#themeSystemButton).toggleClass('is-hidden', false);
+        this.#themeDarkButton.toggleClass('is-hidden', true);
+        this.#themeLightButton.toggleClass('is-hidden', true);
+        this.#themeSystemButton.toggleClass('is-hidden', false);
         break;
 
       case 'system':
-        $(this.#themeDarkButton).toggleClass('is-hidden', false);
-        $(this.#themeLightButton).toggleClass('is-hidden', true);
-        $(this.#themeSystemButton).toggleClass('is-hidden', true);
+        this.#themeDarkButton.toggleClass('is-hidden', false);
+        this.#themeLightButton.toggleClass('is-hidden', true);
+        this.#themeSystemButton.toggleClass('is-hidden', true);
         break;
 
       default:
@@ -54,21 +54,21 @@ class ThemeView extends Core.View {
   }
 
   #listen() {
-    $(this.#themeDarkButton).on('click', () =>
+    this.#themeDarkButton.on('click', () =>
       this.#handleThemeChange('dark')
     );
 
-    $(this.#themeLightButton).on('click', () =>
+    this.#themeLightButton.on('click', () =>
       this.#handleThemeChange('light')
     );
 
-    $(this.#themeSystemButton).on('click', () =>
+    this.#themeSystemButton.on('click', () =>
       this.#handleThemeChange('system')
     );
   }
 
   setTheme(theme) {
-    $(this.#document).attr('data-xv-theme', theme);
+    this.#document.attr('data-xv-theme', theme);
 
     this.#toggleThemeButtons();
   }

@@ -32,7 +32,7 @@ class XkcdView extends Core.View {
   constructor(viewElement) {
     super(viewElement);
 
-    this.#navbarButtons = $('.appbar.is-bottom .actions button', viewElement);
+    this.#navbarButtons = $('.appbar.is-bottom button', viewElement);
 
     this.#firstButton = $('button.is-first', viewElement);
     this.#previousButton = $('button.is-previous', viewElement);
@@ -63,7 +63,7 @@ class XkcdView extends Core.View {
   }
 
   #toggleNavbarButtons(state) {
-    $(this.#navbarButtons).attr(
+    this.#navbarButtons.attr(
       'disabled',
       state === true ? null : 'disabled'
     );
@@ -72,10 +72,10 @@ class XkcdView extends Core.View {
   #clearView() {
     this.#title = `xv - comic viewer`;
 
-    $(this.#image).attr('title', null).attr('src', null);
+    this.#image.attr('title', null).attr('src', null);
 
-    $(this.#image).removeClass('is-shown');
-    $(this.#details).removeClass('is-shown');
+    this.#image.removeClass('is-shown');
+    this.#details.removeClass('is-shown');
   }
 
   #handleWindowLocationChange() {
@@ -95,15 +95,17 @@ class XkcdView extends Core.View {
   }
 
   #handleWindowResize() {
-    const { width: figureWidth, height: figureHeight } = $(
-      this.#figure
-    ).rect();
+    const {
+      width: figureWidth,
+      height: figureHeight,
+    } = this.#figure.rect();
 
-    const { width: imageWidth, height: imageHeight } = $(
-      this.#image
-    ).imageSize();
+    const {
+      width: imageWidth,
+      height: imageHeight,
+    } = this.#image.imageSize();
 
-    $(this.#figure)
+    this.#figure
       .toggleClass('is-center-x', imageWidth < figureWidth)
       .toggleClass('is-center-y', imageHeight < figureHeight);
   }
@@ -129,8 +131,8 @@ class XkcdView extends Core.View {
   }
 
   #handleImageLoading() {
-    $(this.#image).addClass('is-shown');
-    $(this.#loading).removeClass('is-shown');
+    this.#image.addClass('is-shown');
+    this.#loading.removeClass('is-shown');
   }
 
   #goFirst() {
@@ -161,15 +163,15 @@ class XkcdView extends Core.View {
       .on('resize', () => this.#handleWindowResize())
       .on('keydown', (event) => this.#handleKeyboardInput(event));
 
-    $(this.#image)
+    this.#image
       .on('load', () => this.#handleImageLoading())
       .on('load', () => this.#handleWindowResize());
 
-    $(this.#firstButton).on('click', () => this.#goFirst());
-    $(this.#previousButton).on('click', () => this.#goPrevious());
-    $(this.#randomButton).on('click', () => this.#goRandom());
-    $(this.#nextButton).on('click', () => this.#goNext());
-    $(this.#currentButton).on('click', () => this.#goCurrent());
+    this.#firstButton.on('click', () => this.#goFirst());
+    this.#previousButton.on('click', () => this.#goPrevious());
+    this.#randomButton.on('click', () => this.#goRandom());
+    this.#nextButton.on('click', () => this.#goNext());
+    this.#currentButton.on('click', () => this.#goCurrent());
   }
 
   get #hash() {
@@ -211,29 +213,29 @@ class XkcdView extends Core.View {
 
     this.#title = `xv - #${comic.num}`;
 
-    $(this.#image).attr('title', alt).attr('src', comic.img);
+    this.#image.attr('title', alt).attr('src', comic.img);
 
-    $(this.#comicTitle).text(title);
-    $(this.#comicAlt).text(alt);
+    this.#comicTitle.text(title);
+    this.#comicAlt.text(alt);
 
-    $(this.#comicSourceLink)
+    this.#comicSourceLink
       .attr('href', `//xkcd.com/${comic.num}`)
       .text(`xkcd #${comic.num}`);
 
-    $(this.#comicImageLink).attr('href', comic.img);
+    this.#comicImageLink.attr('href', comic.img);
 
-    $(this.#comicDate).text(date);
-    $(this.#comicTranscript).html(transcript);
+    this.#comicDate.text(date);
+    this.#comicTranscript.html(transcript);
 
-    $(this.#details).addClass('is-shown');
-    $(this.#error).removeClass('is-shown');
+    this.#details.addClass('is-shown');
+    this.#error.removeClass('is-shown');
   }
 
   setLoading() {
     this.#clearView();
 
-    $(this.#loading).addClass('is-shown');
-    $(this.#error).removeClass('is-shown');
+    this.#loading.addClass('is-shown');
+    this.#error.removeClass('is-shown');
   }
 
   setError(error) {
@@ -242,8 +244,8 @@ class XkcdView extends Core.View {
     console.error(error);
 
     if (error.name !== 'AbortError') {
-      $(this.#loading).removeClass('is-shown');
-      $(this.#error).addClass('is-shown');
+      this.#loading.removeClass('is-shown');
+      this.#error.addClass('is-shown');
     }
   }
 }
