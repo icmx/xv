@@ -1,6 +1,6 @@
 import Core from '~/app/core';
 
-class ComicController extends Core.Controller {
+class XkcdController extends Core.Controller {
   constructor({ model, view }) {
     super({ model, view });
   }
@@ -16,4 +16,4 @@ class ComicController extends Core.Controller {
   }
 }
 
-export default ComicController;
+export default XkcdController;

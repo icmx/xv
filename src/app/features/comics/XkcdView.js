@@ -5,7 +5,7 @@ import Core from '~/app/core';
 import int from '~/app/utils/int';
 import isInt from '~/app/utils/isInt';
 
-class ComicView extends Core.View {
+class XkcdView extends Core.View {
   #navbarButtons;
 
   #firstButton;
@@ -248,4 +248,4 @@ class ComicView extends Core.View {
   }
 }
 
-export default ComicView;
+export default XkcdView;

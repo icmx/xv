@@ -1,12 +1,12 @@
-import ComicModel from './ComicModel';
-import ComicView from './ComicView';
-import ComicController from './ComicController';
+import XkcdModel from './XkcdModel';
+import XkcdView from './XkcdView';
+import XkcdController from './XkcdController';
 
-import ComicApi from './ComicApi';
+import XkcdApi from './XkcdApi';
 
-const comics = new ComicController({
-  model: new ComicModel(new ComicApi('/api/comics')),
-  view: new ComicView(window.document.querySelector('.xv-app')),
+const comics = new XkcdController({
+  model: new XkcdModel(new XkcdApi('/api/comics')),
+  view: new XkcdView(window.document.querySelector('.xv-app')),
 });
 
 export default comics;
