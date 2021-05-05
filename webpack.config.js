@@ -19,6 +19,7 @@ const baseConfig = {
   },
   entry: {
     main: `${paths.src}/index.js`,
+    sw: `${paths.src}/sw.js`,
   },
   output: {
     filename: `[name].js`,
@@ -94,7 +95,7 @@ const baseConfig = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'style.min.css',
+      filename: 'style.css',
     }),
     new HtmlWebpackPlugin({
       template: `${paths.src}/index.html`,
@@ -139,7 +140,7 @@ const serveConfig = merge(baseConfig, {
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
-    })
+    }),
   ],
 
   // Temporary workaround for hot reloading.
