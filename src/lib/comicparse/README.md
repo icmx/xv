@@ -1,47 +1,71 @@
 # comicparse
 
-Internal library to destruct an xkcd comic JSON data and prettify it to nice plain text or HTML strings.
+xv internal library to destruct an xkcd comic JSON data and transform into nice plain text or HTML strings.
 
 ## How it works
 
-comicparse has "destructors" API which are actually a functions that takes xkcd comic JSON data. The following snippet will explain it better:
+comicparse has "destructors" API which are actually functions that takes xkcd comic JSON data. The following example will explain it better.
+
+Suppose there's [xkcd #927](https://xkcd.com/927/) JSON:
 
 ```js
-import parse from '~/comicparse';
+import comicparse from '~/somewhere/comicparse';
 
-// for example, given an xkcd #27 json:
+// (multiline for readability)
 const comic = {
-  title: "Meat Cereals"
-  transcript: "[[A collection of fictional meat based cereals]]\nPork Loops\nMice Krispies\nHammios\nFrosted Bacon Flakes\nScrapple Jacks\nHoney Bunches of Goats\n{{Alt: Disgusting}"
-  // ...rest props
-};
+  "num": 927,
+  "title": "Standards",
+  "alt": `Fortunately, the charging one has been solved now that we've
+    all standardized on mini-USB. Or is it micro-USB? Shit.`,
+  "transcript": `
+    HOW STANDARDS PROLIFERATE(See: A\nC chargers, character encodings,
+    instant messaging, etc.)\n\nSITUATION:↵There are 14 competing
+    standards.\n\nGeek: 14?! Ridiculous! We need to develop one
+    universal standard that covers everyone's use cases.\nFellow Geek:
+    Yeah!\n\nSoon:\nSITUATION:\nThere are 15 competing standards.\n\n
+    {{Title text: Fortunately, the charging one has been solved now
+    that we've all standardized on mini-USB. Or is it micro-USB?
+    Shit.}}`,
+    // ...rest props
+}
 
-// now, use the destructors:
+const a = comicparse.title(comic); // -> title destructor:
+//
+// Standards
 
-parse.title(comic);      // -> 'Meat Cereals'
-parse.transcript(comic); // -> (multiline for readability)
-// <i>A collection of fictional meat based cereals</i><br />
-// <br />
-// Pork Loops<br />
-// <br />
-// Mice Krispies<br />
-// <br />
-// Hammios<br />
-// <br />
-// Frosted Bacon Flakes<br />
-// <br />
-// Scrapple Jacks<br />
-// <br />
-// Honey Bunches of Goats
-// (text in {{ alt: }} s omitted)
+const b = comicparse.alt(comic); // -> alt destructor:
+//
+// (multiline for readability)
+// “Fortunately, the charging one has been solved now that we've all
+// standardized on mini-USB. Or is it micro-USB? Shit.“
+
+const c = comicparse.date(comic);       // ->  date destructor:
+//
+// Saturday, August 20, 2011
+
+const d = comicparse.transcript(comic); // -> transcript destructor:
+//
+// (multiline for readability)
+// HOW STANDARDS PROLIFERATE
+// <br /><br/>
+// (See: A
+// <br /><br />
+// C chargers, character encodings, instant messaging, etc.)
+// <br /><br />
+// SITUATION:
+// <br /><br />
+// There are 14 competing standards.
+// <br /><br />
+// Geek: 14?! Ridiculous! We need to develop one universal standard
+// that covers everyone's use cases.
+// <br /><br />
+// Fellow Geek: Yeah!
+// <br /><br />
+// Soon:
+// <br /><br />
+// SITUATION:
+// <br /><br />There are 15 competing standards.
 ```
-
-## Available destructors
-
-  - **`title`**: applies cleanup and typographic rules on `title` property
-  - **`alt`**: same as `title`, but for `alt` property
-  - **`date`**: creates nice date string by using `year`, `month` and `day` properties
-  - **`transcript`**:
 
 ## Syntax rules
 
