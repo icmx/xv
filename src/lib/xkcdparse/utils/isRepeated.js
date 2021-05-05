@@ -6,7 +6,7 @@ import re from './re';
  * @param {string} value
  * @param {string} character
  * @param {number} count
- * @returns boolean
+ * @returns {boolean}
  */
 const isRepeated = (value, character, count = 1) => {
   const pattern = re`^\\${character}{${count},}$`;

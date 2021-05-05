@@ -1,7 +1,7 @@
 /**
  * Determine if value is a string.
  * @param {?} value
- * @returns boolean
+ * @returns {boolean}
  */
 const isString = (value) => {
   return typeof value === 'string';

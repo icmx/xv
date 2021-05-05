@@ -4,6 +4,7 @@ import {
   asterisksToken,
   cleanupSet,
   escapesSet,
+  quoteMarksToken,
   tokensSet,
   typographicsSet,
   underscoresToken,
@@ -20,15 +21,18 @@ export const title = ({ title }) => {
 };
 
 export const alt = ({ alt }) => {
-  const result = applyReplacements(alt, [
+  const result = applyReplacements(`“${alt}“`, [
     ...escapesSet,
     asterisksToken,
     underscoresToken,
+    quoteMarksToken,
     ...cleanupSet,
     ...typographicsSet,
   ]);
 
-  return `“${result}“`;
+
+
+  return result;
 };
 
 export const date = ({ year, month, day }) => {

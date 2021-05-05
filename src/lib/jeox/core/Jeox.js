@@ -2,6 +2,7 @@ import isEmptyArray from '../utils/isEmptyArray';
 
 class Jeox {
   #elements;
+  #storage;
 
   constructor(elements = []) {
     if (isEmptyArray(elements)) {
@@ -9,6 +10,7 @@ class Jeox {
     }
 
     this.#elements = [...elements];
+    this.#storage = new Map();
   }
 
   forEach(callback) {
@@ -63,6 +65,10 @@ class Jeox {
 
   children() {
     return this.#elements;
+  }
+
+  get storage() {
+    return this.#storage;
   }
 }
 

@@ -1,14 +1,19 @@
 import Core from '~/app/core';
 import random from '~/app/utils/random';
 
-class ComicApi extends Core.Api {
+/**
+ * Xkcd API client.
+ */
+class XkcdApi extends Core.Api {
   constructor(endpoint) {
     super(endpoint);
   }
 
   /**
-   * Get specific xkcd comic by its id (`num` property). If `num` is
-   * omitted, then latest comic will be returned.
+   * Get specific xkcd comic JSON data by its id (`num` property). If
+   * `num` is omitted, then current (latest) comic will be retrieved.
+   * @param {number} num - xkcd comic id to get
+   * @returns XkcdComic
    */
   async get(num) {
     this.refresh();
@@ -31,7 +36,8 @@ class ComicApi extends Core.Api {
   }
 
   /**
-   * Get current (latest) xkcd comic.
+   * Get current (i.e. latest) xkcd comic.
+   * @returns XkcdComic
    */
   async current() {
     try {
@@ -43,8 +49,9 @@ class ComicApi extends Core.Api {
 
   /**
    * Get random xkcd comic.
-   * Note: due to official JSON API design, this will perform two
-   * actual API requests.
+   * *Note:* due to official JSON API design, this method will perform
+   * two actual HTTP requests.
+   * @returns XkcdComic
    */
   async random() {
     try {
@@ -61,4 +68,4 @@ class ComicApi extends Core.Api {
   }
 }
 
-export default ComicApi;
+export default XkcdApi;

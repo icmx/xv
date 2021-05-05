@@ -1,6 +1,6 @@
 import Core from '~/app/core';
 
-class ComicModel extends Core.Model {
+class XkcdModel extends Core.Model {
   #api;
 
   constructor(api) {
@@ -51,4 +51,4 @@ class ComicModel extends Core.Model {
   }
 }
 
-export default ComicModel;
+export default XkcdModel;

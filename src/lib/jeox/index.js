@@ -1,7 +1,13 @@
 import Core from './core';
 import Features from './features';
 
-Core.extend(Features.attributes, Features.contents, Features.events);
+Core.extend(
+  Features.animation,
+  Features.attributes,
+  Features.contents,
+  Features.display,
+  Features.events
+);
 
 const { $, extend } = Core;
 

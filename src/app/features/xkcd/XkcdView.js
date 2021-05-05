@@ -1,11 +1,11 @@
 import $ from '~/lib/jeox';
-import comicparse from '~/lib/comicparse';
+import xkcdparse from '~/lib/xkcdparse';
 
 import Core from '~/app/core';
 import int from '~/app/utils/int';
 import isInt from '~/app/utils/isInt';
 
-class ComicView extends Core.View {
+class XkcdView extends Core.View {
   #navbarButtons;
 
   #firstButton;
@@ -32,7 +32,7 @@ class ComicView extends Core.View {
   constructor(viewElement) {
     super(viewElement);
 
-    this.#navbarButtons = $('.appbar.is-bottom .actions button', viewElement);
+    this.#navbarButtons = $('.appbar.is-bottom button', viewElement);
 
     this.#firstButton = $('button.is-first', viewElement);
     this.#previousButton = $('button.is-previous', viewElement);
@@ -53,6 +53,12 @@ class ComicView extends Core.View {
     this.#comicDate = $('.comic-date', this.#details);
     this.#comicTranscript = $('.comic-transcript', this.#details);
 
+    this.#image.display({ showClassName: 'is-shown' });
+    this.#loading.display({ showClassName: 'is-shown' });
+    this.#error.display({ showClassName: 'is-shown' });
+
+    this.#details.display({ showClassName: 'is-shown' });
+
     this.#num = undefined;
 
     this.#listen();
@@ -63,7 +69,7 @@ class ComicView extends Core.View {
   }
 
   #toggleNavbarButtons(state) {
-    $(this.#navbarButtons).attr(
+    this.#navbarButtons.attr(
       'disabled',
       state === true ? null : 'disabled'
     );
@@ -72,10 +78,10 @@ class ComicView extends Core.View {
   #clearView() {
     this.#title = `xv - comic viewer`;
 
-    $(this.#image).attr('title', null).attr('src', null);
+    this.#image.attr('title', null).attr('src', null);
 
-    $(this.#image).removeClass('is-shown');
-    $(this.#details).removeClass('is-shown');
+    this.#image.hide();
+    this.#details.hide();
   }
 
   #handleWindowLocationChange() {
@@ -95,15 +101,17 @@ class ComicView extends Core.View {
   }
 
   #handleWindowResize() {
-    const { width: figureWidth, height: figureHeight } = $(
-      this.#figure
-    ).rect();
+    const {
+      width: figureWidth,
+      height: figureHeight,
+    } = this.#figure.rect();
 
-    const { width: imageWidth, height: imageHeight } = $(
-      this.#image
-    ).imageSize();
+    const {
+      width: imageWidth,
+      height: imageHeight,
+    } = this.#image.imageSize();
 
-    $(this.#figure)
+    this.#figure
       .toggleClass('is-center-x', imageWidth < figureWidth)
       .toggleClass('is-center-y', imageHeight < figureHeight);
   }
@@ -129,8 +137,8 @@ class ComicView extends Core.View {
   }
 
   #handleImageLoading() {
-    $(this.#image).addClass('is-shown');
-    $(this.#loading).removeClass('is-shown');
+    this.#image.show();
+    this.#loading.hide();
   }
 
   #goFirst() {
@@ -161,15 +169,15 @@ class ComicView extends Core.View {
       .on('resize', () => this.#handleWindowResize())
       .on('keydown', (event) => this.#handleKeyboardInput(event));
 
-    $(this.#image)
+    this.#image
       .on('load', () => this.#handleImageLoading())
       .on('load', () => this.#handleWindowResize());
 
-    $(this.#firstButton).on('click', () => this.#goFirst());
-    $(this.#previousButton).on('click', () => this.#goPrevious());
-    $(this.#randomButton).on('click', () => this.#goRandom());
-    $(this.#nextButton).on('click', () => this.#goNext());
-    $(this.#currentButton).on('click', () => this.#goCurrent());
+    this.#firstButton.on('click', () => this.#goFirst());
+    this.#previousButton.on('click', () => this.#goPrevious());
+    this.#randomButton.on('click', () => this.#goRandom());
+    this.#nextButton.on('click', () => this.#goNext());
+    this.#currentButton.on('click', () => this.#goCurrent());
   }
 
   get #hash() {
@@ -204,36 +212,36 @@ class ComicView extends Core.View {
         break;
     }
 
-    const title = comicparse.title(comic);
-    const alt = comicparse.alt(comic);
-    const date = comicparse.date(comic);
-    const transcript = comicparse.transcript(comic);
+    const title = xkcdparse.title(comic);
+    const alt = xkcdparse.alt(comic);
+    const date = xkcdparse.date(comic);
+    const transcript = xkcdparse.transcript(comic);
 
     this.#title = `xv - #${comic.num}`;
 
-    $(this.#image).attr('title', alt).attr('src', comic.img);
+    this.#image.attr('title', alt).attr('src', comic.img);
 
-    $(this.#comicTitle).text(title);
-    $(this.#comicAlt).text(alt);
+    this.#comicTitle.text(title);
+    this.#comicAlt.text(alt);
 
-    $(this.#comicSourceLink)
+    this.#comicSourceLink
       .attr('href', `//xkcd.com/${comic.num}`)
       .text(`xkcd #${comic.num}`);
 
-    $(this.#comicImageLink).attr('href', comic.img);
+    this.#comicImageLink.attr('href', comic.img);
 
-    $(this.#comicDate).text(date);
-    $(this.#comicTranscript).html(transcript);
+    this.#comicDate.text(date);
+    this.#comicTranscript.html(transcript);
 
-    $(this.#details).addClass('is-shown');
-    $(this.#error).removeClass('is-shown');
+    this.#details.show();
+    this.#error.hide();
   }
 
   setLoading() {
     this.#clearView();
 
-    $(this.#loading).addClass('is-shown');
-    $(this.#error).removeClass('is-shown');
+    this.#loading.show();
+    this.#error.hide();
   }
 
   setError(error) {
@@ -242,10 +250,10 @@ class ComicView extends Core.View {
     console.error(error);
 
     if (error.name !== 'AbortError') {
-      $(this.#loading).removeClass('is-shown');
-      $(this.#error).addClass('is-shown');
+      this.#loading.hide();
+      this.#error.show();
     }
   }
 }
 
-export default ComicView;
+export default XkcdView;
