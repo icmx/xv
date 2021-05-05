@@ -1,10 +1,12 @@
+import isArray from './isArray';
+
 /**
- * Determine if value is an Array and includes at least one element.
+ * Determine if value is an Array and it's empty.
  * @param {?} value
- * @returns boolean
+ * @returns {boolean}
  */
 const isEmptyArray = (value) => {
-  return !value.length || value.length === 0;
+  return isArray(value) && value.length === 0;
 };
 
 export default isEmptyArray;

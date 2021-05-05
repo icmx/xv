@@ -16,6 +16,9 @@ class ThemeView extends Core.View {
     this.#themeLightButton = $('.is-theme-light', viewElement);
     this.#themeDarkButton = $('.is-theme-dark', viewElement);
 
+    this.#themeLightButton.display({ showClassName: 'is-shown' });
+    this.#themeDarkButton.display({ showClassName: 'is-shown' });
+
     this.#listen();
     this.#toggleThemeButtons();
   }
@@ -25,13 +28,13 @@ class ThemeView extends Core.View {
 
     switch (name) {
       case 'dark':
-        this.#themeDarkButton.toggleClass('is-hidden', true);
-        this.#themeLightButton.toggleClass('is-hidden', false);
+        this.#themeLightButton.show();
+        this.#themeDarkButton.hide();
         break;
 
       case 'light':
-        this.#themeDarkButton.toggleClass('is-hidden', false);
-        this.#themeLightButton.toggleClass('is-hidden', true);
+        this.#themeLightButton.hide();
+        this.#themeDarkButton.show();
         break;
 
       default:

@@ -53,6 +53,12 @@ class XkcdView extends Core.View {
     this.#comicDate = $('.comic-date', this.#details);
     this.#comicTranscript = $('.comic-transcript', this.#details);
 
+    this.#image.display({ showClassName: 'is-shown' });
+    this.#loading.display({ showClassName: 'is-shown' });
+    this.#error.display({ showClassName: 'is-shown' });
+
+    this.#details.display({ showClassName: 'is-shown' });
+
     this.#num = undefined;
 
     this.#listen();
@@ -74,8 +80,8 @@ class XkcdView extends Core.View {
 
     this.#image.attr('title', null).attr('src', null);
 
-    this.#image.removeClass('is-shown');
-    this.#details.removeClass('is-shown');
+    this.#image.hide();
+    this.#details.hide();
   }
 
   #handleWindowLocationChange() {
@@ -131,8 +137,8 @@ class XkcdView extends Core.View {
   }
 
   #handleImageLoading() {
-    this.#image.addClass('is-shown');
-    this.#loading.removeClass('is-shown');
+    this.#image.show();
+    this.#loading.hide();
   }
 
   #goFirst() {
@@ -227,15 +233,15 @@ class XkcdView extends Core.View {
     this.#comicDate.text(date);
     this.#comicTranscript.html(transcript);
 
-    this.#details.addClass('is-shown');
-    this.#error.removeClass('is-shown');
+    this.#details.show();
+    this.#error.hide();
   }
 
   setLoading() {
     this.#clearView();
 
-    this.#loading.addClass('is-shown');
-    this.#error.removeClass('is-shown');
+    this.#loading.show();
+    this.#error.hide();
   }
 
   setError(error) {
@@ -244,8 +250,8 @@ class XkcdView extends Core.View {
     console.error(error);
 
     if (error.name !== 'AbortError') {
-      this.#loading.removeClass('is-shown');
-      this.#error.addClass('is-shown');
+      this.#loading.hide();
+      this.#error.show();
     }
   }
 }
