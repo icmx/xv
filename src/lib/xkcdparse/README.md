@@ -1,15 +1,15 @@
-# comicparse
+# xkcdparse
 
 xv internal library to destruct an xkcd comic JSON data and transform into nice plain text or HTML strings.
 
 ## How it works
 
-comicparse has "destructors" API which are actually functions that takes xkcd comic JSON data. The following example will explain it better.
+xkcdparse has "destructors" API which are actually functions that takes xkcd comic JSON data. The following example will explain it better.
 
 Suppose there's [xkcd #927](https://xkcd.com/927/) JSON:
 
 ```js
-import comicparse from '~/somewhere/comicparse';
+import xkcdparse from '~/somewhere/xkcdparse';
 
 // (multiline for readability)
 const comic = {
@@ -29,21 +29,21 @@ const comic = {
     // ...rest props
 }
 
-const a = comicparse.title(comic); // -> title destructor:
+const a = xkcdparse.title(comic); // -> title destructor:
 //
 // Standards
 
-const b = comicparse.alt(comic); // -> alt destructor:
+const b = xkcdparse.alt(comic); // -> alt destructor:
 //
 // (multiline for readability)
 // “Fortunately, the charging one has been solved now that we've all
 // standardized on mini-USB. Or is it micro-USB? Shit.“
 
-const c = comicparse.date(comic);       // ->  date destructor:
+const c = xkcdparse.date(comic); // ->  date destructor:
 //
 // Saturday, August 20, 2011
 
-const d = comicparse.transcript(comic); // -> transcript destructor:
+const d = xkcdparse.transcript(comic); // -> transcript destructor:
 //
 // (multiline for readability)
 // HOW STANDARDS PROLIFERATE

@@ -10,7 +10,7 @@ xv is xkcd comics viwer app, done in pure JavaScript, CSS and Webpack.
   - Classic navigation experience (Random comic included)
   - Keyboard navigation: <kbd>←</kbd> / <kbd>→</kbd> for previous/next (<kbd>Shift</kbd> for first/last), <kbd>R</kbd> for random
   - Routing: try [/#303](https://icmx-xv.netlify.app/#303) e.g.
-  - Transcript for ~1600 first comics, with [parsing](src/lib/comicparse)!
+  - Transcript for ~1600 first comics, with [parsing](src/lib/xkcdparse)!
   - Mobile-first and desktop layouts
   - Light and Dark modes without flashing on refresh — works with images too!
 

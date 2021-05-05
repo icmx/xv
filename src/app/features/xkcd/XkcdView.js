@@ -1,5 +1,5 @@
 import $ from '~/lib/jeox';
-import comicparse from '~/lib/comicparse';
+import xkcdparse from '~/lib/xkcdparse';
 
 import Core from '~/app/core';
 import int from '~/app/utils/int';
@@ -212,10 +212,10 @@ class XkcdView extends Core.View {
         break;
     }
 
-    const title = comicparse.title(comic);
-    const alt = comicparse.alt(comic);
-    const date = comicparse.date(comic);
-    const transcript = comicparse.transcript(comic);
+    const title = xkcdparse.title(comic);
+    const alt = xkcdparse.alt(comic);
+    const date = xkcdparse.date(comic);
+    const transcript = xkcdparse.transcript(comic);
 
     this.#title = `xv - #${comic.num}`;
 
