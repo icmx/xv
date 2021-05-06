@@ -1,0 +1,60 @@
+.modal {
+  position: fixed;
+
+  margin: 1rem;
+  padding: 1rem 0 0;
+
+  border: none;
+  border-radius: 1rem;
+
+  color: var(--color-text-main);
+  background-color: var(--color-background-main);
+
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 768px) {
+  .modal {
+    margin: 1rem auto;
+  }
+}
+
+.modal-content {
+  max-height: 60vh;
+  padding: 0 2rem;
+
+  overflow-y: auto;
+}
+
+.modal .actions {
+  padding: 0.5rem 0;
+
+  justify-content: center;
+
+  border-top: solid 1px var(--color-background-mute);
+}
+
+.modal .actions button {
+  color: var(--color-text-link);
+
+  font-weight: 500;
+  font-size: 12pt;
+
+  padding: 0.5rem;
+
+  min-width: 5.5rem;
+  min-height: 3.5rem;
+
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+}
+
+.modal .actions button:hover {
+  background-color: var(--color-background-mute);
+}
+
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}

@@ -41,9 +41,11 @@
 }
 
 .appbar.is-top > .actions > button {
-  display: none;
-
   min-width: 4rem;
+}
+
+.appbar.is-top > .actions > button.is-hidden {
+  display: none;
 }
 
 .appbar.is-top > .actions > button.is-shown {

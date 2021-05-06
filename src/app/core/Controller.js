@@ -9,9 +9,11 @@ class Controller {
   }
 
   start() {
-    this.childControllers.forEach((childController) => {
-      childController.start();
-    });
+    if (this.childControllers) {
+      this.childControllers.forEach((controller) => {
+        controller.start();
+      });
+    }
   }
 }
 
