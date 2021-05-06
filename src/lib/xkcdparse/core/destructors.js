@@ -10,14 +10,14 @@ import {
   underscoresToken,
 } from './replacements';
 
-export const title = ({ title }) => {
+export const title = ({ num, title }) => {
   const result = applyReplacements(title, [
     ...escapesSet,
     ...cleanupSet,
     ...typographicsSet,
   ]);
 
-  return result;
+  return `#${num} — ${result}`;
 };
 
 export const alt = ({ alt }) => {

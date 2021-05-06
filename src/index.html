@@ -23,7 +23,7 @@
         }
 
         const current = localStorage.getItem('xv-theme');
-        apply(current !== null ? current : 'light');
+        apply(current !== null ? current : 'system');
       })();
     </script>
     <!-- /theme-initialization -->
@@ -31,12 +31,12 @@
   <body class="xv-app">
     <nav class="appbar is-top">
       <div class="actions">
-        <button class="is-theme-dark" title="Use dark theme">
+        <button class="is-hidden is-theme-dark" title="Use dark theme">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z" />
           </svg>
         </button>
-        <button class="is-theme-light" title="Use light theme">
+        <button class="is-hidden is-theme-light" title="Use light theme">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19H12.998V22H10.998zM10.998 2H12.998V5H10.998zM1.998 11H4.998V13H1.998zM18.998 11H21.998V13H18.998z" />
             <path d="M4.487 17.01H7.487V19.01H4.487z" transform="rotate(-45.017 5.986 18.01)" />
@@ -74,6 +74,12 @@
             </button>
           </div>
         </nav>
+        <button class="is-open-about" title="About">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 6C9.831 6 8.066 7.765 8.066 9.934h2C10.066 8.867 10.934 8 12 8s1.934.867 1.934 1.934c0 .598-.481 1.032-1.216 1.626-.255.207-.496.404-.691.599C11.029 13.156 11 14.215 11 14.333V15h2l-.001-.633c.001-.016.033-.386.441-.793.15-.15.339-.3.535-.458.779-.631 1.958-1.584 1.958-3.182C15.934 7.765 14.169 6 12 6zM11 16H13V18H11z" />
+            <path d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M12,20c-4.411,0-8-3.589-8-8s3.589-8,8-8 s8,3.589,8,8S16.411,20,12,20z" />
+          </svg>
+        </button>
       </div>
     </nav>
     <main>
@@ -94,8 +100,8 @@
         </header>
         <section class="text is-mute is-small">
           <span class="comic-date"></span> •
-          <a class="comic-sourcelink"></a> •
-          <a class="comic-imagelink">full image</a>
+          <a class="comic-sourcelink" target="_blank"></a> •
+          <a class="comic-imagelink" target="_blank">full image</a>
         </section>
         <section class="comic-transcript"></section>
       </article>
@@ -103,21 +109,33 @@
     <footer class="footerbar">
       <section class="footerbar-rights">
         <p class="text is-small is-mute is-center">
-          xv app by <a href="https://github.com/icmx">@icmx</a> •
-          <a
-            href="https://xkcd.com/"
-            title="xkcd.com original comics made by Randall Munroe"
-          >
-            xkcd.com
-          </a> •
-          <a
-            href="https://boxicons.com/"
-            title="Icons made by Atisa"
-          >
-            boxicons.com
-          </a>
+          <strong>xv</strong> — xkcd comics viewer •
+          <a href="https://github.com/icmx/xv">@icmx</a>
         </p>
       </section>
     </footer>
+    <dialog class="modal">
+      <form method="dialog">
+        <div class="modal-content">
+          <h1>About</h1>
+          <p>xv is a simple xkcd comics viwer made by <a href="https://github.com/icmx" target="_blank">@icmx</a>.</p>
+          <p>Check <a href="https://github.com/icmx/xv" target="_blank">GitHub</a> for source code and other development information.</p>
+          <h2>Features</h2>
+          <ul>
+            <li>Classic navigation, as in original site</li>
+            <li>Arrow keys navigation (hold <kbd>Shift</kbd> for first/last, <kbd>R</kbd> for random)</li>
+            <li>Transcription for about 1600 first comics</li>
+            <li>Mobile and desktop support</li>
+            <li>Dark mode with images too!</li>
+          </ul>
+          <h2>Acknowledgements</h2>
+          <p>Original comics are made by Randall Munroe at <a href="https://xkcd.com/" target="_blank">xkcd.com</a>.</p>
+          <p>Awesome icons set made by Atisa at <a href="https://boxicons.com/" target="_blank">boxicons.com</a>.</p>
+        </div>
+        <div class="actions">
+          <button value="cancel">Close</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

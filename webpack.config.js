@@ -127,12 +127,12 @@ const serveConfig = merge(baseConfig, {
     proxy: {
       '/api/comics': {
         target: 'https://xkcd.com',
-        pathRewrite: { '^/api/comics': '' },
+        pathRewrite: { '^/api/comics/xkcd': '' },
         changeOrigin: true,
       },
       '/files/comics': {
         target: 'https://imgs.xkcd.com/comics',
-        pathRewrite: { '^/files/comics': '' },
+        pathRewrite: { '^/files/comics/xkcd': '' },
         changeOrigin: true,
       },
     },

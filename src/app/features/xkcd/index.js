@@ -5,7 +5,7 @@ import XkcdController from './XkcdController';
 import XkcdApi from './XkcdApi';
 
 const xkcd = new XkcdController({
-  model: new XkcdModel(new XkcdApi('/api/comics')),
+  model: new XkcdModel(new XkcdApi('/api/comics/xkcd')),
   view: new XkcdView(window.document.querySelector('.xv-app')),
 });
 

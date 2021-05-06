@@ -1,6 +1,7 @@
-import xkcd from './xkcd';
+import about from './about';
 import theme from './theme';
+import xkcd from './xkcd';
 
-const Features = { xkcd, theme };
+const Features = { about, theme, xkcd };
 
 export default Features;
