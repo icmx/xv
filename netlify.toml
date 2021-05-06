@@ -1,9 +1,9 @@
 [[redirects]]
-  from = "/api/comics/*"
+  from = "/api/comics/xkcd*"
   to = "https://xkcd.com/:splat"
   status = 200
 
 [[redirects]]
-  from = "/files/comics/*"
+  from = "/files/comics/xkcd/*"
   to = "https://imgs.xkcd.com/comics/:splat"
   status = 200
