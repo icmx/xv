@@ -253,6 +253,10 @@ class XkcdView extends Core.View {
       this.#loading.hide();
       this.#error.show();
     }
+
+    if (!isInt(this.#num)) {
+      this.num = 1;
+    }
   }
 }
 
