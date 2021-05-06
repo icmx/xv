@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v0.2.5';
+const CACHE_NAME = 'v0.2.6';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -19,6 +19,19 @@ self.addEventListener('install', (event) => {
         '/vendors.js',
       ]);
     })
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
+      return keys.map(async (key) => {
+        if (key !== CACHE_NAME) {
+          return await caches.delete(key);
+        }
+      });
+    })()
   );
 });
 
