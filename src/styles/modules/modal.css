@@ -10,7 +10,9 @@
   color: var(--color-text-main);
   background-color: var(--color-background-main);
 
-  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.05);
+
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -32,6 +34,8 @@
   justify-content: center;
 
   border-top: solid 1px var(--color-background-mute);
+
+  background-color: var(--color-background-misc);
 }
 
 .modal .actions button {
