@@ -13,7 +13,7 @@ class XkcdApi extends Core.Api {
    * Get specific xkcd comic JSON data by its id (`num` property). If
    * `num` is omitted, then current (latest) comic will be retrieved.
    * @param {number} num - xkcd comic id to get
-   * @returns XkcdComic
+   * @returns {XkcdComic}
    */
   async get(num) {
     this.refresh();
@@ -37,7 +37,7 @@ class XkcdApi extends Core.Api {
 
   /**
    * Get current (i.e. latest) xkcd comic.
-   * @returns XkcdComic
+   * @returns {XkcdComic}
    */
   async current() {
     try {
@@ -51,7 +51,7 @@ class XkcdApi extends Core.Api {
    * Get random xkcd comic.
    * *Note:* due to official JSON API design, this method will perform
    * two actual HTTP requests.
-   * @returns XkcdComic
+   * @returns {XkcdComic}
    */
   async random() {
     try {
