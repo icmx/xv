@@ -15,7 +15,6 @@ self.addEventListener('install', (event) => {
         '/main.js',
         '/manifest.webmanifest',
         '/style.css',
-        '/sw.js',
         '/vendors.js',
       ]);
     })
@@ -42,11 +41,13 @@ self.addEventListener('fetch', (event) => {
         return response;
       } else {
         return fetch(event.request).then((response) => {
-          const clone = response.clone();
+          if (!event.request.url.endsWith('/xkcd/info.0.json')) {
+            const clone = response.clone();
 
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, clone);
-          });
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, clone);
+            });
+          }
 
           return response;
         });
