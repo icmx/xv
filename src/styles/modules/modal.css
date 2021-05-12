@@ -1,8 +1,11 @@
 .modal {
   position: fixed;
 
-  max-width: calc(100% - 2rem);
-  max-height: calc(100% - 2rem);
+  left: 50%;
+  top: 50%;
+
+  min-width: calc(100% - 2rem);
+  max-height: calc(100% - 10rem);
 
   padding: 1rem 0 0;
 
@@ -15,25 +18,42 @@
   box-shadow: var(--backdrop-shadow);
 
   overflow: hidden;
+  transform: translate(-50%, -50%) scale(0);
 
-  transform: translate(0, 0);
+  opacity: 0;
+
+  z-index: 100;
+
+  transition-duration: var(--transition-duration);
+  transition-property: transform opacity;
 }
 
 @media (min-width: 768px) {
   .modal {
-    margin: 1rem auto;
+    min-width: auto;
+    width: 40rem;
   }
 }
 
+.modal.is-shown {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal header {
+  padding: 0 2rem 0rem;
+}
+
 .modal-content {
-  max-height: 60vh;
-  padding: 0 2rem;
+  max-height: 40vh;
+
   margin: 0 0 1rem;
+  padding: 0 2rem;
 
   overflow-y: auto;
 }
 
-.modal .actions {
+.modal footer {
   padding: 0rem;
 
   justify-content: center;
@@ -43,7 +63,7 @@
   background-color: var(--color-background-misc);
 }
 
-.modal .actions button {
+.modal footer.actions button {
   color: var(--color-text-link);
 
   font-weight: 500;
@@ -59,18 +79,13 @@
   cursor: pointer;
 }
 
-.modal .actions button:first-child:last-child {
+.modal footer.actions button:first-child:last-child {
   width: 100%;
 
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.modal .actions button:hover {
+.modal footer.actions button:hover {
   background-color: var(--color-background-mute);
-}
-
-.modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
 }
