@@ -1,36 +1,28 @@
 import $ from '~/lib/jeox';
 
 import Core from '~/app/core';
+import Modal from '~/app/shared/Modal';
 
 class AboutView extends Core.View {
-  #modal;
-  #backdrop;
   #openButton;
-  #closeAreas;
+  #modal;
 
   constructor(viewElement) {
     super(viewElement);
 
-    this.#modal = $('.modal', viewElement);
-    this.#backdrop = $('.backdrop', viewElement);
     this.#openButton = $('.is-open-about', viewElement);
 
-    this.#closeAreas = $('.is-close-about, .backdrop');
-
-    this.#modal.display({ showClassName: 'is-shown' });
-    this.#backdrop.display({ showClassName: 'is-shown' });
+    this.#modal = new Modal(
+      $('.modal', viewElement),
+      $('.modal-close', viewElement),
+      $('.backdrop', viewElement)
+    );
 
     this.#listen();
   }
 
-  #displayModal(state) {
-    this.#modal.display(state);
-    this.#backdrop.display(state);
-  }
-
   #listen() {
-    this.#openButton.on('click', () => this.#displayModal(true));
-    this.#closeAreas.on('click', () => this.#displayModal(false));
+    this.#openButton.on('click', () => this.#modal.show());
   }
 }
 
