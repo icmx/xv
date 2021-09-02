@@ -22,7 +22,7 @@
             .setAttribute('data-xv-theme', theme);
         }
 
-        const current = localStorage.getItem('xv-theme');
+        const current = window.localStorage.getItem('xv-theme');
         apply(current !== null ? current : 'system');
       })();
     </script>
