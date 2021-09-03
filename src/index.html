@@ -15,15 +15,13 @@
       // otherwise it will flash on any reloading.
 
       (() => {
-        const apply = (theme) => {
-          window
-            .document
-            .documentElement
-            .setAttribute('data-xv-theme', theme);
-        }
+        const apply = (theme) =>
+          window.document.documentElement.setAttribute('data-xv-theme', theme)
 
+        const prefers = window.matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light';
         const current = window.localStorage.getItem('xv-theme');
-        apply(current !== null ? current : 'system');
+
+        apply(current !== null ? current : prefers);
       })();
     </script>
     <!-- /theme-initialization -->
