@@ -34,11 +34,6 @@ class ThemeView extends Core.View {
     const name = this.#document.attr('data-xv-theme');
 
     switch (name) {
-      case 'system':
-        this.#themeLightButton.hide();
-        this.#themeDarkButton.show();
-        break;
-
       case 'dark':
         this.#themeLightButton.show();
         this.#themeDarkButton.hide();
@@ -59,13 +54,8 @@ class ThemeView extends Core.View {
   }
 
   #listen() {
-    this.#themeDarkButton.on('click', () =>
-      this.#handleThemeChange('dark')
-    );
-
-    this.#themeLightButton.on('click', () =>
-      this.#handleThemeChange('light')
-    );
+    this.#themeDarkButton.on('click', () => this.#handleThemeChange('dark'));
+    this.#themeLightButton.on('click', () => this.#handleThemeChange('light'));
   }
 
   setTheme(theme) {

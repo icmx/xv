@@ -1,16 +1,9 @@
 .modal {
   position: fixed;
 
-  left: 50%;
-  top: 50%;
-
-  min-width: calc(100% - 2rem);
-  max-height: calc(100% - 10rem);
-
   padding: 1rem 0 0;
 
   border: none;
-  border-radius: 1rem;
 
   color: var(--color-text-main);
   background-color: var(--color-background-main);
@@ -25,19 +18,41 @@
   z-index: 100;
 
   transition-duration: var(--transition-duration);
-  transition-property: transform opacity;
+  transition-property: opacity, transform;
+
+  width: 100%;
+  height: 100%;
+
+  left: 0;
+  top: 0;
 }
 
 @media (min-width: 768px) {
   .modal {
+    min-width: calc(100% - 2rem);
+    max-height: calc(100% - 10rem);
+
+    border-radius: 1rem;
+
     min-width: auto;
     width: 40rem;
+
+    height: unset;
+
+    left: 50%;
+    top: 50%;
   }
 }
 
 .modal.is-shown {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
+}
+
+@media (min-width: 768px) {
+  .modal.is-shown {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .modal header {
@@ -45,12 +60,18 @@
 }
 
 .modal-content {
-  max-height: 40vh;
+  height: calc(100% - 10rem);
 
   margin: 0 0 1rem;
   padding: 0 2rem;
 
   overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    max-height: 40vh;
+  }
 }
 
 .modal footer {

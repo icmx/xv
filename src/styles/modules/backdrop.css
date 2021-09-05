@@ -15,6 +15,10 @@
   z-index: 90;
 }
 
-.backdrop.is-shown {
-  display: block;
+@media (min-width: 768px) {
+  /* backdrop makes sense for wide screens only */
+
+  .backdrop.is-shown {
+    display: block;
+  }
 }

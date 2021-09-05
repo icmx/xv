@@ -1,8 +1,22 @@
-const CACHE_NAME = 'v0.2.8';
+const CACHE_NAME = 'v0.2.9';
+
+const isCacheable = (request, response) => {
+  if (request.url.endsWith('/xkcd/info.0.json')) {
+    return false;
+  }
+
+  if (response.ok === false || response.status !== 304) {
+    return false;
+  }
+
+  return true;
+};
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+
       return cache.addAll([
         '/',
         '/android-chrome-192x192.png',
@@ -17,7 +31,7 @@ self.addEventListener('install', (event) => {
         '/style.css',
         '/vendors.js',
       ]);
-    })
+    })()
   );
 });
 
@@ -25,6 +39,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
       const keys = await caches.keys();
+
       return keys.map(async (key) => {
         if (key !== CACHE_NAME) {
           return await caches.delete(key);
@@ -36,22 +51,24 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response !== undefined) {
-        return response;
+    (async () => {
+      const { request } = event;
+      const oldResponse = await caches.match(request);
+
+      if (oldResponse) {
+        return oldResponse;
       } else {
-        return fetch(event.request).then((response) => {
-          if (!event.request.url.endsWith('/xkcd/info.0.json')) {
-            const clone = response.clone();
+        const newResponse = await fetch(request);
 
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, clone);
-            });
-          }
+        if (isCacheable(request, newResponse)) {
+          const clone = response.clone();
+          const cache = await caches.open(CACHE_NAME);
 
-          return response;
-        });
+          cache.put(request, clone);
+        }
+
+        return newResponse;
       }
-    })
+    })()
   );
 });

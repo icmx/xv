@@ -15,15 +15,13 @@
       // otherwise it will flash on any reloading.
 
       (() => {
-        const apply = (theme) => {
-          window
-            .document
-            .documentElement
-            .setAttribute('data-xv-theme', theme);
-        }
+        const apply = (theme) =>
+          window.document.documentElement.setAttribute('data-xv-theme', theme)
 
-        const current = localStorage.getItem('xv-theme');
-        apply(current !== null ? current : 'system');
+        const prefers = window.matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light';
+        const current = window.localStorage.getItem('xv-theme');
+
+        apply(current !== null ? current : prefers);
       })();
     </script>
     <!-- /theme-initialization -->
@@ -141,7 +139,7 @@
         <p>Awesome icons set made by Atisa at <a href="https://boxicons.com/" target="_blank">boxicons.com</a>.</p>
       </section>
       <footer class="actions">
-        <button class="is-close-about" value="cancel">Close</button>
+        <button class="modal-close">Close</button>
       </footer>
     </aside>
     <div class="backdrop"></div>
