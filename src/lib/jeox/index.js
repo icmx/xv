@@ -6,7 +6,8 @@ Core.extend(
   Features.attributes,
   Features.contents,
   Features.display,
-  Features.events
+  Features.events,
+  Features.style
 );
 
 const { $, extend } = Core;

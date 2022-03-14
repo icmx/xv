@@ -16,13 +16,26 @@
 
       (() => {
         const apply = (theme) =>
-          window.document.documentElement.setAttribute('data-xv-theme', theme)
+          document.documentElement.setAttribute('data-xv-theme', theme)
 
-        const prefers = window.matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light';
-        const current = window.localStorage.getItem('xv-theme');
+        const prefers = matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light';
+        const current = localStorage.getItem('xv-theme');
 
-        apply(current !== null ? current : prefers);
+        apply(current === null ? prefers : current);
       })();
+    </script>
+    <script>
+      addEventListener('load', () => {
+        const { documentElement: root } = document;
+        const theme = root.getAttribute('data-xv-theme');
+        const color = getComputedStyle(root).getPropertyValue(
+          '--color-background-main'
+        ).trim()
+
+        root.querySelector('meta[name="theme-color"]').setAttribute(
+          'content', color
+        )
+      })
     </script>
     <!-- /theme-initialization -->
   </head>
