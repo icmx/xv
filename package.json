@@ -1,6 +1,6 @@
 {
   "name": "xv",
-  "version": "0.2.8",
+  "version": "0.2.10",
   "description": "xkcd.com viwer app, done in pure JavaScript and Webpack",
   "keywords": [
     "xkcd",
@@ -20,26 +20,25 @@
   },
   "homepage": "https://github.com/icmx/xv#readme",
   "scripts": {
-    "serve": "webpack serve --config-name serve",
+    "watch": "webpack serve --config-name watch",
     "build": "webpack --config-name build"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.1",
-    "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "^4.0.0-alpha.0",
-    "copy-webpack-plugin": "^8.1.1",
-    "css-loader": "^5.2.4",
-    "html-webpack-plugin": "^5.3.1",
-    "mini-css-extract-plugin": "^1.6.0",
-    "postcss-csso": "^5.0.1",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss-csso": "^6.0.0",
     "postcss-import": "^14.0.2",
-    "postcss-loader": "^5.2.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.37.0",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.7.3"
+    "postcss-loader": "^6.2.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
   },
   "browserslist": [
     "> 0.5%",

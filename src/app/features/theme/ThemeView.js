@@ -4,6 +4,7 @@ import Core from '~/app/core';
 
 class ThemeView extends Core.View {
   #document;
+  #headMetaThemeColor;
 
   #themeLightButton;
   #themeDarkButton;
@@ -12,6 +13,7 @@ class ThemeView extends Core.View {
     super(viewElement);
 
     this.#document = $(document.documentElement);
+    this.#headMetaThemeColor = $('meta[name="theme-color"]', this.#document);
 
     this.#themeLightButton = $('.is-theme-light', viewElement);
     this.#themeDarkButton = $('.is-theme-dark', viewElement);
@@ -60,6 +62,11 @@ class ThemeView extends Core.View {
 
   setTheme(theme) {
     this.#document.attr('data-xv-theme', theme);
+
+    this.#headMetaThemeColor.attr(
+      'content',
+      this.#document.styleVar('color-background-main')
+    );
 
     this.#toggleThemeButtons();
   }

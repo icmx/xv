@@ -8,15 +8,21 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const paths = {
-  src: path.join(__dirname, `src`),
-  dist: path.join(__dirname, `dist`),
+const NAMES = {
+  src: 'src',
+  dist: 'dist',
+  assets: 'assets',
+  static: 'static',
 };
 
-const baseConfig = {
-  externals: {
-    paths: paths,
-  },
+const PATHS = {
+  src: path.join(__dirname, NAMES.src),
+  dist: path.join(__dirname, NAMES.dist),
+  assets: path.join(__dirname, NAMES.src, NAMES.assets),
+  static: path.join(__dirname, NAMES.src, NAMES.static),
+};
+
+const createBaseConfig = ({ paths, meta }) => ({
   entry: {
     main: `${paths.src}/index.js`,
     sw: `${paths.src}/sw.js`,
@@ -62,7 +68,6 @@ const baseConfig = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
@@ -85,8 +90,8 @@ const baseConfig = {
       },
     ],
   },
-
   resolve: {
+    extensions: ['.js'],
     alias: {
       '~': `${paths.src}`,
     },
@@ -97,68 +102,77 @@ const baseConfig = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new HtmlWebpackPlugin({
-      template: `${paths.src}/index.html`,
-      filename: `./index.html`,
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: `${paths.src}/static`,
-          to: '',
+          from: `${paths.assets}`,
+          to: `${paths.assets.split(path.sep).slice(-1)[0]}`,
+          noErrorOnMissing: true,
         },
       ],
     }),
-  ],
-};
-
-const serveConfig = merge(baseConfig, {
-  name: 'serve',
-  mode: 'development',
-  devtool: 'cheap-module-source-map',
-  devServer: {
-    publicPath: '/',
-    contentBase: baseConfig.externals.paths.dist,
-    port: 8000,
-    overlay: {
-      warnings: true,
-      errors: true,
-    },
-    proxy: {
-      '/api/comics': {
-        target: 'https://xkcd.com',
-        pathRewrite: { '^/api/comics/xkcd': '' },
-        changeOrigin: true,
+    new HtmlWebpackPlugin({
+      template: `${paths.src}/index.html`,
+      filename: `index.html`,
+      templateParameters: {
+        version: meta.version,
+        license: meta.license,
       },
-      '/files/comics': {
-        target: 'https://imgs.xkcd.com/comics',
-        pathRewrite: { '^/files/comics/xkcd': '' },
-        changeOrigin: true,
-      },
-    },
-  },
-  plugins: [
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[file].map',
     }),
   ],
-
-  // Temporary workaround for hot reloading.
-  // See https://github.com/webpack/webpack-dev-server/issues/2758
-  //
-  // webpack-dev-server not reloading page when "browserslist" is
-  // presented in package.json, but this entry below fixing it.
-  // However this approach is incorrect (should be 'browserslist'
-  // instead of 'web', or just omitted since 'browserslist' is default).
-  //
-  // This should be removed when webpack-dev-server v4 will release.
-  target: 'web',
 });
 
-const buildConfig = merge(baseConfig, {
-  name: 'build',
-  mode: 'production',
-  plugins: [],
-});
+const createWatchConfig = ({ paths, meta, port }) =>
+  merge(createBaseConfig({ paths, meta }), {
+    name: 'watch',
+    mode: 'development',
+    devtool: 'cheap-module-source-map',
+    devServer: {
+      port,
+      liveReload: true,
+      watchFiles: [`${paths.src}/**/*`],
+      static: {
+        publicPath: '/',
+        directory: `${paths.dist}`,
+      },
+      client: {
+        overlay: {
+          warnings: true,
+          errors: true,
+        },
+      },
+      proxy: {
+        '/api/comics': {
+          target: 'https://xkcd.com',
+          pathRewrite: { '^/api/comics/xkcd': '' },
+          changeOrigin: true,
+        },
+        '/files/comics': {
+          target: 'https://imgs.xkcd.com/comics',
+          pathRewrite: { '^/files/comics/xkcd': '' },
+          changeOrigin: true,
+        },
+      },
+    },
+    plugins: [
+      new webpack.SourceMapDevToolPlugin({
+        filename: '[file].map',
+      }),
+    ],
+  });
 
-module.exports = [serveConfig, buildConfig];
+const createBuildConfig = ({ paths, meta }) =>
+  merge(createBaseConfig({ paths, meta }), {
+    name: 'build',
+    mode: 'production',
+    plugins: [],
+  });
+
+module.exports = [
+  createWatchConfig({
+    paths: PATHS,
+    meta: require('./package.json'),
+    port: 8000,
+  }),
+  createBuildConfig({ paths: PATHS, meta: require('./package.json') }),
+];
