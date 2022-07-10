@@ -133,7 +133,7 @@ const createWatchConfig = ({ paths, meta, port }) =>
       watchFiles: [`${paths.src}/**/*`],
       static: {
         publicPath: '/',
-        directory: `${paths.dist}`,
+        directory: `${paths.static}`,
       },
       client: {
         overlay: {
