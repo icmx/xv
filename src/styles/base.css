@@ -72,6 +72,13 @@ button {
   cursor: pointer;
 }
 
+hr {
+  height: 1px;
+  border: none;
+  margin: 2rem 0;
+  background-color: var(--color-background-mute);
+}
+
 li {
   line-height: 1.5;
 }
