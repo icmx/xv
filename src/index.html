@@ -9,33 +9,34 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <title>xv</title>
-    <!-- theme-initialization -->
+    <!-- theme-initialization: -->
     <script>
-      // This code should be available even BEFORE document loads body,
+      // This code should be available even before document loads body,
       // otherwise it will flash on any reloading.
 
       (() => {
         const apply = (theme) =>
           document.documentElement.setAttribute('data-xv-theme', theme)
 
-        const prefers = matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light';
+        const prefers = matchMedia('(prefers-color-scheme: dark)')
+          ? 'dark'
+          : 'light';
+
         const current = localStorage.getItem('xv-theme');
 
         apply(current === null ? prefers : current);
-      })();
-    </script>
-    <script>
-      addEventListener('load', () => {
-        const { documentElement: root } = document;
-        const theme = root.getAttribute('data-xv-theme');
-        const color = getComputedStyle(root).getPropertyValue(
-          '--color-background-main'
-        ).trim()
 
-        root.querySelector('meta[name="theme-color"]').setAttribute(
-          'content', color
-        )
-      })
+        addEventListener('load', () => {
+          const { documentElement: root } = document;
+          const color = getComputedStyle(root).getPropertyValue(
+            '--color-background-main'
+          ).trim()
+
+          root.querySelector('meta[name="theme-color"]').setAttribute(
+            'content', color
+          )
+        })
+      })();
     </script>
     <!-- /theme-initialization -->
   </head>
@@ -117,8 +118,8 @@
           <p class="comic-alt"></p>
         </header>
         <section class="text is-mute is-small">
-          <span class="comic-date"></span> •
-          <a class="comic-sourcelink" target="_blank"></a> •
+          <span class="comic-date"></span> ·
+          <a class="comic-sourcelink" target="_blank"></a> ·
           <a class="comic-imagelink" target="_blank">full image</a>
         </section>
         <section class="comic-transcript"></section>
@@ -150,9 +151,8 @@
         <h2>Acknowledgements</h2>
         <p>Original comics are made by Randall Munroe at <a href="https://xkcd.com/" target="_blank">xkcd.com</a>.</p>
         <p>Awesome icons set made by Atisa at <a href="https://boxicons.com/" target="_blank">boxicons.com</a>.</p>
-        <hr />
         <p class="text is-small is-mute is-center">
-          xv <%= version %> (<%= license %>)
+         <strong>xv</strong> v<%= version %> (<%= license %>)
         </p>
       </section>
       <footer class="actions">

@@ -3,7 +3,6 @@
   --false: ;
 }
 
-:root[data-xv-theme='system'],
 :root[data-xv-theme='light'] {
   --light: var(--true);
   --dark: var(--false);
@@ -12,13 +11,6 @@
 :root[data-xv-theme='dark'] {
   --light: var(--false);
   --dark: var(--true);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root[data-xv-theme='system'] {
-    --light: var(--false);
-    --dark: var(--true);
-  }
 }
 
 :root {
@@ -70,13 +62,6 @@ button {
 
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
-}
-
-hr {
-  height: 1px;
-  border: none;
-  margin: 2rem 0;
-  background-color: var(--color-background-mute);
 }
 
 li {
