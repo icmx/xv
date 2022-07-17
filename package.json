@@ -1,6 +1,6 @@
 {
   "name": "xv",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "xkcd.com viwer app, done in pure JavaScript and Webpack",
   "keywords": [
     "xkcd",

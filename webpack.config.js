@@ -5,8 +5,18 @@ const { merge } = require('webpack-merge');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { DefinePlugin, SourceMapDevToolPlugin } = webpack;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const meta = require('./package.json');
+
+const CONSTS = {
+  globalConst: {
+    version: meta.version,
+    license: meta.license,
+  },
+};
 
 const NAMES = {
   src: 'src',
@@ -22,7 +32,15 @@ const PATHS = {
   static: path.join(__dirname, NAMES.src, NAMES.static),
 };
 
-const createBaseConfig = ({ paths, meta }) => ({
+const createDefinitions = (consts) =>
+  Object.fromEntries(
+    Object.entries(consts.globalConst).map(([key, value]) => [
+      `${Object.keys(consts)[0]}.${key}`,
+      JSON.stringify(value),
+    ])
+  );
+
+const createBaseConfig = (paths, options) => ({
   entry: {
     main: `${paths.src}/index.js`,
     sw: `${paths.src}/sw.js`,
@@ -96,8 +114,8 @@ const createBaseConfig = ({ paths, meta }) => ({
       '~': `${paths.src}`,
     },
   },
-
   plugins: [
+    new DefinePlugin(createDefinitions(options.consts)),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'style.css',
@@ -115,20 +133,19 @@ const createBaseConfig = ({ paths, meta }) => ({
       template: `${paths.src}/index.html`,
       filename: `index.html`,
       templateParameters: {
-        version: meta.version,
-        license: meta.license,
+        ...options.consts,
       },
     }),
   ],
 });
 
-const createWatchConfig = ({ paths, meta, port }) =>
-  merge(createBaseConfig({ paths, meta }), {
+const createWatchConfig = (paths, options) =>
+  merge(createBaseConfig(paths, options), {
     name: 'watch',
     mode: 'development',
     devtool: 'cheap-module-source-map',
     devServer: {
-      port,
+      port: options.port,
       liveReload: true,
       watchFiles: [`${paths.src}/**/*`],
       static: {
@@ -155,24 +172,20 @@ const createWatchConfig = ({ paths, meta, port }) =>
       },
     },
     plugins: [
-      new webpack.SourceMapDevToolPlugin({
+      new SourceMapDevToolPlugin({
         filename: '[file].map',
       }),
     ],
   });
 
-const createBuildConfig = ({ paths, meta }) =>
-  merge(createBaseConfig({ paths, meta }), {
+const createBuildConfig = (paths, options) =>
+  merge(createBaseConfig(paths, options), {
     name: 'build',
     mode: 'production',
     plugins: [],
   });
 
 module.exports = [
-  createWatchConfig({
-    paths: PATHS,
-    meta: require('./package.json'),
-    port: 8000,
-  }),
-  createBuildConfig({ paths: PATHS, meta: require('./package.json') }),
+  createWatchConfig(PATHS, { consts: CONSTS, port: 8000 }),
+  createBuildConfig(PATHS, { consts: CONSTS }),
 ];
