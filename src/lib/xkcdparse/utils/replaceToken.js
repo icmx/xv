@@ -1,4 +1,4 @@
-import { re } from './re';
+import { r } from './r';
 
 /**
  * Replace a regular token like `*` or `_` by HTML tag equivalent.
@@ -19,6 +19,6 @@ import { re } from './re';
  */
 export const replaceToken = (match, token, htmlTagName) => {
   return match
-    .replace(re`^\\${token}`, `<${htmlTagName}>`)
-    .replace(re`\\${token}$`, `</${htmlTagName}>`);
+    .replace(r`^\\${token}`, `<${htmlTagName}>`)
+    .replace(r`\\${token}$`, `</${htmlTagName}>`);
 };
