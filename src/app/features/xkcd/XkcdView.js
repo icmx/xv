@@ -2,9 +2,7 @@ import $ from '~/lib/jeox';
 import xkcdparse from '~/lib/xkcdparse';
 
 import { View } from '~/app/core';
-
-import { int } from '~/app/utils';
-import { isInt } from '~/app/utils';
+import { int, isInt } from '~/app/utils';
 
 export class XkcdView extends View {
   #navbarButtons;
