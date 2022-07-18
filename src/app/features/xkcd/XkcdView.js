@@ -67,13 +67,6 @@ export class XkcdView extends View {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
-  #toggleNavbarButtons(state) {
-    this.#navbarButtons.attr(
-      'disabled',
-      state === true ? null : 'disabled'
-    );
-  }
-
   #clearView() {
     this.#title = `xv - comic viewer`;
 
@@ -149,7 +142,7 @@ export class XkcdView extends View {
   }
 
   #goRandom() {
-    this.#toggleNavbarButtons(false);
+    this.#navbarButtons.disable();
     this.emit('random');
   }
 
@@ -196,11 +189,15 @@ export class XkcdView extends View {
   }
 
   setComic(comic, type) {
-    this.#toggleNavbarButtons(true);
+    this.#navbarButtons.enable();
 
     switch (type) {
       case 'current':
         this.#num = comic.num;
+
+        this.#nextButton.disable();
+        this.#currentButton.disable();
+
         break;
 
       case 'random':

@@ -65,6 +65,14 @@ export const attributes = {
     }
   },
 
+  disable() {
+    this.attr('disabled', 'disabled');
+  },
+
+  enable() {
+    this.attr('disabled', null);
+  },
+
   rect() {
     return this.child().getBoundingClientRect();
   },
