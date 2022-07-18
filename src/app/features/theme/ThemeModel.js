@@ -1,6 +1,6 @@
-import Core from '~/app/core';
+import { Model } from '~/app/core';
 
-class ThemeModel extends Core.Model {
+export class ThemeModel extends Model {
   constructor() {
     super();
   }
@@ -15,5 +15,3 @@ class ThemeModel extends Core.Model {
     this.#setTheme(name);
   }
 }
-
-export default ThemeModel;

@@ -1,4 +1,4 @@
-import App from '~/app';
+import {app} from '~/app';
 
 import '~/index.css';
 
@@ -8,4 +8,4 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-App.start();
+app.start();

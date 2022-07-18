@@ -1,9 +1,7 @@
-import Core from '~/app/core';
+import { Controller } from '~/app/core';
 
-class AboutController extends Core.Controller {
+export class AboutController extends Controller {
   constructor({ model, view }) {
     super({ model, view });
   }
 }
-
-export default AboutController;

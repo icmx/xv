@@ -1,9 +1,5 @@
-import Model from './Model';
-import View from './View';
-import Controller from './Controller';
-
-import Api from './Api';
-
-const Core = { Model, View, Controller, Api };
-
-export default Core;
+export * from './Api';
+export * from './Controller';
+export * from './Emitter';
+export * from './Model';
+export * from './View';

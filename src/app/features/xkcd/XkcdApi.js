@@ -1,10 +1,10 @@
-import Core from '~/app/core';
-import random from '~/app/utils/random';
+import { Api } from '~/app/core';
+import { random } from '~/app/utils';
 
 /**
  * Xkcd API client.
  */
-class XkcdApi extends Core.Api {
+export class XkcdApi extends Api {
   constructor(endpoint) {
     super(endpoint);
   }
@@ -67,5 +67,3 @@ class XkcdApi extends Core.Api {
     }
   }
 }
-
-export default XkcdApi;

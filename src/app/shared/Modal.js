@@ -1,6 +1,6 @@
 import $ from '~/lib/jeox';
 
-class Modal {
+export class Modal {
   #modalElement;
   #closeElement;
   #backdropElement;
@@ -37,5 +37,3 @@ class Modal {
     this.#backdropElement.hide();
   }
 }
-
-export default Modal;

@@ -1,9 +1,9 @@
 import $ from '~/lib/jeox';
 
-import Core from '~/app/core';
-import Modal from '~/app/shared/Modal';
+import { View } from '~/app/core';
+import { Modal } from '~/app/shared';
 
-class AboutView extends Core.View {
+export class AboutView extends View {
   #openButton;
   #modal;
 
@@ -25,5 +25,3 @@ class AboutView extends Core.View {
     this.#openButton.on('click', () => this.#modal.show());
   }
 }
-
-export default AboutView;

@@ -1,12 +1,14 @@
-import Core from '~/app/core';
+import { Controller } from '~/app/core';
 
-class XkcdController extends Core.Controller {
+export class XkcdController extends Controller {
   constructor({ model, view }) {
     super({ model, view });
   }
 
   start() {
-    this.model.on('comic', (comic, type) => this.view.setComic(comic, type));
+    this.model.on('comic', (comic, type) =>
+      this.view.setComic(comic, type)
+    );
     this.model.on('loading', () => this.view.setLoading());
     this.model.on('error', (error) => this.view.setError(error));
 
@@ -15,5 +17,3 @@ class XkcdController extends Core.Controller {
     this.view.on('current', () => this.model.current());
   }
 }
-
-export default XkcdController;

@@ -1,20 +1,18 @@
-class Controller {
+export class Controller {
   model;
   view;
 
-  constructor({ model, view, childControllers }) {
+  constructor({ model, view, controllers }) {
     this.model = model;
     this.view = view;
-    this.childControllers = childControllers;
+    this.controllers = controllers;
   }
 
   start() {
-    if (this.childControllers) {
-      this.childControllers.forEach((controller) => {
+    if (this.controllers) {
+      this.controllers.forEach((controller) => {
         controller.start();
       });
     }
   }
 }
-
-export default Controller;

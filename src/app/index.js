@@ -1,8 +1,6 @@
-import Core from './core';
-import Features from './features';
+import { Controller } from './core';
+import { aboutFeature, themeFeature, xkcdFeature } from './features';
 
-const App = new Core.Controller({
-  childControllers: [Features.about, Features.theme, Features.xkcd],
+export const app = new Controller({
+  controllers: [aboutFeature, themeFeature, xkcdFeature],
 });
-
-export default App;

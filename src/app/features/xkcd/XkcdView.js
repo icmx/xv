@@ -1,11 +1,12 @@
 import $ from '~/lib/jeox';
 import xkcdparse from '~/lib/xkcdparse';
 
-import Core from '~/app/core';
-import int from '~/app/utils/int';
-import isInt from '~/app/utils/isInt';
+import { View } from '~/app/core';
 
-class XkcdView extends Core.View {
+import { int } from '~/app/utils';
+import { isInt } from '~/app/utils';
+
+export class XkcdView extends View {
   #navbarButtons;
 
   #firstButton;
@@ -259,5 +260,3 @@ class XkcdView extends Core.View {
     }
   }
 }
-
-export default XkcdView;

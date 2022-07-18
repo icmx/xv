@@ -1,6 +1,6 @@
-import Core from '~/app/core';
+import { Model } from '~/app/core';
 
-class XkcdModel extends Core.Model {
+export class XkcdModel extends Model {
   #api;
 
   constructor(api) {
@@ -50,5 +50,3 @@ class XkcdModel extends Core.Model {
       .catch((error) => this.#setError(error));
   }
 }
-
-export default XkcdModel;

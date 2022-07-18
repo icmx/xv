@@ -1,8 +1,8 @@
 import $ from '~/lib/jeox';
 
-import Core from '~/app/core';
+import { View } from '~/app/core';
 
-class ThemeView extends Core.View {
+export class ThemeView extends View {
   #document;
   #headMetaThemeColor;
 
@@ -13,7 +13,10 @@ class ThemeView extends Core.View {
     super(viewElement);
 
     this.#document = $(document.documentElement);
-    this.#headMetaThemeColor = $('meta[name="theme-color"]', this.#document);
+    this.#headMetaThemeColor = $(
+      'meta[name="theme-color"]',
+      this.#document
+    );
 
     this.#themeLightButton = $('.is-theme-light', viewElement);
     this.#themeDarkButton = $('.is-theme-dark', viewElement);
@@ -56,8 +59,12 @@ class ThemeView extends Core.View {
   }
 
   #listen() {
-    this.#themeDarkButton.on('click', () => this.#handleThemeChange('dark'));
-    this.#themeLightButton.on('click', () => this.#handleThemeChange('light'));
+    this.#themeDarkButton.on('click', () =>
+      this.#handleThemeChange('dark')
+    );
+    this.#themeLightButton.on('click', () =>
+      this.#handleThemeChange('light')
+    );
   }
 
   setTheme(theme) {
@@ -71,5 +78,3 @@ class ThemeView extends Core.View {
     this.#toggleThemeButtons();
   }
 }
-
-export default ThemeView;
