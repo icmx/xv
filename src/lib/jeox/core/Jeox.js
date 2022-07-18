@@ -1,6 +1,6 @@
-import isEmptyArray from '../utils/isEmptyArray';
+import { isEmptyArray } from '../utils';
 
-class Jeox {
+export class Jeox {
   #elements;
   #storage;
 
@@ -71,5 +71,3 @@ class Jeox {
     return this.#storage;
   }
 }
-
-export default Jeox;

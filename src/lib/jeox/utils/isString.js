@@ -3,8 +3,6 @@
  * @param {?} value
  * @returns {boolean}
  */
-const isString = (value) => {
+export const isString = (value) => {
   return typeof value === 'string';
 };
-
-export default isString;

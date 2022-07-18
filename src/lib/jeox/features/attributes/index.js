@@ -1,4 +1,4 @@
-const attributes = {
+export const attributes = {
   attr(name, value) {
     const isGetting = name && value === undefined;
     const isSetting = name && value;
@@ -78,5 +78,3 @@ const attributes = {
     };
   },
 };
-
-export default attributes;

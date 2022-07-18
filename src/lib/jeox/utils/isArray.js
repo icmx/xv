@@ -3,8 +3,6 @@
  * @param {?} value
  * @returns {boolean}
  */
-const isArray = (value) => {
-  return typeof value.length === 'number';
+export const isArray = (value) => {
+  return Array.isArray(value);
 };
-
-export default isArray;

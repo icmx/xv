@@ -1,12 +1,10 @@
-import Jeox from '../core/Jeox';
+import { Jeox } from '../core';
 
 /**
  * Determine if value is a Jeox instance.
  * @param {?} value
  * @returns {boolean}
  */
-const isJeox = (value) => {
+export const isJeox = (value) => {
   return value instanceof Jeox;
 };
-
-export default isJeox;

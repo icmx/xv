@@ -1,4 +1,4 @@
-const events = {
+export const events = {
   on(type, listener, options) {
     this.forEach((element) =>
       element.addEventListener(type, listener, options)
@@ -15,5 +15,3 @@ const events = {
     return this;
   },
 };
-
-export default events;

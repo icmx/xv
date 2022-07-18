@@ -1,7 +1,6 @@
-import isBoolean from '../../utils/isBoolean';
-import isObject from '../../utils/isObject';
+import { isBoolean, isObject } from '../../utils';
 
-const display = {
+export const display = {
   display(option) {
     const isDisplaying = isBoolean(option);
     const isSetting =
@@ -46,5 +45,3 @@ const display = {
     return this;
   },
 };
-
-export default display;

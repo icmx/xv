@@ -1,10 +1,6 @@
-import animation from './animation';
-import attributes from './attributes';
-import contents from './contents';
-import display from './display';
-import events from './events';
-import style from './style';
-
-const Features = { animation, attributes, contents, display, events, style };
-
-export default Features;
+export * from './animation';
+export * from './attributes';
+export * from './contents';
+export * from './display';
+export * from './events';
+export * from './style';

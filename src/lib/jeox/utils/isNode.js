@@ -3,8 +3,6 @@
  * @param {?} value
  * @returns {boolean}
  */
-const isNode = (value) => {
+export const isNode = (value) => {
   return value.nodeType || value === window;
 };
-
-export default isNode;
