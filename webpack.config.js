@@ -43,7 +43,7 @@ const createDefinitions = (consts) =>
 const createBaseConfig = (paths, options) => ({
   entry: {
     main: `${paths.src}/index.js`,
-    sw: `${paths.src}/sw.js`,
+    sw: `${paths.src}/service-worker.js`,
   },
   output: {
     filename: `[name].js`,

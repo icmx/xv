@@ -4,14 +4,3 @@
   margin: 0 auto;
   max-width: 800px;
 }
-
-.footerbar .actions {
-  margin-top: 1.5rem;
-
-  justify-content: center;
-}
-
-.footerbar .actions button {
-  border-radius: 1000px 1000px 0 0;
-  padding: 1rem 4rem;
-}

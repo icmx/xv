@@ -3,7 +3,7 @@ import { app } from '~/app';
 import '~/index.css';
 
 window.addEventListener('load', () => {
-  navigator.serviceWorker.register('/sw.js');
+  navigator.serviceWorker.register('/service-worker.js');
 });
 
 app.start();

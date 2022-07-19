@@ -31,13 +31,13 @@ export class XkcdView extends View {
   constructor(viewElement) {
     super(viewElement);
 
-    this.#navbarButtons = $('.appbar.is-bottom button', viewElement);
+    this.#navbarButtons = $('.appbar.is-bottom .action', viewElement);
 
-    this.#firstButton = $('button.is-first', viewElement);
-    this.#previousButton = $('button.is-previous', viewElement);
-    this.#randomButton = $('button.is-random', viewElement);
-    this.#nextButton = $('button.is-next', viewElement);
-    this.#currentButton = $('button.is-current', viewElement);
+    this.#firstButton = $('.action.is-first', viewElement);
+    this.#previousButton = $('.action.is-previous', viewElement);
+    this.#randomButton = $('.action.is-random', viewElement);
+    this.#nextButton = $('.action.is-next', viewElement);
+    this.#currentButton = $('.action.is-current', viewElement);
 
     this.#figure = $('.figure', viewElement);
     this.#image = $('.figure-image', this.#figure);

@@ -46,33 +46,33 @@
   }
 }
 
-.appbar.is-top > .actions > button {
+.appbar.is-top .action {
   min-width: 3rem;
 }
 
 @media (min-width: 768px) {
-  .appbar.is-top > .actions > button {
+  .appbar.is-top > .action{
     min-width: 4rem;
   }
 }
 
-.appbar.is-top > .actions > button.is-hidden {
+.appbar.is-top .action.is-hidden {
   display: none;
 }
 
-.appbar.is-top > .actions > button.is-shown {
+.appbar.is-top .action.is-shown {
   display: block;
 }
 
 @media (min-width: 768px) {
-  .appbar.is-top > .actions > button.is-open-about {
+  .appbar.is-top .action.is-open-about {
     order: -1;
 
     margin-right: auto;
   }
 
-  .appbar.is-top > .actions > button.is-theme-light,
-  .appbar.is-top > .actions > button.is-theme-dark {
+  .appbar.is-top .action.is-theme-light,
+  .appbar.is-top .action.is-theme-dark {
     order: -2;
   }
 }
@@ -89,14 +89,14 @@
   }
 }
 
-.appbar.is-bottom > .actions > button {
+.appbar.is-bottom .action {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 20%;
 }
 
 @media (min-width: 768px) {
-  .appbar.is-bottom > .actions > button {
+  .appbar.is-bottom .action{
     min-width: 4rem;
   }
 }
