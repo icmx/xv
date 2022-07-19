@@ -1,4 +1,4 @@
-import re from './re';
+import { r } from './r';
 
 /**
  * Replace a regular token like `*` or `_` by HTML tag equivalent.
@@ -17,10 +17,8 @@ import re from './re';
  * @param {string} htmlTagName - HTML tag name, `b` e.g.
  * @returns {string}
  */
-const replaceToken = (match, token, htmlTagName) => {
+export const replaceToken = (match, token, htmlTagName) => {
   return match
-    .replace(re`^\\${token}`, `<${htmlTagName}>`)
-    .replace(re`\\${token}$`, `</${htmlTagName}>`);
+    .replace(r`^\\${token}`, `<${htmlTagName}>`)
+    .replace(r`\\${token}$`, `</${htmlTagName}>`);
 };
-
-export default replaceToken;

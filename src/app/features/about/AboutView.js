@@ -1,29 +1,18 @@
 import $ from '~/lib/jeox';
 
-import Core from '~/app/core';
-import Modal from '~/app/shared/Modal';
+import { View } from '~/app/core';
+import { Dialog } from '~/app/shared';
 
-class AboutView extends Core.View {
-  #openButton;
-  #modal;
+export class AboutView extends View {
+  #dialog;
 
   constructor(viewElement) {
     super(viewElement);
 
-    this.#openButton = $('.is-open-about', viewElement);
-
-    this.#modal = new Modal(
-      $('.modal', viewElement),
-      $('.modal-close', viewElement),
-      $('.backdrop', viewElement)
+    this.#dialog = new Dialog(
+      $('.dialog'),
+      $('.is-open-about'),
+      $('.dialog-close')
     );
-
-    this.#listen();
-  }
-
-  #listen() {
-    this.#openButton.on('click', () => this.#modal.show());
   }
 }
-
-export default AboutView;

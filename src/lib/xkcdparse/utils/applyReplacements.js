@@ -6,7 +6,7 @@
  * @param {string|(match) => string} replacements.repalce
  * @returns {string}
  */
-const applyReplacements = (value, replacements) => {
+export const applyReplacements = (value, replacements) => {
   let result = value;
 
   replacements.forEach(({ search, replace }) => {
@@ -15,5 +15,3 @@ const applyReplacements = (value, replacements) => {
 
   return result;
 };
-
-export default applyReplacements;

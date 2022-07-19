@@ -1,7 +1,5 @@
-import re from './re';
+import { r } from './r';
 
-const replaceQuoteMarksToken = (match) => {
-  return match.replace(re`^"`, `“`).replace(re`"$`, `“`);
+export const replaceQuoteMarksToken = (match) => {
+  return match.replace(r`^"`, `“`).replace(r`"$`, `“`);
 };
-
-export default replaceQuoteMarksToken;

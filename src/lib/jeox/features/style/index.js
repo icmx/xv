@@ -1,4 +1,4 @@
-const style = {
+export const style = {
   style() {
     return getComputedStyle(this.child());
   },
@@ -11,5 +11,3 @@ const style = {
     return this.styleProperty(`--${key}`);
   },
 };
-
-export default style;

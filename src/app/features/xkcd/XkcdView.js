@@ -1,11 +1,10 @@
 import $ from '~/lib/jeox';
 import xkcdparse from '~/lib/xkcdparse';
 
-import Core from '~/app/core';
-import int from '~/app/utils/int';
-import isInt from '~/app/utils/isInt';
+import { View } from '~/app/core';
+import { int, isInt } from '~/app/utils';
 
-class XkcdView extends Core.View {
+export class XkcdView extends View {
   #navbarButtons;
 
   #firstButton;
@@ -32,13 +31,13 @@ class XkcdView extends Core.View {
   constructor(viewElement) {
     super(viewElement);
 
-    this.#navbarButtons = $('.appbar.is-bottom button', viewElement);
+    this.#navbarButtons = $('.appbar.is-bottom .action', viewElement);
 
-    this.#firstButton = $('button.is-first', viewElement);
-    this.#previousButton = $('button.is-previous', viewElement);
-    this.#randomButton = $('button.is-random', viewElement);
-    this.#nextButton = $('button.is-next', viewElement);
-    this.#currentButton = $('button.is-current', viewElement);
+    this.#firstButton = $('.action.is-first', viewElement);
+    this.#previousButton = $('.action.is-previous', viewElement);
+    this.#randomButton = $('.action.is-random', viewElement);
+    this.#nextButton = $('.action.is-next', viewElement);
+    this.#currentButton = $('.action.is-current', viewElement);
 
     this.#figure = $('.figure', viewElement);
     this.#image = $('.figure-image', this.#figure);
@@ -66,13 +65,6 @@ class XkcdView extends Core.View {
 
   #scrollTop() {
     window.scrollTo({ top: 0, behavior: 'auto' });
-  }
-
-  #toggleNavbarButtons(state) {
-    this.#navbarButtons.attr(
-      'disabled',
-      state === true ? null : 'disabled'
-    );
   }
 
   #clearView() {
@@ -150,7 +142,7 @@ class XkcdView extends Core.View {
   }
 
   #goRandom() {
-    this.#toggleNavbarButtons(false);
+    this.#navbarButtons.disable();
     this.emit('random');
   }
 
@@ -197,11 +189,15 @@ class XkcdView extends Core.View {
   }
 
   setComic(comic, type) {
-    this.#toggleNavbarButtons(true);
+    this.#navbarButtons.enable();
 
     switch (type) {
       case 'current':
         this.#num = comic.num;
+
+        this.#nextButton.disable();
+        this.#currentButton.disable();
+
         break;
 
       case 'random':
@@ -259,5 +255,3 @@ class XkcdView extends Core.View {
     }
   }
 }
-
-export default XkcdView;

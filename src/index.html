@@ -4,50 +4,51 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="any" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <title>xv</title>
-    <!-- theme-initialization -->
+    <!-- theme-initialization: -->
     <script>
-      // This code should be available even BEFORE document loads body,
+      // This code should be available even before document loads body,
       // otherwise it will flash on any reloading.
 
       (() => {
         const apply = (theme) =>
           document.documentElement.setAttribute('data-xv-theme', theme)
 
-        const prefers = matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light';
+        const prefers = matchMedia('(prefers-color-scheme: dark)')
+          ? 'dark'
+          : 'light';
+
         const current = localStorage.getItem('xv-theme');
 
         apply(current === null ? prefers : current);
-      })();
-    </script>
-    <script>
-      addEventListener('load', () => {
-        const { documentElement: root } = document;
-        const theme = root.getAttribute('data-xv-theme');
-        const color = getComputedStyle(root).getPropertyValue(
-          '--color-background-main'
-        ).trim()
 
-        root.querySelector('meta[name="theme-color"]').setAttribute(
-          'content', color
-        )
-      })
+        addEventListener('load', () => {
+          const root = document.documentElement;
+          const color = getComputedStyle(root).getPropertyValue(
+            '--color-background-main'
+          ).trim()
+
+          root.querySelector('meta[name="theme-color"]').setAttribute(
+            'content', color
+          )
+        })
+      })();
     </script>
     <!-- /theme-initialization -->
   </head>
   <body class="xv-app">
     <nav class="appbar is-top">
       <div class="actions">
-        <button class="is-hidden is-theme-dark" title="Use dark theme">
+        <button class="action is-hidden is-theme-dark" title="Use dark theme">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z" />
           </svg>
         </button>
-        <button class="is-hidden is-theme-light" title="Use light theme">
+        <button class="action is-hidden is-theme-light" title="Use light theme">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19H12.998V22H10.998zM10.998 2H12.998V5H10.998zM1.998 11H4.998V13H1.998zM18.998 11H21.998V13H18.998z" />
             <path d="M4.487 17.01H7.487V19.01H4.487z" transform="rotate(-45.017 5.986 18.01)" />
@@ -58,34 +59,34 @@
         </button>
         <nav class="appbar is-bottom">
           <div class="actions">
-            <button class="is-first" title="Go to first comic">
+            <button class="action is-first" title="Go to first comic">
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M4 6H6V18H4zM14 13L20 13 20 11 14 11 14 6 8 12 14 18z" />
               </svg>
             </button>
-            <button class="is-previous" title="Previous comic">
+            <button class="action is-previous" title="Previous comic">
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M5 12L12 18 12 13 18 13 18 11 12 11 12 6z" />
               </svg>
             </button>
-            <button class="is-random" title="Random comic">
+            <button class="action is-random" title="Random comic">
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M15 12L20 8 15 4 15 6.999 2 6.999 2 8.999 15 8.999zM22 15L9 15 9 12 4 16 9 20 9 17 22 17z" />
               </svg>
             </button>
-            <button class="is-next" title="Next comic">
+            <button class="action is-next" title="Next comic">
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M19 12L12 6 12 11 6 11 6 13 12 13 12 18z" />
               </svg>
             </button>
-            <button class="is-current" title="Go to current comic">
+            <button class="action is-current" title="Go to current comic">
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M18 6H20V18H18zM10 11L4 11 4 13 10 13 10 18 16 12 10 6z" />
               </svg>
             </button>
           </div>
         </nav>
-        <button class="is-open-about" title="About">
+        <button class="action is-open-about" title="About">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M12 6C9.831 6 8.066 7.765 8.066 9.934h2C10.066 8.867 10.934 8 12 8s1.934.867 1.934 1.934c0 .598-.481 1.032-1.216 1.626-.255.207-.496.404-.691.599C11.029 13.156 11 14.215 11 14.333V15h2l-.001-.633c.001-.016.033-.386.441-.793.15-.15.339-.3.535-.458.779-.631 1.958-1.584 1.958-3.182C15.934 7.765 14.169 6 12 6zM11 16H13V18H11z" />
             <path d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M12,20c-4.411,0-8-3.589-8-8s3.589-8,8-8 s8,3.589,8,8S16.411,20,12,20z" />
@@ -116,9 +117,9 @@
           <h1 class="comic-title"></h1>
           <p class="comic-alt"></p>
         </header>
-        <section class="text is-mute is-small">
-          <span class="comic-date"></span> •
-          <a class="comic-sourcelink" target="_blank"></a> •
+        <section class="details-content text is-mute is-small">
+          <span class="comic-date"></span> ·
+          <a class="comic-sourcelink" target="_blank"></a> ·
           <a class="comic-imagelink" target="_blank">full image</a>
         </section>
         <section class="comic-transcript"></section>
@@ -129,16 +130,18 @@
         <p class="text is-small is-mute is-center">
           <strong>xv</strong> — xkcd comics viewer by
           <a href="https://github.com/icmx/xv">@icmx</a>
+          <br />
+          v<%= globalConst.version %> (<%= globalConst.license %>)
         </p>
       </section>
     </footer>
-    <aside class="modal">
-      <header>
+    <dialog class="dialog">
+      <header class="dialog-header">
         <h1>About</h1>
       </header>
-      <section class="modal-content">
-        <p>xv is a simple xkcd comics viwer made by <a href="https://github.com/icmx" target="_blank">@icmx</a>.</p>
-        <p>Check <a href="https://github.com/icmx/xv" target="_blank">GitHub</a> for source code and other development information.</p>
+      <section class="dialog-content">
+        <p><strong>xv</strong> is a simple xkcd comics viwer made by <a href="https://github.com/icmx" target="_blank">@icmx</a>.</p>
+        <p>Check <a href="https://github.com/icmx/xv" target="_blank">GitHub</a> for a source code and other development information.</p>
         <h2>Features</h2>
         <ul>
           <li>Classic navigation as in original site</li>
@@ -151,10 +154,9 @@
         <p>Original comics are made by Randall Munroe at <a href="https://xkcd.com/" target="_blank">xkcd.com</a>.</p>
         <p>Awesome icons set made by Atisa at <a href="https://boxicons.com/" target="_blank">boxicons.com</a>.</p>
       </section>
-      <footer class="actions">
-        <button class="modal-close">Close</button>
+      <footer class="actions dialog-footer">
+        <button class="action dialog-close">Close</button>
       </footer>
-    </aside>
-    <div class="backdrop"></div>
+    </dialog>
   </body>
 </html>

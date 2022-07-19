@@ -1,16 +1,13 @@
-import Core from './core';
-import Features from './features';
+import { extend } from './core';
+import {
+  animation,
+  attributes,
+  contents,
+  display,
+  events,
+  style,
+} from './features';
 
-Core.extend(
-  Features.animation,
-  Features.attributes,
-  Features.contents,
-  Features.display,
-  Features.events,
-  Features.style
-);
+extend(animation, attributes, contents, display, events, style);
 
-const { $, extend } = Core;
-
-export { extend };
-export default $;
+export { $ as default, extend } from './core';

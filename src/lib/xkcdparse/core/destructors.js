@@ -1,4 +1,4 @@
-import applyReplacements from '../utils/applyReplacements';
+import { applyReplacements } from '../utils';
 
 import {
   asterisksToken,
@@ -29,8 +29,6 @@ export const alt = ({ alt }) => {
     ...cleanupSet,
     ...typographicsSet,
   ]);
-
-
 
   return result;
 };

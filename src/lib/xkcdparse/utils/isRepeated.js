@@ -1,4 +1,4 @@
-import re from './re';
+import { r } from './r';
 
 /**
  * Determine if value is actually a character repetition, done in
@@ -8,9 +8,7 @@ import re from './re';
  * @param {number} count
  * @returns {boolean}
  */
-const isRepeated = (value, character, count = 1) => {
-  const pattern = re`^\\${character}{${count},}$`;
+export const isRepeated = (value, character, count = 1) => {
+  const pattern = r`^\\${character}{${count},}$`;
   return pattern.test(value);
 };
-
-export default isRepeated;

@@ -1,6 +1,6 @@
-import isArray from '../../utils/isArray';
+import { isArray } from '../../utils';
 
-const animation = {
+export const animation = {
   animate(classNames, state = true) {
     const toggleClass = (className) => {
       this.toggleClass(className, state);
@@ -15,5 +15,3 @@ const animation = {
     return this;
   },
 };
-
-export default animation;

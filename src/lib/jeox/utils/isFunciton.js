@@ -3,8 +3,6 @@
  * @param {?} value
  * @returns {boolean}
  */
-const isFunction = (value) => {
+export const isFunction = (value) => {
   return typeof value === 'function';
 };
-
-export default isFunction;

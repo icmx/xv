@@ -4,8 +4,6 @@
  * @param {?} value
  * @returns {number}
  */
-const int = (string) => {
+export const int = (string) => {
   return Number.parseInt(string, 10);
 };
-
-export default int;

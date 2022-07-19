@@ -1,4 +1,4 @@
-import re from './re';
+import { r } from './r';
 
 /**
  * Replace a double token like `[[this]]` or `{{ that }}` by HTML tag
@@ -21,15 +21,13 @@ import re from './re';
  * @param {string} htmlTagName - HTML tag name, `b` e.g.
  * @returns {string}
  */
-const replaceDoubleToken = (
+export const replaceDoubleToken = (
   match,
   startToken,
   endToken,
   htmlTagName
 ) => {
   return match
-    .replace(re`^(\\${startToken})+ {0,}`, `<${htmlTagName}>`)
-    .replace(re` {0,}(\\${endToken})+$`, `</${htmlTagName}>`);
+    .replace(r`^(\\${startToken})+ {0,}`, `<${htmlTagName}>`)
+    .replace(r` {0,}(\\${endToken})+$`, `</${htmlTagName}>`);
 };
-
-export default replaceDoubleToken;

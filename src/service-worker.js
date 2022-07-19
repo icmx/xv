@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v0.2.9';
+const CACHE_NAME = globalConst.version;
 
 const isCacheable = (request, response) => {
   if (request.url.endsWith('/xkcd/info.0.json')) {

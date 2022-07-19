@@ -1,6 +1,6 @@
-import Core from '~/app/core';
+import { Controller } from '~/app/core';
 
-class ThemeController extends Core.Controller {
+export class ThemeController extends Controller {
   constructor({ model, view }) {
     super({ model, view });
   }
@@ -11,5 +11,3 @@ class ThemeController extends Core.Controller {
     this.view.on('theme', (name) => this.model.theme(name));
   }
 }
-
-export default ThemeController;

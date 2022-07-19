@@ -1,6 +1,6 @@
-import Emitter from './Emitter';
+import { Emitter } from './Emitter';
 
-class View extends Emitter {
+export class View extends Emitter {
   #viewElement;
 
   constructor(viewElement) {
@@ -9,5 +9,3 @@ class View extends Emitter {
     this.#viewElement = viewElement;
   }
 }
-
-export default View;

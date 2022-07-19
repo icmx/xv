@@ -2,23 +2,23 @@
   display: flex;
 }
 
-.actions > button {
+.action {
   color: var(--color-text-misc);
 }
 
-.actions > button > svg {
+.action > svg {
   transition-duration: var(--transition-duration);
   transition-property: fill;
 }
 
-.actions > button:hover > svg {
+.action:hover > svg {
   fill: var(--color-text-link);
 }
 
-.actions > button:disabled > svg {
+.action:disabled > svg {
   fill: var(--color-background-mute);
 }
 
-.actions > button.is-hidden {
+.action.is-hidden {
   display: none;
 }
