@@ -13,6 +13,7 @@ Check it on **[icmx-xv.netlify.app](https://icmx-xv.netlify.app/)**!
   - Transcript for about 1600 first comics, with [parsing](src/lib/xkcdparse)!
   - Mobile-first and desktop layouts
   - Light and Dark modes without flashing on refresh — works with images too!
+  - Caching [service worker](src/service-worker.js)
 
 ## How it looks like?
 
