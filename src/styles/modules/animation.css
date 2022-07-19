@@ -11,3 +11,13 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes animation-fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

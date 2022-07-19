@@ -133,13 +133,13 @@
         </p>
       </section>
     </footer>
-    <aside class="modal">
-      <header>
+    <dialog class="dialog">
+      <header class="dialog-header">
         <h1>About</h1>
       </header>
-      <section class="modal-content">
-        <p>xv is a simple xkcd comics viwer made by <a href="https://github.com/icmx" target="_blank">@icmx</a>.</p>
-        <p>Check <a href="https://github.com/icmx/xv" target="_blank">GitHub</a> for source code and other development information.</p>
+      <section class="dialog-content">
+        <p><strong>xv</strong> is a simple xkcd comics viwer made by <a href="https://github.com/icmx" target="_blank">@icmx</a>.</p>
+        <p>Check <a href="https://github.com/icmx/xv" target="_blank">GitHub</a> for a source code and other development information.</p>
         <h2>Features</h2>
         <ul>
           <li>Classic navigation as in original site</li>
@@ -155,10 +155,9 @@
          <strong>xv</strong> — v<%= globalConst.version %> (<%= globalConst.license %>)
         </p>
       </section>
-      <footer class="actions">
-        <button class="modal-close">Close</button>
+      <footer class="actions dialog-footer">
+        <button class="dialog-close">Close</button>
       </footer>
-    </aside>
-    <div class="backdrop"></div>
+    </dialog>
   </body>
 </html>
