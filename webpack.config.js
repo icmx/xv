@@ -21,14 +21,12 @@ const CONSTS = {
 const NAMES = {
   src: 'src',
   dist: 'dist',
-  assets: 'assets',
   static: 'static',
 };
 
 const PATHS = {
   src: path.join(__dirname, NAMES.src),
   dist: path.join(__dirname, NAMES.dist),
-  assets: path.join(__dirname, NAMES.src, NAMES.assets),
   static: path.join(__dirname, NAMES.src, NAMES.static),
 };
 
@@ -123,8 +121,8 @@ const createBaseConfig = (paths, options) => ({
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: `${paths.assets}`,
-          to: `${paths.assets.split(path.sep).slice(-1)[0]}`,
+          from: `${paths.static}`,
+          to: '',
           noErrorOnMissing: true,
         },
       ],
