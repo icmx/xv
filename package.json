@@ -1,5 +1,6 @@
 {
   "name": "xv",
+  "type": "module",
   "version": "0.2.20",
   "description": "xkcd.com viwer app, done in pure JavaScript and Webpack",
   "keywords": [
@@ -8,17 +9,16 @@
     "viewer",
     "vanilla-js"
   ],
-  "private": true,
+  "homepage": "https://github.com/icmx/xv#readme",
+  "bugs": {
+    "url": "https://github.com/icmx/xv/issues"
+  },
+  "license": "MIT",
+  "author": "icmx",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/icmx/xv.git"
   },
-  "author": "icmx",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/icmx/xv/issues"
-  },
-  "homepage": "https://github.com/icmx/xv#readme",
   "scripts": {
     "watch": "webpack serve --config-name watch",
     "build": "webpack --config-name build"
@@ -37,6 +37,7 @@
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.10.0"
   },
+  "private": true,
   "browserslist": [
     "> 0.5%",
     "last 2 versions",
