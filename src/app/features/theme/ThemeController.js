@@ -1,4 +1,4 @@
-import { Controller } from '~/app/core';
+import { Controller } from '#/app/core';
 
 export class ThemeController extends Controller {
   constructor({ model, view }) {

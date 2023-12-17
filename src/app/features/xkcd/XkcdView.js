@@ -1,8 +1,7 @@
-import $ from '~/lib/jeox';
-import xkcdparse from '~/lib/xkcdparse';
-
-import { View } from '~/app/core';
-import { int, isInt } from '~/app/utils';
+import $ from '#/lib/jeox';
+import xkcdparse from '#/lib/xkcdparse';
+import { View } from '#/app/core';
+import { int, isInt } from '#/app/utils';
 
 export class XkcdView extends View {
   #navbarButtons;

@@ -47,7 +47,7 @@ const createBaseConfig = (paths, options) => ({
     ['service-worker']: `${paths.src}/service-worker.js`,
   },
   output: {
-    filename: `[name].js`,
+    filename: '[name].js',
     path: paths.dist,
     publicPath: '/',
   },
@@ -99,7 +99,7 @@ const createBaseConfig = (paths, options) => ({
   resolve: {
     extensions: ['.js'],
     alias: {
-      '~': `${paths.src}`,
+      '#': `${paths.src}`,
     },
   },
   plugins: [

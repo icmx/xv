@@ -1,5 +1,5 @@
-import { Api } from '~/app/core';
-import { random } from '~/app/utils';
+import { Api } from '#/app/core';
+import { random } from '#/app/utils';
 
 /**
  * Xkcd API client.

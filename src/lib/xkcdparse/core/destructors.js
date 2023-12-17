@@ -1,5 +1,4 @@
 import { applyReplacements } from '../utils';
-
 import {
   asterisksToken,
   cleanupSet,

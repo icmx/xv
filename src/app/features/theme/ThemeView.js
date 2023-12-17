@@ -1,6 +1,5 @@
-import $ from '~/lib/jeox';
-
-import { View } from '~/app/core';
+import $ from '#/lib/jeox';
+import { View } from '#/app/core';
 
 export class ThemeView extends View {
   #document;

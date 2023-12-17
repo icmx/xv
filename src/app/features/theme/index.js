@@ -1,6 +1,6 @@
+import { ThemeController } from './ThemeController';
 import { ThemeModel } from './ThemeModel';
 import { ThemeView } from './ThemeView';
-import { ThemeController } from './ThemeController';
 
 export const themeFeature = new ThemeController({
   model: new ThemeModel(),

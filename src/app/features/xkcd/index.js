@@ -1,7 +1,7 @@
 import { XkcdApi } from './XkcdApi';
+import { XkcdController } from './XkcdController';
 import { XkcdModel } from './XkcdModel';
 import { XkcdView } from './XkcdView';
-import { XkcdController } from './XkcdController';
 
 export const xkcdFeature = new XkcdController({
   model: new XkcdModel(new XkcdApi('/api/comics/xkcd')),

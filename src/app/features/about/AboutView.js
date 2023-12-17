@@ -1,7 +1,6 @@
-import $ from '~/lib/jeox';
-
-import { View } from '~/app/core';
-import { Dialog } from '~/app/shared';
+import $ from '#/lib/jeox';
+import { View } from '#/app/core';
+import { Dialog } from '#/app/shared';
 
 export class AboutView extends View {
   #dialog;
