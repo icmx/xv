@@ -1,4 +1,4 @@
-import { applyReplacements } from '../utils';
+import { applyReplacements } from '../utils/applyReplacements';
 import {
   asterisksToken,
   cleanupSet,

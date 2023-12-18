@@ -1,13 +1,13 @@
-import { extend } from './core';
-import {
-  animation,
-  attributes,
-  contents,
-  display,
-  events,
-  style,
-} from './features';
+import { extend } from './core/extend';
+import { animation } from './features/animation';
+import { attributes } from './features/attributes';
+import { contents } from './features/contents';
+import { display } from './features/display';
+import { events } from './features/events';
+import { style } from './features/style';
 
 extend(animation, attributes, contents, display, events, style);
 
-export { $ as default, extend } from './core';
+// core
+export { $ as default } from './core/dollar';
+export * from './core/extend';

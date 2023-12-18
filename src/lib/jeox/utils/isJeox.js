@@ -1,4 +1,4 @@
-import { Jeox } from '../core';
+import { Jeox } from '../core/Jeox';
 
 /**
  * Determine if value is a Jeox instance.

@@ -1,4 +1,4 @@
-import { Model } from '#/app/core';
+import { Model } from '../../core/Model';
 
 export class ThemeModel extends Model {
   constructor() {

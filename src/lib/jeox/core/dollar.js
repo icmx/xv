@@ -1,4 +1,6 @@
-import { isJeox, isNode, isString } from '../utils';
+import { isJeox } from '../utils/isJeox';
+import { isNode } from '../utils/isNode';
+import { isString } from '../utils/isString';
 import { Jeox } from './Jeox';
 
 export const $ = (value, context = window.document) => {

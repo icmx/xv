@@ -1,7 +1,8 @@
 import $ from '#/lib/jeox';
 import xkcdparse from '#/lib/xkcdparse';
-import { View } from '#/app/core';
-import { int, isInt } from '#/app/utils';
+import { View } from '../../core/View';
+import { int } from '../../utils/int';
+import { isInt } from '../../utils/isInt';
 
 export class XkcdView extends View {
   #navbarButtons;
@@ -92,15 +93,11 @@ export class XkcdView extends View {
   }
 
   #handleWindowResize() {
-    const {
-      width: figureWidth,
-      height: figureHeight,
-    } = this.#figure.rect();
+    const { width: figureWidth, height: figureHeight } =
+      this.#figure.rect();
 
-    const {
-      width: imageWidth,
-      height: imageHeight,
-    } = this.#image.imageSize();
+    const { width: imageWidth, height: imageHeight } =
+      this.#image.imageSize();
 
     this.#figure
       .toggleClass('is-center-x', imageWidth < figureWidth)

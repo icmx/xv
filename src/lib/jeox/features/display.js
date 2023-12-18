@@ -1,4 +1,5 @@
-import { isBoolean, isObject } from '../../utils';
+import { isBoolean } from '../utils/isBoolean';
+import { isObject } from '../utils/isObject';
 
 export const display = {
   display(option) {
@@ -9,9 +10,8 @@ export const display = {
         option.hideClassName !== undefined);
 
     if (isDisplaying) {
-      const { showClassName, hideClassName } = this.storage.get(
-        'display'
-      );
+      const { showClassName, hideClassName } =
+        this.storage.get('display');
 
       if (showClassName) {
         this.toggleClass(showClassName, option);

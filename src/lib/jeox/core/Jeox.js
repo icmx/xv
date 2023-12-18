@@ -1,4 +1,4 @@
-import { isEmptyArray } from '../utils';
+import { isEmptyArray } from '../utils/isEmptyArray';
 
 export class Jeox {
   #elements;

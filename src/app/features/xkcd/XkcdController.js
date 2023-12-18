@@ -1,4 +1,4 @@
-import { Controller } from '#/app/core';
+import { Controller } from '../../core/Controller';
 
 export class XkcdController extends Controller {
   constructor({ model, view }) {
