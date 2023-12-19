@@ -24,6 +24,6 @@ export * from './features/xkcd/XkcdView';
 export * from './shared/Dialog';
 
 // utils
-export * from './utils/int';
+export * from './utils/toInt';
 export * from './utils/isInt';
 export * from './utils/random';

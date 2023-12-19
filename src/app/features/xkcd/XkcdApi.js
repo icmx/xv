@@ -5,8 +5,8 @@ import { random } from '../../utils/random';
  * Xkcd API client.
  */
 export class XkcdApi extends Api {
-  constructor(endpoint) {
-    super(endpoint);
+  constructor(baseUrl) {
+    super(baseUrl);
   }
 
   /**
@@ -15,36 +15,16 @@ export class XkcdApi extends Api {
    * @param {number} num - xkcd comic id to get
    * @returns {XkcdComic}
    */
-  async get(num) {
-    this.refresh();
-
-    const path =
-      num === undefined ? `/info.0.json` : `/${num}/info.0.json`;
-
-    try {
-      const response = await fetch(`${this.endpoint}${path}`, {
-        method: 'GET',
-        signal: this.signal,
-      });
-
-      const result = await response.json();
-
-      return result;
-    } catch (e) {
-      throw e;
-    }
+  async getByNum(num) {
+    return await this.get(`/${num}/info.0.json`);
   }
 
   /**
    * Get current (i.e. latest) xkcd comic.
    * @returns {XkcdComic}
    */
-  async current() {
-    try {
-      return await this.get();
-    } catch (e) {
-      throw e;
-    }
+  async getCurrent() {
+    return await this.get(`/info.0.json`);
   }
 
   /**
@@ -53,17 +33,13 @@ export class XkcdApi extends Api {
    * two actual HTTP requests.
    * @returns {XkcdComic}
    */
-  async random() {
-    try {
-      const current = await this.current();
+  async getRandom() {
+    const current = await this.getCurrent();
 
-      const min = 1;
-      const max = current.num;
-      const num = random(min, max);
+    const min = 1;
+    const max = current.num;
+    const num = random(min, max);
 
-      return await this.get(num);
-    } catch (e) {
-      throw e;
-    }
+    return await this.getByNum(num);
   }
 }

@@ -1,8 +1,13 @@
 import $ from '#/lib/jeox';
 import xkcdparse from '#/lib/xkcdparse';
 import { View } from '../../core/View';
-import { int } from '../../utils/int';
 import { isInt } from '../../utils/isInt';
+import { toInt } from '../../utils/toInt';
+import {
+  EVENT_COMIC_BYNUM,
+  EVENT_COMIC_CURRENT,
+  EVENT_COMIC_RANDOM,
+} from './constants';
 
 export class XkcdView extends View {
   #navbarButtons;
@@ -64,7 +69,7 @@ export class XkcdView extends View {
   }
 
   #scrollTop() {
-    window.scrollTo({ top: 0, behavior: 'auto' });
+    scrollTo({ top: 0, behavior: 'auto' });
   }
 
   #clearView() {
@@ -80,15 +85,15 @@ export class XkcdView extends View {
     this.#scrollTop();
 
     if (this.#hash === '') {
-      this.emit('current');
+      this.emit(EVENT_COMIC_CURRENT);
     } else {
-      const num = int(this.#hash);
+      const num = toInt(this.#hash);
 
       if (isInt(num)) {
         this.#num = num;
       }
 
-      this.emit('get', num);
+      this.emit(EVENT_COMIC_BYNUM, num);
     }
   }
 
@@ -139,7 +144,7 @@ export class XkcdView extends View {
 
   #goRandom() {
     this.#navbarButtons.disable();
-    this.emit('random');
+    this.emit(EVENT_COMIC_RANDOM);
   }
 
   #goNext() {
@@ -169,11 +174,11 @@ export class XkcdView extends View {
   }
 
   get #hash() {
-    return window.location.hash.substring(1);
+    return location.hash.substring(1);
   }
 
   set #hash(value) {
-    window.location.hash = value;
+    location.hash = value;
   }
 
   get #title() {
@@ -184,25 +189,8 @@ export class XkcdView extends View {
     document.title = value;
   }
 
-  setComic(comic, type) {
+  setByNum(comic) {
     this.#navbarButtons.enable();
-
-    switch (type) {
-      case 'current':
-        this.#num = comic.num;
-
-        this.#nextButton.disable();
-        this.#currentButton.disable();
-
-        break;
-
-      case 'random':
-        this.#hash = comic.num;
-        break;
-
-      default:
-        break;
-    }
 
     const title = xkcdparse.title(comic);
     const alt = xkcdparse.alt(comic);
@@ -229,6 +217,21 @@ export class XkcdView extends View {
     this.#error.hide();
   }
 
+  setRandom(comic) {
+    this.setByNum(comic);
+
+    this.#hash = comic.num;
+  }
+
+  setCurrent(comic) {
+    this.setByNum(comic);
+
+    this.#num = comic.num;
+
+    this.#nextButton.disable();
+    this.#currentButton.disable();
+  }
+
   setLoading() {
     this.#clearView();
 
@@ -239,9 +242,9 @@ export class XkcdView extends View {
   setError(error) {
     this.#clearView();
 
-    console.error(error);
-
     if (error.name !== 'AbortError') {
+      console.error(error);
+
       this.#loading.hide();
       this.#error.show();
     }

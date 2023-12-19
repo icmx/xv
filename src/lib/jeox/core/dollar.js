@@ -3,7 +3,7 @@ import { isNode } from '../utils/isNode';
 import { isString } from '../utils/isString';
 import { Jeox } from './Jeox';
 
-export const $ = (value, context = window.document) => {
+export const $ = (value, context = document) => {
   if (isJeox(value)) {
     return value;
   }

@@ -1,4 +1,11 @@
 import { Model } from '../../core/Model';
+import {
+  EVENT_COMIC_BYNUM,
+  EVENT_COMIC_CURRENT,
+  EVENT_COMIC_RANDOM,
+  EVENT_ERROR,
+  EVENT_LOADING,
+} from './constants';
 
 export class XkcdModel extends Model {
   #api;
@@ -9,44 +16,49 @@ export class XkcdModel extends Model {
     this.#api = api;
   }
 
-  #setComic(comic, type) {
-    this.emit('comic', comic, type);
-  }
-
   #setLoading() {
-    this.#api.abort();
+    this.#api.abortRequest();
 
-    this.emit('loading');
+    this.emit(EVENT_LOADING);
   }
 
   #setError(error) {
-    this.emit('error', error);
+    this.emit(EVENT_ERROR, error);
   }
 
-  get(num) {
+  async getByNum(num) {
     this.#setLoading();
 
-    this.#api
-      .get(num)
-      .then((comic) => this.#setComic(comic, 'get'))
-      .catch((error) => this.#setError(error));
+    try {
+      const comic = await this.#api.getByNum(num);
+
+      this.emit(EVENT_COMIC_BYNUM, comic);
+    } catch (error) {
+      this.#setError(error);
+    }
   }
 
-  random() {
+  async getRandom() {
     this.#setLoading();
 
-    this.#api
-      .random()
-      .then((comic) => this.#setComic(comic, 'random'))
-      .catch((error) => this.#setError(error));
+    try {
+      const comic = await this.#api.getRandom();
+
+      this.emit(EVENT_COMIC_RANDOM, comic);
+    } catch (error) {
+      this.#setError(error);
+    }
   }
 
-  current() {
+  async getCurrent() {
     this.#setLoading();
 
-    this.#api
-      .current()
-      .then((comic) => this.#setComic(comic, 'current'))
-      .catch((error) => this.#setError(error));
+    try {
+      const comic = await this.#api.getCurrent();
+
+      this.emit(EVENT_COMIC_CURRENT, comic);
+    } catch (error) {
+      this.#setError(error);
+    }
   }
 }
