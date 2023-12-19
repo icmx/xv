@@ -1,4 +1,4 @@
-import { isString } from '../utils/isString';
+import { isString } from '#/lib/common';
 
 const parser = new DOMParser();
 

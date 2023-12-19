@@ -1,8 +1,7 @@
+import { toInt, isInt } from '#/lib/common';
 import $ from '#/lib/jeox';
 import xkcdparse from '#/lib/xkcdparse';
 import { View } from '../../core/View';
-import { isInt } from '../../utils/isInt';
-import { toInt } from '../../utils/toInt';
 import {
   EVENT_COMIC_BYNUM,
   EVENT_COMIC_CURRENT,

@@ -1,5 +1,5 @@
+import { random } from '#/lib/common';
 import { Api } from '../../core/Api';
-import { random } from '../../utils/random';
 
 /**
  * Xkcd API client.

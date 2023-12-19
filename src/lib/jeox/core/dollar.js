@@ -1,6 +1,5 @@
+import { isNode, isString } from '#/lib/common';
 import { isJeox } from '../utils/isJeox';
-import { isNode } from '../utils/isNode';
-import { isString } from '../utils/isString';
 import { Jeox } from './Jeox';
 
 export const $ = (value, context = document) => {

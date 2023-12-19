@@ -1,5 +1,4 @@
-import { isBoolean } from '../utils/isBoolean';
-import { isObject } from '../utils/isObject';
+import { isBoolean, isObject } from '#/lib/common';
 
 export const display = {
   display(option) {

@@ -1,4 +1,4 @@
-import { r } from './r';
+import { r } from '#/lib/common';
 
 /**
  * Replace a regular token like `*` or `_` by HTML tag equivalent.

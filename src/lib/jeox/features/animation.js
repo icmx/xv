@@ -1,4 +1,4 @@
-import { isArray } from '../utils/isArray';
+import { isArray } from '#/lib/common';
 
 export const animation = {
   animate(classNames, state = true) {
