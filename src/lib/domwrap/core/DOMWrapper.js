@@ -1,12 +1,12 @@
 import { isEmptyArray } from '#/lib/common';
 
-export class Jeox {
+export class DOMWrapper {
   #elements;
   #storage;
 
   constructor(elements = []) {
     if (isEmptyArray(elements)) {
-      throw new Error(`Jeox instance must include at least one node`);
+      throw new Error(`DOMWrapper instance must include at least one node`);
     }
 
     this.#elements = [...elements];
@@ -28,7 +28,7 @@ export class Jeox {
   }
 
   nth(n) {
-    return new Jeox([this.#elements[n]]);
+    return new DOMWrapper([this.#elements[n]]);
   }
 
   first() {
@@ -46,7 +46,7 @@ export class Jeox {
       items.push(this.#elements[i]);
     }
 
-    return new Jeox(items);
+    return new DOMWrapper(items);
   }
 
   even() {
@@ -56,7 +56,7 @@ export class Jeox {
       items.push(this.#elements[i]);
     }
 
-    return new Jeox(items);
+    return new DOMWrapper(items);
   }
 
   child(i = 0) {

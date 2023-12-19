@@ -1,23 +1,23 @@
 import { isNode, isString } from '#/lib/common';
-import { isJeox } from '../utils/isJeox';
-import { Jeox } from './Jeox';
+import { isDOMWrapper } from '../utils/isDOMWrapper';
+import { DOMWrapper } from './DOMWrapper';
 
 export const $ = (value, context = document) => {
-  if (isJeox(value)) {
+  if (isDOMWrapper(value)) {
     return value;
   }
 
   if (isNode(value)) {
-    return new Jeox([value]);
+    return new DOMWrapper([value]);
   }
 
   if (isString(value)) {
-    if (isJeox(context)) {
-      return new Jeox(context.child().querySelectorAll(value));
+    if (isDOMWrapper(context)) {
+      return new DOMWrapper(context.child().querySelectorAll(value));
     }
 
     if (isNode(context)) {
-      return new Jeox(context.querySelectorAll(value));
+      return new DOMWrapper(context.querySelectorAll(value));
     }
 
     throw new Error(`Incorrect context: ${context}`);

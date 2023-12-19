@@ -1,4 +1,4 @@
-import $ from '#/lib/jeox';
+import $ from '#/lib/domwrap';
 import { View } from '../../core/View';
 import { Dialog } from '../../shared/Dialog';
 

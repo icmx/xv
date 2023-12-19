@@ -1,5 +1,5 @@
 import { toInt, isInt } from '#/lib/common';
-import $ from '#/lib/jeox';
+import $ from '#/lib/domwrap';
 import xkcdparse from '#/lib/xkcdparse';
 import { View } from '../../core/View';
 import {

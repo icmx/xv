@@ -10,7 +10,7 @@ import {
   XkcdModel,
   XkcdView,
 } from './app';
-import $ from './lib/jeox';
+import $ from './lib/domwrap';
 import './index.css';
 
 const target = $('.xv-app');

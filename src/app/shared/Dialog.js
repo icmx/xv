@@ -1,4 +1,4 @@
-import $ from '#/lib/jeox';
+import $ from '#/lib/domwrap';
 
 export class Dialog {
   #dialogElement;
