@@ -198,6 +198,13 @@ export class XkcdView extends View {
 
     this.#title = `xv - #${comic.num}`;
 
+    const isFirstComic = comic.num === 1;
+
+    if (isFirstComic) {
+      this.#firstButton.disable();
+      this.#previousButton.disable();
+    }
+
     this.#image.attr('title', alt).attr('src', comic.img);
 
     this.#comicTitle.text(title);
