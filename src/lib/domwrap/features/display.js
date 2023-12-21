@@ -10,7 +10,7 @@ export const display = {
 
     if (isDisplaying) {
       const { showClassName, hideClassName } =
-        this.storage.get('display');
+        this.store.get('display');
 
       if (showClassName) {
         this.toggleClass(showClassName, option);
@@ -24,12 +24,12 @@ export const display = {
     }
 
     if (isSetting) {
-      this.storage.set('display', option);
+      this.store.set('display', option);
 
       return this;
     }
 
-    throw new Error(`Display option must be boolean or object`);
+    throw new Error('Display option must be boolean or object');
   },
 
   show() {

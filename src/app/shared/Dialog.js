@@ -8,7 +8,7 @@ export class Dialog {
 
   constructor(dialogElement, showElement, closeElement) {
     this.#dialogElement = $(dialogElement);
-    this.#dialogElementChild = this.#dialogElement.child();
+    this.#dialogElementChild = this.#dialogElement.nodes.at(0);
     this.#showElement = $(showElement);
     this.#closeElement = $(closeElement);
 

@@ -1,6 +1,6 @@
 export const style = {
   style() {
-    return getComputedStyle(this.child());
+    return getComputedStyle(this.nodes.at(0));
   },
 
   styleProperty(key) {

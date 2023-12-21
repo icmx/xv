@@ -1,27 +1,29 @@
 import { isNode, isString } from '#/lib/common';
-import { isDOMWrapper } from '../utils/isDOMWrapper';
-import { DOMWrapper } from './DOMWrapper';
+import { isDomWrapper } from '../utils/isDomWrapper';
+import { DomWrapper } from './DomWrapper';
 
 export const $ = (value, context = document) => {
-  if (isDOMWrapper(value)) {
+  if (isDomWrapper(value)) {
     return value;
   }
 
   if (isNode(value)) {
-    return new DOMWrapper([value]);
+    return new DomWrapper([value]);
   }
 
   if (isString(value)) {
-    if (isDOMWrapper(context)) {
-      return new DOMWrapper(context.child().querySelectorAll(value));
+    if (isDomWrapper(context)) {
+      return new DomWrapper(
+        context.nodes.at(0).querySelectorAll(value)
+      );
     }
 
     if (isNode(context)) {
-      return new DOMWrapper(context.querySelectorAll(value));
+      return new DomWrapper(context.querySelectorAll(value));
     }
 
-    throw new Error(`Incorrect context: ${context}`);
+    throw new Error('Incorrect DomWrapper context parameter');
   }
 
-  throw new Error(`Incorrect value: ${value}`);
+  throw new Error('Incorrect DomWrapper value parameter');
 };

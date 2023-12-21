@@ -9,17 +9,21 @@ export const contents = {
     const isRemoving = value === null;
 
     if (isGetting) {
-      return this.child().textContent;
+      return this.nodes.at(0).textContent;
     }
 
     if (isSetting) {
-      this.forEach((element) => (element.textContent = value));
+      this.nodes.forEach((element) => {
+        element.textContent = value;
+      });
 
       return this;
     }
 
     if (isRemoving) {
-      this.forEach((element) => (element.textContent = ''));
+      this.nodes.forEach((element) => {
+        element.textContent = '';
+      });
 
       return this;
     }
@@ -31,7 +35,7 @@ export const contents = {
     const isRemoving = value === null;
 
     if (isGetting) {
-      return this.child().innerHTML;
+      return this.nodes.at(0).innerHTML;
     }
 
     if (isSetting) {
@@ -52,13 +56,15 @@ export const contents = {
   },
 
   append(nodes) {
-    this.forEach((element) => element.append(...nodes));
+    this.nodes.forEach((element) => {
+      element.append(...nodes);
+    });
 
     return this;
   },
 
   empty() {
-    this.forEach((element) => {
+    this.nodes.forEach((element) => {
       while (element.firstChild) {
         element.removeChild(element.firstChild);
       }
