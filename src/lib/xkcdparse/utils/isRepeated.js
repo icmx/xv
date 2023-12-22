@@ -1,4 +1,4 @@
-import { r } from './r';
+import { r } from '#/lib/common';
 
 /**
  * Determine if value is actually a character repetition, done in

@@ -1,8 +1,39 @@
-import { app } from '~/app';
+import {
+  AboutController,
+  AboutView,
+  Controller,
+  ThemeController,
+  ThemeModel,
+  ThemeView,
+  XkcdApi,
+  XkcdController,
+  XkcdModel,
+  XkcdView,
+} from './app';
+import $ from './lib/domwrap';
+import './index.css';
 
-import '~/index.css';
+const target = $('.xv-app');
 
-window.addEventListener('load', () => {
+const aboutFeature = new AboutController({
+  view: new AboutView(target),
+});
+
+const themeFeature = new ThemeController({
+  model: new ThemeModel(),
+  view: new ThemeView(target),
+});
+
+const xkcdFeature = new XkcdController({
+  model: new XkcdModel(new XkcdApi('/api/comics/xkcd')),
+  view: new XkcdView(target),
+});
+
+export const app = new Controller({
+  controllers: [aboutFeature, themeFeature, xkcdFeature],
+});
+
+$(window).on('load', () => {
   navigator.serviceWorker.register('/service-worker.js');
 });
 

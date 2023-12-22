@@ -1,26 +1,34 @@
 export class Api {
-  #endpoint;
+  baseUrl;
+
   #controller;
 
-  constructor(endpoint) {
-    this.#endpoint = endpoint;
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl;
 
-    this.refresh();
-  }
-
-  get endpoint() {
-    return this.#endpoint;
+    this.setupRequest();
   }
 
   get signal() {
     return this.#controller.signal;
   }
 
-  abort() {
+  setupRequest() {
+    this.#controller = new AbortController();
+  }
+
+  abortRequest() {
     this.#controller.abort();
   }
 
-  refresh() {
-    this.#controller = new AbortController();
+  async get(path) {
+    this.setupRequest();
+
+    const response = await fetch(`${this.baseUrl}/${path}`, {
+      method: 'GET',
+      signal: this.#controller.signal,
+    });
+
+    return await response.json();
   }
 }

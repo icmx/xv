@@ -1,4 +1,4 @@
-import { int } from './int';
+import { toInt } from './toInt';
 
 /**
  * Shorthand to standard `Number.isInteger`, determines is a value is
@@ -7,5 +7,5 @@ import { int } from './int';
  * @returns {boolean}
  */
 export const isInt = (value) => {
-  return Number.isInteger(int(value));
+  return Number.isInteger(toInt(value));
 };

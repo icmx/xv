@@ -5,40 +5,50 @@ export const attributes = {
     const isRemoving = value === null;
 
     if (isGetting) {
-      return this.child().getAttribute(name);
+      return this.nodes.at(0).getAttribute(name);
     }
 
     if (isSetting) {
-      this.forEach((element) => element.setAttribute(name, value));
+      this.nodes.forEach((element) => {
+        element.setAttribute(name, value);
+      });
 
       return this;
     }
 
     if (isRemoving) {
-      this.forEach((element) => element.removeAttribute(name));
+      this.nodes.forEach((element) => {
+        element.removeAttribute(name);
+      });
 
       return this;
     }
   },
 
   addClass(name) {
-    this.forEach((element) => element.classList.add(name));
+    this.nodes.forEach((element) => {
+      element.classList.add(name);
+    });
 
     return this;
   },
 
   hasClass(name) {
-    return this.child().classList.contains(name);
+    return this.nodes.at(0).classList.contains(name);
   },
 
   removeClass(name) {
-    this.forEach((element) => element.classList.remove(name));
+    this.nodes.forEach((element) => {
+      element.classList.remove(name);
+    });
 
     return this;
   },
 
   toggleClass(name, state) {
-    this.forEach((element) => element.classList.toggle(name, state));
+    this.nodes.forEach((element) => {
+      element.classList.toggle(name, state);
+    });
 
     return this;
   },
@@ -49,17 +59,21 @@ export const attributes = {
     const isRemoving = names === null;
 
     if (isGetting) {
-      return [...this.child().classList];
+      return [...this.nodes.at(0).classList];
     }
 
     if (isSetting) {
-      this.forEach((element) => (element.className = names.join(' ')));
+      this.nodes.forEach((element) => {
+        element.className = names.join(' ');
+      });
 
       return this;
     }
 
     if (isRemoving) {
-      this.forEach((element) => (element.className = ''));
+      this.nodes.forEach((element) => {
+        element.className = '';
+      });
 
       return this;
     }
@@ -74,11 +88,11 @@ export const attributes = {
   },
 
   rect() {
-    return this.child().getBoundingClientRect();
+    return this.nodes.at(0).getBoundingClientRect();
   },
 
   imageSize() {
-    const child = this.child();
+    const child = this.nodes.at(0);
 
     return {
       width: child.naturalWidth,

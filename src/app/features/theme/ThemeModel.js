@@ -1,17 +1,14 @@
-import { Model } from '~/app/core';
+import { Model } from '../../core/Model';
+import { EVENT_THEME } from './constants';
 
 export class ThemeModel extends Model {
   constructor() {
     super();
   }
 
-  #setTheme(theme) {
-    localStorage.setItem('xv-theme', theme);
+  setTheme(name) {
+    localStorage.setItem('xv-theme', name);
 
-    this.emit('theme', theme);
-  }
-
-  theme(name) {
-    this.#setTheme(name);
+    this.emit(EVENT_THEME, name);
   }
 }

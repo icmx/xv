@@ -1,5 +1,4 @@
-import { applyReplacements } from '../utils';
-
+import { applyReplacements } from '../utils/applyReplacements';
 import {
   asterisksToken,
   cleanupSet,
@@ -34,7 +33,7 @@ export const alt = ({ alt }) => {
 };
 
 export const date = ({ year, month, day }) => {
-  const source = new Date(year, month, day);
+  const source = new Date(year, month - 1, day);
 
   const [monthName, weekdayName] = source
     .toLocaleString('en-US', { month: 'long', weekday: 'long' })

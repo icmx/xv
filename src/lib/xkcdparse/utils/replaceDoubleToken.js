@@ -1,4 +1,4 @@
-import { r } from './r';
+import { r } from '#/lib/common';
 
 /**
  * Replace a double token like `[[this]]` or `{{ that }}` by HTML tag

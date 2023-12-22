@@ -9,7 +9,7 @@ xkcdparse has "destructors" API which are actually functions that takes xkcd com
 Suppose there's [xkcd #927](https://xkcd.com/927/) JSON:
 
 ```js
-import xkcdparse from '~/somewhere/xkcdparse';
+import xkcdparse from '#/somewhere/xkcdparse';
 
 // (multiline for readability)
 const comic = {

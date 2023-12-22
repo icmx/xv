@@ -1,20 +1,23 @@
-const path = require('path');
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import webpack from 'webpack';
+import { merge } from 'webpack-merge';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import project from './package.json' assert { type: 'json' };
 
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
-
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin, SourceMapDevToolPlugin } = webpack;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { version, license } = project;
 
-const meta = require('./package.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const CONSTS = {
   globalConst: {
-    version: meta.version,
-    license: meta.license,
+    version,
+    license,
   },
 };
 
@@ -25,9 +28,9 @@ const NAMES = {
 };
 
 const PATHS = {
-  src: path.join(__dirname, NAMES.src),
-  dist: path.join(__dirname, NAMES.dist),
-  static: path.join(__dirname, NAMES.src, NAMES.static),
+  src: join(__dirname, NAMES.src),
+  dist: join(__dirname, NAMES.dist),
+  static: join(__dirname, NAMES.src, NAMES.static),
 };
 
 const createDefinitions = (consts) =>
@@ -44,7 +47,7 @@ const createBaseConfig = (paths, options) => ({
     ['service-worker']: `${paths.src}/service-worker.js`,
   },
   output: {
-    filename: `[name].js`,
+    filename: '[name].js',
     path: paths.dist,
     publicPath: '/',
   },
@@ -63,22 +66,9 @@ const createBaseConfig = (paths, options) => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: { esmodules: true },
-                  bugfixes: true,
-                  shippedProposals: true,
-                },
-              ],
-            ],
-          },
+        test: /\.js/,
+        resolve: {
+          fullySpecified: false,
         },
       },
       {
@@ -109,7 +99,7 @@ const createBaseConfig = (paths, options) => ({
   resolve: {
     extensions: ['.js'],
     alias: {
-      '~': `${paths.src}`,
+      '#': `${paths.src}`,
     },
   },
   plugins: [
@@ -183,7 +173,7 @@ const createBuildConfig = (paths, options) =>
     plugins: [],
   });
 
-module.exports = [
+export default [
   createWatchConfig(PATHS, { consts: CONSTS, port: 8000 }),
   createBuildConfig(PATHS, { consts: CONSTS }),
 ];
