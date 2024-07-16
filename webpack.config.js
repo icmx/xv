@@ -146,18 +146,20 @@ const createWatchConfig = (paths, options) =>
           errors: true,
         },
       },
-      proxy: {
-        '/api/comics': {
+      proxy: [
+        {
+          context: ['/api/comics'],
           target: 'https://xkcd.com',
           pathRewrite: { '^/api/comics/xkcd': '' },
           changeOrigin: true,
         },
-        '/files/comics': {
+        {
+          context: ['/files/comics'],
           target: 'https://imgs.xkcd.com/comics',
           pathRewrite: { '^/files/comics/xkcd': '' },
           changeOrigin: true,
         },
-      },
+      ],
     },
     plugins: [
       new SourceMapDevToolPlugin({
