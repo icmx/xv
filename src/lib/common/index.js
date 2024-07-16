@@ -7,6 +7,6 @@ export * from './utils/isNode';
 export * from './utils/isNodeList';
 export * from './utils/isObject';
 export * from './utils/isString';
-export * from './utils/r';
+export * from './utils/pipe';
 export * from './utils/random';
 export * from './utils/toInt';

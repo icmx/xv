@@ -1,56 +1,29 @@
-import { applyReplacements } from '../utils/applyReplacements';
-import {
-  asterisksToken,
-  cleanupSet,
-  escapesSet,
-  quoteMarksToken,
-  tokensSet,
-  typographicsSet,
-  underscoresToken,
-} from './replacements';
+import { toInt } from '#/lib/common';
+import { parseAltProperty } from '../operators/parseAltProperty';
+import { parseTitleProperty } from '../operators/parseTitleProperty';
+import { parseTranscriptProperty } from '../operators/parseTranscriptProperty';
+import { getDateString } from '../utils/getDateString';
 
 export const title = ({ num, title }) => {
-  const result = applyReplacements(title, [
-    ...escapesSet,
-    ...cleanupSet,
-    ...typographicsSet,
-  ]);
+  const result = parseTitleProperty(title);
 
   return `#${num} — ${result}`;
 };
 
 export const alt = ({ alt }) => {
-  const result = applyReplacements(`“${alt}“`, [
-    ...escapesSet,
-    asterisksToken,
-    underscoresToken,
-    quoteMarksToken,
-    ...cleanupSet,
-    ...typographicsSet,
-  ]);
+  const result = parseAltProperty(alt);
 
-  return result;
+  return `“${result}”`;
 };
 
 export const date = ({ year, month, day }) => {
-  const source = new Date(year, month - 1, day);
+  const source = new Date(toInt(year), toInt(month - 1), toInt(day));
 
-  const [monthName, weekdayName] = source
-    .toLocaleString('en-US', { month: 'long', weekday: 'long' })
-    .split(' ');
-
-  const result = `${weekdayName}, ${monthName} ${day}, ${year}`;
-
-  return result;
+  return getDateString(source);
 };
 
 export const transcript = ({ transcript }) => {
-  const result = applyReplacements(transcript, [
-    ...escapesSet,
-    ...tokensSet,
-    ...cleanupSet,
-    ...typographicsSet,
-  ]);
+  const result = parseTranscriptProperty(transcript);
 
   return result;
 };

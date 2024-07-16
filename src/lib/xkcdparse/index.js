@@ -1,2 +1,2 @@
 // core
-export * as default from './core/destructors'
+export * as default from './core/destructors';
