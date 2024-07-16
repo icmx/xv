@@ -3,7 +3,7 @@
  * first to last one.
  *
  * @param {Function} firstOperator First operator function
- * @param {...Function} restOperators Rest operator fonctions (if any)
+ * @param {...Function} restOperators Rest operator functions (if any)
  * @returns {Function}
  */
 export const pipe = (firstOperator, ...restOperators) => {

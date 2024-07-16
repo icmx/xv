@@ -1,7 +1,7 @@
 import { isString } from '#/lib/common';
 
 /**
- * Hadnle initial source string and process extra spacing.
+ * Handle initial source string and process extra spacing.
  *
  * @param {string} source
  * @returns {string}

@@ -69,13 +69,13 @@ const d = xkcdparse.transcript(comic); // -> transcript destructor:
 
 ## Syntax rules
 
-I've realised that there are simple syntax rules used in comic `title`, `alt` and `transcript` properties.
+I've realized that there are simple syntax rules used in comic `title`, `alt` and `transcript` properties.
 
 There are some tokens:
 
   - `{{ hidden text }}`, used in `transcript`, actually a copy of `alt` property
-  - `[[ coursive text ]]`, used for current comic frame description
-  - `(( coursive text also ))`, same, but for more extra-context description
+  - `[[ cursive text ]]`, used for current comic frame description
+  - `(( cursive text also ))`, same, but for more extra-context description
   - `<<bold text>>`
   - `*bold also*`
   - `_underline text_`

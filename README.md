@@ -1,6 +1,6 @@
 # xv [![Netlify Status](https://api.netlify.com/api/v1/badges/f6985616-4725-4688-874b-76048e7418a8/deploy-status)](https://icmx-xv.netlify.app/)
 
-Simple xkcd comics viwer, done in pure JavaScript, CSS and Webpack.
+Simple xkcd comics viewer, done in pure JavaScript, CSS and Webpack.
 
 Check it on **[icmx-xv.netlify.app](https://icmx-xv.netlify.app/)**!
 
