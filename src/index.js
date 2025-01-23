@@ -34,9 +34,11 @@ export const app = new Controller({
 });
 
 $(window).on('load', () => {
-  const url = new URL('./service-worker.js', import.meta.url);
+  const url = new URL('/service-worker.js', import.meta.url);
 
-  navigator.serviceWorker?.register(url);
+  navigator.serviceWorker?.register(url, {
+    type: 'module',
+  });
 });
 
 app.start();

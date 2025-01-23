@@ -1,4 +1,6 @@
-const CACHE_NAME = globalConst.version;
+import '/@vite/env'; // this is for global values like GLOBAL_COMMIT_REF
+
+const CACHE_NAME = GLOBAL_COMMIT_REF;
 
 const isCacheable = (request, response) => {
   if (request.url.endsWith('/xkcd/info.0.json')) {

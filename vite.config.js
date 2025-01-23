@@ -1,8 +1,15 @@
 import { defineConfig } from 'vite';
 import * as path from 'path';
 
+export const GLOBAL_COMMIT_REF =
+  process.env['COMMIT_REF'] || 'development';
+
 export default defineConfig({
   root: 'src',
+  publicDir: 'static',
+  define: {
+    GLOBAL_COMMIT_REF: JSON.stringify(GLOBAL_COMMIT_REF),
+  },
   build: {
     outDir: '../dist',
     emptyOutDir: true,
