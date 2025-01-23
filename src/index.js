@@ -11,7 +11,7 @@ import {
   XkcdView,
 } from './app';
 import $ from './lib/domwrap';
-import './index.css';
+import './index.css?inline';
 
 const target = $('.xv-app');
 
@@ -34,7 +34,9 @@ export const app = new Controller({
 });
 
 $(window).on('load', () => {
-  navigator.serviceWorker.register('/service-worker.js');
+  const url = new URL('./service-worker.js', import.meta.url);
+
+  navigator.serviceWorker?.register(url);
 });
 
 app.start();

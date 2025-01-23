@@ -8,8 +8,9 @@
     <link rel="icon" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <title>xv</title>
-    <!-- theme-initialization: -->
+    <link rel="stylesheet" href="index.css" />
+    <script type="module" src="index.js"></script>
+    <!-- theme-initialization -->
     <script>
       // This code should be available even before document loads body,
       // otherwise it will flash on any reloading.
@@ -39,6 +40,7 @@
       })();
     </script>
     <!-- /theme-initialization -->
+    <title>xv</title>
   </head>
   <body class="xv-app">
     <nav class="appbar is-top">
@@ -130,8 +132,6 @@
         <p class="text is-small is-mute is-center">
           <strong>xv</strong> — xkcd comics viewer by
           <a href="https://github.com/icmx/xv">@icmx</a>
-          <br />
-          v<%= globalConst.version %> (<%= globalConst.license %>)
         </p>
       </section>
     </footer>

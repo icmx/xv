@@ -1,9 +1,9 @@
 {
   "name": "xv",
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "private": true,
-  "description": "xkcd.com viewer app, done in pure JavaScript and Webpack",
+  "description": "xkcd.com viewer app, done in pure JavaScript and CSS",
   "keywords": [
     "xkcd",
     "comics",
@@ -21,26 +21,11 @@
     "url": "git+https://github.com/icmx/xv.git"
   },
   "scripts": {
-    "watch": "webpack serve --config-name watch",
-    "build": "webpack --config-name build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^12.0.2",
-    "css-loader": "^7.1.2",
-    "html-webpack-plugin": "^5.6.3",
-    "mini-css-extract-plugin": "^2.9.2",
-    "postcss-csso": "^6.0.1",
-    "postcss-import": "^16.1.0",
-    "postcss-loader": "^8.1.1",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0",
-    "webpack-merge": "^6.0.1"
-  },
-  "browserslist": [
-    "> 0.5%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "vite": "^6.0.11"
+  }
 }
