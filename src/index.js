@@ -37,6 +37,7 @@ $(window).on('load', () => {
   const url = new URL('/service-worker.js', import.meta.url);
 
   navigator.serviceWorker?.register(url, {
+    scope: '/',
     type: 'module',
   });
 });
