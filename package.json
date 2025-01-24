@@ -1,7 +1,7 @@
 {
   "name": "xv",
   "type": "module",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "description": "xkcd.com viewer app, done in pure JavaScript and CSS",
   "keywords": [
