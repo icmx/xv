@@ -32,7 +32,7 @@ cd xv
 npm install
 
 # launch it on localhost:8000
-npm run serve
+npm run dev
 
 # build it
 npm run build
