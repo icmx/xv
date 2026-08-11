@@ -16,7 +16,7 @@ export class XkcdApi extends Api {
    * @returns {XkcdComic}
    */
   async getByNum(num) {
-    return await this.get(`/${num}/info.0.json`);
+    return await this.get(`${num}/info.0.json`);
   }
 
   /**
@@ -24,7 +24,7 @@ export class XkcdApi extends Api {
    * @returns {XkcdComic}
    */
   async getCurrent() {
-    return await this.get(`/info.0.json`);
+    return await this.get(`info.0.json`);
   }
 
   /**

@@ -7,6 +7,7 @@ import {
   EVENT_COMIC_CURRENT,
   EVENT_COMIC_RANDOM,
 } from './constants';
+import { convertImageSrc } from './utils';
 
 export class XkcdView extends View {
   #navbarButtons;
@@ -205,7 +206,9 @@ export class XkcdView extends View {
       this.#previousButton.disable();
     }
 
-    this.#image.attr('title', alt).attr('src', comic.img);
+    const src = convertImageSrc(comic.img);
+
+    this.#image.attr('title', alt).attr('src', src);
 
     this.#comicTitle.text(title);
     this.#comicAlt.text(alt);
