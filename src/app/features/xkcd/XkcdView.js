@@ -259,7 +259,7 @@ export class XkcdView extends View {
     }
 
     if (!isInt(this.#num)) {
-      this.num = 1;
+      this.#num = 1;
     }
   }
 }
