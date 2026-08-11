@@ -29,6 +29,10 @@ export class Api {
       signal: this.#controller.signal,
     });
 
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+
     return await response.json();
   }
 }
