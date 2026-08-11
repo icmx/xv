@@ -1,4 +1,9 @@
-import { isNode, isString } from '#/lib/common';
+import {
+  isMediaQueryList,
+  isNode,
+  isString,
+  isWindow,
+} from '#/lib/common';
 import { isDomWrapper } from '../utils/isDomWrapper';
 import { DomWrapper } from './DomWrapper';
 
@@ -7,7 +12,7 @@ export const $ = (value, context = document) => {
     return value;
   }
 
-  if (isNode(value)) {
+  if (isNode(value) || isMediaQueryList(value) || isWindow(value)) {
     return new DomWrapper([value]);
   }
 

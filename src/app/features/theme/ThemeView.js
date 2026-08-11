@@ -5,12 +5,15 @@ import { EVENT_THEME } from './constants';
 export class ThemeView extends View {
   #document;
   #headMetaThemeColor;
+  #colorScheme;
 
   #themeLightButton;
   #themeDarkButton;
 
   constructor(viewElement) {
     super(viewElement);
+
+    this.#colorScheme = matchMedia('(prefers-color-scheme: dark)');
 
     this.#document = $(document.documentElement);
     this.#headMetaThemeColor = $(
@@ -33,10 +36,28 @@ export class ThemeView extends View {
 
     this.#listen();
     this.#toggleThemeButtons();
+    this.#updateThemeColor();
+  }
+
+  #getThemeName() {
+    const attr = this.#document.attr('data-xv-theme');
+
+    if (attr) {
+      return attr;
+    }
+
+    return this.#colorScheme.matches ? 'dark' : 'light';
+  }
+
+  #updateThemeColor() {
+    this.#headMetaThemeColor.attr(
+      'content',
+      this.#document.styleVar('color-background-main')
+    );
   }
 
   #toggleThemeButtons() {
-    const name = this.#document.attr('data-xv-theme');
+    const name = this.#getThemeName();
 
     switch (name) {
       case 'dark':
@@ -59,6 +80,11 @@ export class ThemeView extends View {
   }
 
   #listen() {
+    $(this.#colorScheme).on('change', () => {
+      this.#toggleThemeButtons();
+      this.#updateThemeColor();
+    });
+
     this.#themeDarkButton.on('click', () =>
       this.#handleThemeChange('dark')
     );
@@ -71,11 +97,7 @@ export class ThemeView extends View {
   setTheme(name) {
     this.#document.attr('data-xv-theme', name);
 
-    this.#headMetaThemeColor.attr(
-      'content',
-      this.#document.styleVar('color-background-main')
-    );
-
+    this.#updateThemeColor();
     this.#toggleThemeButtons();
   }
 }
