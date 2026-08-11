@@ -19,7 +19,7 @@ export const $ = (value, context = document) => {
   if (isString(value)) {
     if (isDomWrapper(context)) {
       return new DomWrapper(
-        context.nodes.at(0).querySelectorAll(value)
+        context.nodes.at(0).querySelectorAll(value),
       );
     }
 

@@ -11,7 +11,7 @@ export class AboutView extends View {
     this.#dialog = new Dialog(
       $('.dialog'),
       $('.is-open-about'),
-      $('.dialog-close')
+      $('.dialog-close'),
     );
   }
 }

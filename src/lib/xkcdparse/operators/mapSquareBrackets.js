@@ -16,6 +16,6 @@ const replacer = createReplacer({
 export const mapSquareBrackets = (source) => {
   return source.replaceAll(
     /\[\[[\s\S]*?\]\]|\[[\s\S]*?\]\]|\[\[[\s\S]*?\]/g,
-    replacer
+    replacer,
   );
 };

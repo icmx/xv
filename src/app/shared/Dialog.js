@@ -30,10 +30,10 @@ export class Dialog {
     });
 
     this.#showElement.on('click', () =>
-      this.#dialogElementChild.showModal()
+      this.#dialogElementChild.showModal(),
     );
     this.#closeElement.on('click', () =>
-      this.#dialogElementChild.close()
+      this.#dialogElementChild.close(),
     );
   }
 }

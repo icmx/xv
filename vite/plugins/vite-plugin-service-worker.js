@@ -29,10 +29,10 @@ export const serviceWorker = ({
           path
             .relative(
               publicDir,
-              path.join(entry.parentPath, entry.name)
+              path.join(entry.parentPath, entry.name),
             )
             .split(path.sep)
-            .join('/')
+            .join('/'),
         )
         .sort();
 

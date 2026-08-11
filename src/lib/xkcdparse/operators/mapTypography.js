@@ -14,6 +14,6 @@ export const mapTypography = (source) => {
     .replaceAll(/(\.{3}|(\. ){3})/gm, '…')
     .replaceAll(/ +… *?/gm, '… ')
     .replaceAll(/"\S(.*?)"/g, (match) =>
-      match?.replace(/^"/, '“').replace(/"$/, '”')
+      match?.replace(/^"/, '“').replace(/"$/, '”'),
     );
 };

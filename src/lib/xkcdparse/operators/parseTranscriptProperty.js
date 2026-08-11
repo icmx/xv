@@ -28,5 +28,5 @@ export const parseTranscriptProperty = pipe(
   mapUnderscores,
   mapTagging,
   mapLinebreaks,
-  mapTypography
+  mapTypography,
 );

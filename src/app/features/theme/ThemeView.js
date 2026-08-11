@@ -18,7 +18,7 @@ export class ThemeView extends View {
     this.#document = $(document.documentElement);
     this.#headMetaThemeColor = $(
       'meta[name="theme-color"]',
-      this.#document
+      this.#document,
     );
 
     this.#themeLightButton = $('.is-theme-light', viewElement);
@@ -52,7 +52,7 @@ export class ThemeView extends View {
   #updateThemeColor() {
     this.#headMetaThemeColor.attr(
       'content',
-      this.#document.styleVar('color-background-main')
+      this.#document.styleVar('color-background-main'),
     );
   }
 
@@ -86,11 +86,11 @@ export class ThemeView extends View {
     });
 
     this.#themeDarkButton.on('click', () =>
-      this.#handleThemeChange('dark')
+      this.#handleThemeChange('dark'),
     );
 
     this.#themeLightButton.on('click', () =>
-      this.#handleThemeChange('light')
+      this.#handleThemeChange('light'),
     );
   }
 

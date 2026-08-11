@@ -14,15 +14,15 @@ export class XkcdController extends Controller {
 
   start() {
     this.model.on(EVENT_COMIC_BYNUM, (comic) =>
-      this.view.setByNum(comic)
+      this.view.setByNum(comic),
     );
 
     this.model.on(EVENT_COMIC_RANDOM, (comic) =>
-      this.view.setRandom(comic)
+      this.view.setRandom(comic),
     );
 
     this.model.on(EVENT_COMIC_CURRENT, (comic) =>
-      this.view.setCurrent(comic)
+      this.view.setCurrent(comic),
     );
 
     this.model.on(EVENT_LOADING, () => this.view.setLoading());

@@ -11,6 +11,6 @@ export const pipe = (firstOperator, ...restOperators) => {
     (result, current) =>
       (...rest) =>
         current(result(...rest)),
-    firstOperator
+    firstOperator,
   );
 };

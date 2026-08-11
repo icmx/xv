@@ -12,5 +12,5 @@ import { normalize } from './normalize';
 export const parseTitleProperty = pipe(
   normalize,
   escape,
-  mapTypography
+  mapTypography,
 );

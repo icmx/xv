@@ -16,6 +16,6 @@ const replacer = createReplacer({
 export const mapRoundBrackets = (source) => {
   return source.replace(
     /\(\([^\(\)]*?\)\)|\([^\(\)]*?\)\)|\(\([^\(\)]*?\)/g,
-    replacer
+    replacer,
   );
 };

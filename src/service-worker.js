@@ -57,7 +57,7 @@ const trimCache = async (cacheName, limit) => {
   }
 
   await Promise.all(
-    keys.slice(0, keys.length - limit).map((key) => cache.delete(key))
+    keys.slice(0, keys.length - limit).map((key) => cache.delete(key)),
   );
 };
 
@@ -68,7 +68,7 @@ worker.addEventListener('install', (event) => {
 
       await cache.addAll(PRECACHE_URLS);
       await worker.skipWaiting();
-    })()
+    })(),
   );
 });
 
@@ -80,11 +80,11 @@ worker.addEventListener('activate', (event) => {
       await Promise.all(
         keys
           .filter((key) => key !== SHELL_CACHE && key !== CONTENT_CACHE)
-          .map((key) => caches.delete(key))
+          .map((key) => caches.delete(key)),
       );
 
       await worker.clients.claim();
-    })()
+    })(),
   );
 });
 

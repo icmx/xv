@@ -16,5 +16,5 @@ export const parseAltProperty = pipe(
   escape,
   mapAsterisks,
   mapUnderscores,
-  mapTypography
+  mapTypography,
 );
