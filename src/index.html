@@ -16,27 +16,11 @@
       // otherwise it will flash on any reloading.
 
       (() => {
-        const apply = (theme) =>
-          document.documentElement.setAttribute('data-xv-theme', theme)
-
-        const prefers = matchMedia('(prefers-color-scheme: dark)')
-          ? 'dark'
-          : 'light';
-
         const current = localStorage.getItem('xv-theme');
 
-        apply(current === null ? prefers : current);
-
-        addEventListener('load', () => {
-          const root = document.documentElement;
-          const color = getComputedStyle(root).getPropertyValue(
-            '--color-background-main'
-          ).trim()
-
-          root.querySelector('meta[name="theme-color"]').setAttribute(
-            'content', color
-          )
-        })
+        if (current) {
+          document.documentElement.setAttribute('data-xv-theme', current);
+        }
       })();
     </script>
     <!-- /theme-initialization -->

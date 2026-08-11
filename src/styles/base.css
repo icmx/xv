@@ -3,6 +3,18 @@
   --false: ;
 }
 
+:root {
+  --light: var(--true);
+  --dark: var(--false);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --light: var(--false);
+    --dark: var(--true);
+  }
+}
+
 :root[data-xv-theme='light'] {
   --light: var(--true);
   --dark: var(--false);
