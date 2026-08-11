@@ -33,13 +33,12 @@ export const app = new Controller({
   controllers: [aboutFeature, themeFeature, xkcdFeature],
 });
 
-$(window).on('load', () => {
-  const url = new URL('/service-worker.js', import.meta.url);
-
-  navigator.serviceWorker?.register(url, {
-    scope: '/',
-    type: 'module',
+if (import.meta.env.PROD) {
+  $(window).on('load', () => {
+    navigator.serviceWorker?.register('/service-worker.js', {
+      scope: '/',
+    });
   });
-});
+}
 
 app.start();
