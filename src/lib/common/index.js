@@ -1,6 +1,5 @@
 export * from './utils/isArray';
 export * from './utils/isBoolean';
-export * from './utils/isFunciton';
 export * from './utils/isHTMLCollection';
 export * from './utils/isInt';
 export * from './utils/isMediaQueryList';

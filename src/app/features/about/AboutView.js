@@ -3,15 +3,15 @@ import { View } from '../../core/View';
 import { Dialog } from '../../shared/Dialog';
 
 export class AboutView extends View {
-  #dialog;
+  dialog;
 
   constructor(viewElement) {
     super(viewElement);
 
-    this.#dialog = new Dialog(
+    this.dialog = new Dialog(
       $('.dialog'),
       $('.is-open-about'),
-      $('.dialog-close')
+      $('.dialog-close'),
     );
   }
 }

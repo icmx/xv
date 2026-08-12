@@ -1,7 +1,7 @@
 export class Api {
   baseUrl;
 
-  #controller;
+  controller;
 
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
@@ -10,15 +10,15 @@ export class Api {
   }
 
   get signal() {
-    return this.#controller.signal;
+    return this.controller.signal;
   }
 
   setupRequest() {
-    this.#controller = new AbortController();
+    this.controller = new AbortController();
   }
 
   abortRequest() {
-    this.#controller.abort();
+    this.controller.abort();
   }
 
   async get(path) {
@@ -26,7 +26,7 @@ export class Api {
 
     const response = await fetch(`${this.baseUrl}/${path}`, {
       method: 'GET',
-      signal: this.#controller.signal,
+      signal: this.controller.signal,
     });
 
     if (!response.ok) {

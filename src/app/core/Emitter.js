@@ -1,18 +1,20 @@
 export class Emitter {
-  #listeners;
+  listeners;
 
   constructor() {
-    this.#listeners = Object.create(null);
+    this.listeners = Object.create(null);
   }
 
   on(type, listener) {
-    this.#listeners[type] = this.#listeners[type]
-      ? [...this.#listeners[type], listener]
+    this.listeners[type] = this.listeners[type]
+      ? [...this.listeners[type], listener]
       : [listener];
   }
 
   emit(type, ...payload) {
-    this.#listeners[type].forEach((listener) => {
+    const listeners = this.listeners[type] ?? [];
+
+    listeners.forEach((listener) => {
       listener(...payload);
     });
   }

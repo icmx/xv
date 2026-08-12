@@ -8,6 +8,6 @@
 export const mapCurlyBrackets = (source) => {
   return source.replace(
     /\n*(\{\{[\s\S]*?\}\}|\{[\s\S]*?\}\}|\{\{[\s\S]*?\})\n*/g,
-    ''
+    '',
   );
 };

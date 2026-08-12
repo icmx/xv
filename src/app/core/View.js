@@ -1,11 +1,11 @@
 import { Emitter } from './Emitter';
 
 export class View extends Emitter {
-  #viewElement;
+  viewElement;
 
   constructor(viewElement) {
     super();
 
-    this.#viewElement = viewElement;
+    this.viewElement = viewElement;
   }
 }

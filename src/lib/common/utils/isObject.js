@@ -6,5 +6,5 @@ import { isArray } from './isArray';
  * @returns {boolean}
  */
 export const isObject = (value) => {
-  return !isArray(value) && typeof value === 'object';
+  return value !== null && !isArray(value) && typeof value === 'object';
 };

@@ -1,7 +1,7 @@
 {
   "name": "xv",
   "short_name": "xv",
-  "description": "xkcd.com viwer app, done in pure JavaScript and CSS",
+  "description": "xkcd.com viewer app, done in pure JavaScript and CSS",
   "icons": [
     {
       "src": "/icon-192.png",
