@@ -1,4 +1,3 @@
-import { isInt } from './isInt';
 import { toInt } from './toInt';
 
 /**
