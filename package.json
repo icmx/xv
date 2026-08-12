@@ -24,8 +24,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format:check": "prettier --check {src,vite}/**/*.js",
-    "format": "prettier --write {src,vite}/**/*.js",
+    "format:check": "prettier --check {src,vite}/**/*.{css,js}",
+    "format": "prettier --write {src,vite}/**/*.{css,js}",
     "lint:check": "eslint .",
     "lint": "eslint . --fix"
   },

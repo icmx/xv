@@ -1,28 +1,22 @@
 export const attributes = {
   attr(name, value) {
-    const isGetting = name && value === undefined;
-    const isSetting = name && value;
-    const isRemoving = value === null;
-
-    if (isGetting) {
+    if (value === undefined) {
       return this.nodes.at(0).getAttribute(name);
     }
 
-    if (isSetting) {
-      this.nodes.forEach((element) => {
-        element.setAttribute(name, value);
-      });
-
-      return this;
-    }
-
-    if (isRemoving) {
+    if (value === null) {
       this.nodes.forEach((element) => {
         element.removeAttribute(name);
       });
 
       return this;
     }
+
+    this.nodes.forEach((element) => {
+      element.setAttribute(name, value);
+    });
+
+    return this;
   },
 
   addClass(name) {

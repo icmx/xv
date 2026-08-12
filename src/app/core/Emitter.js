@@ -12,7 +12,9 @@ export class Emitter {
   }
 
   emit(type, ...payload) {
-    this.listeners[type].forEach((listener) => {
+    const listeners = this.listeners[type] ?? [];
+
+    listeners.forEach((listener) => {
       listener(...payload);
     });
   }

@@ -51,7 +51,7 @@
 }
 
 @media (min-width: 768px) {
-  .appbar.is-top > .action{
+  .appbar.is-top > .action {
     min-width: 4rem;
   }
 }
@@ -96,7 +96,7 @@
 }
 
 @media (min-width: 768px) {
-  .appbar.is-bottom .action{
+  .appbar.is-bottom .action {
     min-width: 4rem;
   }
 }
